@@ -24,7 +24,11 @@ public class Robot {
     }
 
     public void extraire(){
+        while (nbMineraisExtraits < capaciteStockage){
+            if (capaciteExtraction <= capaciteStockage - nbMineraisExtraits){
 
+            }
+        }
     }
 
     public void seVider(){
