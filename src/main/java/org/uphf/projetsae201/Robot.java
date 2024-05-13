@@ -12,7 +12,7 @@ public class Robot {
     private ArrayList<String> direction;
 
     public Robot(){
-        this.nbMineraisExtraits= new Random().nextInt(10-5) + 5;
+        this.capaciteStockage= new Random().nextInt(10-5) + 5;
 
 
     }
