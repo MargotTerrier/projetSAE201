@@ -6,13 +6,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot {
-    private int capciteExtraction;
+    private int capaciteExtraction;
     private int capaciteStockage;
     private int nbMineraisExtraits;
     private ArrayList<String> direction;
 
     public Robot(){
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
+        this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
+        this.nbMineraisExtraits=0;
 
 
     }
@@ -30,11 +32,15 @@ public class Robot {
     }
 
     public int getCapaciteExtraction(){
-        return 0;
+        return this.capaciteExtraction;
     }
 
     public int getCapaciteStockage(){
-        return 0;
+        return this.capaciteStockage;
+    }
+
+    public int getNbMineraisExtraits(){
+        return this.nbMineraisExtraits;
     }
 
     public ArrayList<String> getDirection(){
