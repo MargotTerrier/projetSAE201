@@ -32,11 +32,15 @@ public class Robot {
     }
 
     public int getCapaciteExtraction(){
-        return this.capciteExtraction;
+        return this.capaciteExtraction;
     }
 
     public int getCapaciteStockage(){
         return this.capaciteStockage;
+    }
+
+    public int getNbMineraisExtraits(){
+        return this.nbMineraisExtraits;
     }
 
     public ArrayList<String> getDirection(){
