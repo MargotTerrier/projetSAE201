@@ -1,4 +1,5 @@
 package org.uphf.projetsae201;
 
-public class Minerai {
+public enum Minerai {
+    OR, NICKEL
 }
