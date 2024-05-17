@@ -6,8 +6,4 @@ public class PlanDeau extends Secteur{
         super();
     }
 
-    public int getId(){
-        return Secteur.id;
-    }
-
 }

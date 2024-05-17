@@ -12,8 +12,4 @@ public class Terrain extends Secteur{
         this.robot = r;
     }
 
-    public int getId(){
-        return Secteur.id;
-    }
-
 }
