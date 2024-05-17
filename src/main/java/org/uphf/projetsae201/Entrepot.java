@@ -10,10 +10,6 @@ public class Entrepot extends District{
         this.nbMineraisStockes = 0;
     }
 
-    public int getId(){
-        return Secteur.id;
-    }
-
     public int getnbMineraisStockees(){
         return this.nbMineraisStockes;
     }
