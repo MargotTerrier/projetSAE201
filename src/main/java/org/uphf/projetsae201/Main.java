@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override public void start(Stage stage){
+//        Monde m = new Monde(5,5,5,5);
 
         Text text = new Text(10,40,"ALED");
         text.setFont(new Font("Arial",20));
