@@ -3,6 +3,7 @@ package org.uphf.projetsae201;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.*;
 
 public class Monde {
     private int nbTerrains;
@@ -64,7 +65,7 @@ public class Monde {
     }
 
     public int getNbPlantEau() {
-        return nbPlantEau;
+        return nbPlanEau;
     }
 
     public int getLongueurMonde() {
@@ -76,18 +77,29 @@ public class Monde {
     }
 
     public void creationMonde() {
-        Integer l; //longueur
-        Integer L; //Largeur
-        ArrayList<Integer> temp = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> pas; //secteur deja choisi
+        int l; //longueur
+        int L; //Largeur
+
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ArrayList<ArrayList<Integer>> pas = new ArrayList<ArrayList<Integer>>(5) ; //secteur deja choisi
+
+
+
+
         for (int x = 0; x < this.nbPlanEau;) {
+
             l = new Random(0).nextInt(this.longueurMonde);
             L = new Random(0).nextInt(this.largeurMonde);
+            System.out.println(l);
             temp.add(l);
             temp.add(L);
-            if (!(pas.contains(temp)){
+
+            if (!(pas.contains(temp))){
+
                 pas.add(temp);
-                this.lstSecteur[temp[0]][temp[1]] = new Terrain();
+                System.out.println(pas);
+                this.lstSecteur[temp]  = new Terrain();
+                x+=1;
 
 
             }
