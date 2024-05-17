@@ -1,5 +1,7 @@
 package org.uphf.projetsae201;
 
+import java.util.Random;
+
 public class Mine extends District{
     private int id;
     private int nbMinerais;
@@ -8,9 +10,9 @@ public class Mine extends District{
 
     public Mine(int id){
         this.id = id;
-        this.nbMinerais = 50 + random.nextInt(50);
+        this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
-        this.vide = False;
+        this.vide = false;
     }
 
     public int getId(){
