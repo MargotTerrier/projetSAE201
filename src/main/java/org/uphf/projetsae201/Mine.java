@@ -5,6 +5,7 @@ import java.util.Random;
 public class Mine extends District{
     private int id;
     private int nbMinerais;
+    private Minerai typeMinerai;
     private int capacite;
     private boolean vide;
 
@@ -13,6 +14,7 @@ public class Mine extends District{
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
         this.vide = false;
+        this.typeMinerai = ;
     }
 
     public int getId(){

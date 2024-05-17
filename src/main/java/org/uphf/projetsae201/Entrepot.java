@@ -3,6 +3,7 @@ package org.uphf.projetsae201;
 public class Entrepot extends District{
 
     private int nbMineraisStockes;
+    private  Minerai tyoeMinerai;
 
     public Entrepot(){
         super();
