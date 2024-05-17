@@ -1,6 +1,6 @@
 package org.uphf.projetsae201;
 
-import javafx.event.Event;
+import jdk.jfr.Event;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,6 +15,8 @@ public class Robot {
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
+
+
     }
 
     public void deplacer(Event e){
@@ -45,7 +47,7 @@ public class Robot {
         return this.nbMineraisExtraits;
     }
 
-    public ArrayList<String> getDirection(){
-        return new ArrayList<>();
-    }
+//    public ArrayList<String> getDirection(){
+//
+//    }
 }
