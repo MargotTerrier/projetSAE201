@@ -29,4 +29,13 @@ public class Mine extends District{
     public void extraction(Robot r){
         this.nbMinerais -= r.getCapaciteExtraction();
     }
+
+    public void setVide(boolean v) {
+        this.vide=v;
+    }
+
+    public boolean getVide(){
+        return this.vide;
+    }
+
 }
