@@ -14,7 +14,6 @@ public class Mine extends District{
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
         this.vide = false;
-        this.typeMinerai = ;
     }
 
     public int getId(){

@@ -17,6 +17,10 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
+    public void rien(){
+
+    }
+
     public static void main(String[] args) {
         launch();
     }
