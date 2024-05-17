@@ -4,18 +4,21 @@ package org.uphf.projetsae201;
 import java.util.Random;
 
 public class Monde {
-    int nbTerrains;
-    int nbMines;
-    int nbEntrepots;
-    int compteurTour;
-    int nbRobot;
-    int nbPlantEau;
-    int longueurMonde;
-    int largeurMonde;
+    private int nbTerrains;
+    private int nbMines;
+    private int nbEntrepots;
+    private int compteurTour;
+    private int nbRobot;
+    private int nbPlantEau;
+    private int longueurMonde;
+    private int largeurMonde;
 
-    public int getCompteurTour() {
-        return this.compteurTour;
-    }
+
+    private Secteur[] lstSecteur;
+
+
+
+
 
     public Monde( int nbEntrepots, int nbRobot, int longueurMonde, int largeurMonde) {
 
@@ -25,6 +28,10 @@ public class Monde {
         this.longueurMonde = longueurMonde;
         this.largeurMonde = largeurMonde;
         creationMonde();
+    }
+
+    public int getCompteurTour() {
+        return this.compteurTour;
     }
 
     public int getNbTerrains() {
@@ -65,6 +72,8 @@ public class Monde {
 
         // au moins une mine d'or et une mine de nickel
         this.nbMines = 2+ new Random(0).nextInt(2);
+
+        this.lstSecteur = new Secteur[this.largeurMonde*this.longueurMonde];
 
     }
 
