@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot {
-    private static int idRobot =1;
+    private static int id =1;
+    private int idRobot;
     private int capaciteExtraction;
     private int capaciteStockage;
     private int nbMineraisExtraits;
     private ArrayList<String> direction;
 
     public Robot(){
-        idRobot ++;
+        idRobot = id;
+        id ++;
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;

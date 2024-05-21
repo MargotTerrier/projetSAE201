@@ -10,11 +10,13 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     @Override public void start(Stage stage){
 
         Monde m = new Monde(5,5,5,5);
         System.out.println(m);
-        new AffichageConsole(m.getLstSecteur());
+        new  AffichageConsole(m);
+
 
 
         Text text = new Text(10,40,"PAS D'ERREUR");
