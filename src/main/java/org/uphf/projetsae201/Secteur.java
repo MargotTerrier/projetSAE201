@@ -6,4 +6,10 @@ abstract class  Secteur {
     }
 
 
+
+    @Override
+    public String toString() {
+        System.out.println("Secteur toString");
+        return "Secteur";
+    }
 }

@@ -3,21 +3,21 @@ package org.uphf.projetsae201;
 import java.util.Random;
 
 public class Mine extends District{
-    private int id;
-    private int nbMinerais;
+    private static int id=1;
+    private int idMine;
+    private int nbMinerais; // Nombre de minerais restants
     private Minerai typeMinerai;
-    private int capacite;
-    private boolean vide;
+    private int capacite; // Nombre total de minerais à la création
 
-    public Mine(int id){
-        this.id = id;
+    public Mine(){
+        this.idMine = id;
+        id++;
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
-        this.vide = false;
     }
 
     public int getId(){
-        return this.id;
+        return this.idMine;
     }
     public int getNbMinerais(){
         return this.nbMinerais;
@@ -26,16 +26,16 @@ public class Mine extends District{
         return this.capacite;
     }
 
-    public void extraction(Robot r){
-        this.nbMinerais -= r.getCapaciteExtraction();
+    public int extraction(Robot r){
+        if (this.nbMinerais == 0) return -1;
+        else if (this.nbMinerais - r.getCapaciteExtraction() < 0) {
+            int tmp = this.nbMinerais;
+            this.nbMinerais = 0;
+            return tmp;
+        }
+        else {
+            this.nbMinerais -= r.getCapaciteExtraction();
+            return r.getCapaciteExtraction();
+        }
     }
-
-    public void setVide(boolean v) {
-        this.vide=v;
-    }
-
-    public boolean getVide(){
-        return this.vide;
-    }
-
 }

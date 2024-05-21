@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot {
-    private static int idRobot =1;
+    private static int id =1;
+    private int idRobot;
     private int capaciteExtraction;
     private int capaciteStockage;
-    private int nbMineraisExtraits;
+    private int nbMineraisExtraits; // Nombre de minerais dans sa besace
     private ArrayList<String> direction;
 
     public Robot(){
-        idRobot ++;
+        idRobot = id;
+        id ++;
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
@@ -27,11 +29,11 @@ public class Robot {
 
     }
 
-    public void extraire(){
-        while (nbMineraisExtraits < capaciteStockage){
-            if (capaciteExtraction <= capaciteStockage - nbMineraisExtraits){
-
-            }
+    public boolean extraire(Mine m){
+        if (m.extraction(this) == -1) return false; // Vérifie que la mine n'est pas vide
+        else {
+            nbMineraisExtraits += m.extraction(this);
+            return true;
         }
     }
 
@@ -52,7 +54,7 @@ public class Robot {
     }
 
     public int getIdRobot(){
-        return this.idRobot;
+        return idRobot;
     }
 
 //    public ArrayList<String> getDirection(){
