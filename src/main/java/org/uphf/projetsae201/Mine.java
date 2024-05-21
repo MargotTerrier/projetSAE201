@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Mine extends District{
     private int id;
-    private int nbMinerais;
+    private int nbMinerais; // Nombre de minerais restant
     private Minerai typeMinerai;
-    private int capacite;
+    private int capacite; // Nombre total de minerais à la création
 
     public Mine(int id){
         this.id = id;
@@ -25,8 +25,8 @@ public class Mine extends District{
     }
 
     public int extraction(Robot r){
-        if (this.nbMinerais == 0) return -1;
-        else if (this.nbMinerais - r.getCapaciteExtraction() < 0) {
+        if (this.nbMinerais == 0) return -1; // la mine ne doit pas être vide
+        else if (this.nbMinerais - r.getCapaciteExtraction() < 0) { // Ne doit pas extraire plus de minerais qu'il y en a dans la mine
             int tmp = this.nbMinerais;
             this.nbMinerais = 0;
             return tmp;

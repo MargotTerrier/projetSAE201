@@ -12,7 +12,7 @@ public class Robot {
     private int idRobot;
     private int capaciteExtraction;
     private int capaciteStockage;
-    private int nbMineraisExtraits;
+    private int nbMineraisExtraits; // Nombre de minerais dans sa besace
     private ArrayList<String> direction;
 
     public Robot(){
@@ -29,11 +29,11 @@ public class Robot {
 
     }
 
-    public void extraire(){
-        while (nbMineraisExtraits < capaciteStockage){
-            if (capaciteExtraction <= capaciteStockage - nbMineraisExtraits){
-
-            }
+    public boolean extraire(Mine m){
+        if (m.extraction(this) == -1) return false; // Vérifie que la mine n'est pas vide
+        else {
+            nbMineraisExtraits += m.extraction(this);
+            return true;
         }
     }
 
