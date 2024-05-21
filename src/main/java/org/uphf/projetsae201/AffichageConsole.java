@@ -25,7 +25,8 @@ public class AffichageConsole {
                     if (t.getRobot() != null) {
                         this.Affiche[i][j][1][0] = "|R";
                         this.Affiche[i][j][1][1] = "" + (t.getRobot().getIdRobot()) + "|";
-                    } else {
+                    }
+                    else {
                         this.Affiche[i][j][1][0] = "| ";
                         this.Affiche[i][j][1][1] = " |";
                     }
@@ -42,11 +43,21 @@ public class AffichageConsole {
                         this.Affiche[i][j][1][1] = "" + (t.getDistrict().getId()) + "|";
                     }
                 } else {
-                    this.Affiche[i][j][1][0] = "| ";
-                    this.Affiche[i][j][1][1] = " |";
+                    this.Affiche[i][j][1][0] = "|x";
+                    this.Affiche[i][j][1][1] = "x|";
                 }
             }
         }
+        for (int i = 0; i < this.Affiche.length; i++) {
+            for (int j = 0; j < this.Affiche[i].length; j++) {
+                for (int k = 0; k < this.Affiche[i][j].length; k++) {
+                    for (int l = 0; l < this.Affiche[i][j][k].length; l++) {
+                        System.out.println(this.Affiche[i][j][k][l]);
+                    }
+                }
+            }
+        }
+
     }
 }
 
