@@ -3,19 +3,21 @@ package org.uphf.projetsae201;
 import java.util.Random;
 
 public class Mine extends District{
-    private int id;
+    private static int id=1;
+    private int idMine;
     private int nbMinerais;
     private Minerai typeMinerai;
     private int capacite;
 
-    public Mine(int id){
-        this.id = id;
+    public Mine(){
+        this.idMine = id;
+        id++;
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
     }
 
     public int getId(){
-        return this.id;
+        return this.idMine;
     }
     public int getNbMinerais(){
         return this.nbMinerais;
