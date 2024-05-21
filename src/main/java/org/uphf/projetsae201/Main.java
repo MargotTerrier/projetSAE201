@@ -15,7 +15,9 @@ public class Main extends Application {
 
         Monde m = new Monde(5,5,5,5);
         System.out.println(m);
-        new  AffichageConsole(m);
+        Secteur a= new PlanDeau();
+        System.out.println(a);
+//        new  AffichageConsole(m);
 
 
 
