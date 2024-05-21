@@ -52,7 +52,7 @@ public class Robot {
     }
 
     public int getIdRobot(){
-        return this.idRobot;
+        return idRobot;
     }
 
 //    public ArrayList<String> getDirection(){
