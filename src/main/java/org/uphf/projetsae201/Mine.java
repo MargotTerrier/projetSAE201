@@ -5,7 +5,7 @@ import java.util.Random;
 public class Mine extends District{
     private static int id=1;
     private int idMine;
-    private int nbMinerais;
+    private int nbMinerais; // Nombre de minerais restants
     private Minerai typeMinerai;
     private int capacite; // Nombre total de minerais à la création
 
