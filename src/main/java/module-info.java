@@ -8,4 +8,5 @@ module org.uphf.projetsae201 {
 
     opens org.uphf.projetsae201 to javafx.fxml;
     exports org.uphf.projetsae201;
+
 }

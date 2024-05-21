@@ -81,39 +81,31 @@ public class Monde {
         return largeurMonde;
     }
 
-    public void creationMonde() {
-        int l; //longueur
-        int L; //Largeur
+    public Secteur[][] getLstSecteur() {
+        return this.lstSecteur;
+    }
 
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        ArrayList<ArrayList<Integer>> pas = new ArrayList<ArrayList<Integer>>(5) ; //secteur deja choisi
-
-        System.out.println(this.longueurMonde);
-
-
+    public void creationMonde() {//création d'une grille pour jouer
+        int l ;
+        int L;
+        Secteur [][]  map = new Secteur[this.longueurMonde][this.largeurMonde];
+        String [][]  pas = new String[this.longueurMonde][this.largeurMonde];
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                map[i][j] = new Terrain();
+                pas[i][j] = "V";
+            }
+        }
         for (int x = 0; x < this.nbPlanEau;) {
-
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
-
-            temp.add(l);
-            temp.add(L);
-
-            if (!(pas.contains(temp))){
-
-                pas.add(temp);
-                System.out.println(pas);
-                this.lstSecteur[temp.get(0)][temp.get(1)]  = new Terrain();
+            if (!(pas[l][L].equals("X"))){
+                pas[l][L] = "O";
+                map[l][L] = new PlanDeau();
                 x+=1;
-                System.out.println(this.lstSecteur[temp.get(0)][temp.get(1)]);
-
-
             }
-
-
         }
-
-
+        this.lstSecteur = map;
     }
 
 
