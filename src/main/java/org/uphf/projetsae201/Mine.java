@@ -7,7 +7,7 @@ public class Mine extends District{
     private int idMine;
     private int nbMinerais;
     private Minerai typeMinerai;
-    private int capacite;
+    private int capacite; // Nombre total de minerais à la création
 
     public Mine(){
         this.idMine = id;
