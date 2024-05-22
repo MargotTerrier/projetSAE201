@@ -7,14 +7,25 @@ public class Entrepot extends District{
     private int nbMineraisStockes;
     private  Minerai typeMinerai;
 
-    public Entrepot(){
+    public Entrepot(Minerai minerai){
         super();
+        this.typeMinerai=minerai;
         this.idEntrepot = id;
         id++;
         this.nbMineraisStockes = 0;
     }
+    public Entrepot(){
+        super();
 
-    public int getIdEntrepot() {
+        this.idEntrepot = id;
+        id++;
+        this.nbMineraisStockes = 0;
+        this.typeMinerai=Minerai.RandomMinerai();
+    }
+
+
+    @Override
+    public int getId() {
         return idEntrepot;
     }
 

@@ -105,11 +105,7 @@ public class Robot {
         return idRobot;
     }
 
-    public int getCoordonneesX() {
-        return coordonneesX;
-    }
-
-    public int getCoordonneesY() {
-        return coordonneesY;
-    }
+//    public ArrayList<String> getDirection(){
+//
+//    }
 }

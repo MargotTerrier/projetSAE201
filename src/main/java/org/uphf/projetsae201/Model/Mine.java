@@ -9,11 +9,19 @@ public class Mine extends District{
     private Minerai typeMinerai;
     private int capacite; // Nombre total de minerais à la création
 
+    public Mine(Minerai minerai){
+        this.idMine = id;
+        id++;
+        this.nbMinerais = 50 + new Random().nextInt(50);
+        this.capacite = nbMinerais;
+        this.typeMinerai=minerai;
+    }
     public Mine(){
         this.idMine = id;
         id++;
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
+        this.typeMinerai=Minerai.RandomMinerai();
     }
 
     public int getId(){
@@ -25,6 +33,7 @@ public class Mine extends District{
     public int getCapacite(){
         return this.capacite;
     }
+    public Minerai getTypeMinerai(){return this.typeMinerai;}
 
     public int extraction(Robot r){
         if (this.nbMinerais == 0) return -1;
