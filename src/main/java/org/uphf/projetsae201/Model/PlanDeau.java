@@ -6,8 +6,5 @@ public class PlanDeau extends Secteur{
         super();
     }
 
-    @Override
-    public String toString() {
-        return "X X|";
-    }
+
 }
