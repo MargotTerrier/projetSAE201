@@ -14,12 +14,12 @@ public class AffichageConsole {
         String temp ;
 
         //*2 car on a 4 case par secteur
-        for(int i = 0; i < map.length*2; i++) {
-            String s =new String(new char[map.length*2]).replace("\0", "=");
+        for(int i = 0; i < map.length; i++) {
+            String s =new String(new char[map[0].length*2]).replace("\0", "=");
             System.out.println(s);
             temp = "|";
 
-            for(int j = 0; j < map[i].length; j++) {
+            for(int j = 0; j < map[0].length; j++) {
 
                 //On sépare les cas en paire et impair afin de savoir si on est sur la ligne des mine ou des Robots.
                 if (i%2 == 0) {
