@@ -49,6 +49,7 @@ public class GUI extends Stage{
         this.setScene(scene);
         this.setResizable(false);
         this.show();
+
         commencer.setOnMouseClicked(new EventGUI(this));
         quitter.setOnMouseClicked(new EventGUI(this));
 
@@ -85,9 +86,12 @@ public class GUI extends Stage{
         this.setScene(scene);
         this.setResizable(false);
         this.show();
+
+        graphique.setOnMouseClicked(new EventGUI(this));
+        quitter2.setOnMouseClicked(new EventGUI(this));
     }
 
-    public GUI(Monde m){
+    public void monde(){
         Group g = new Group();
         Scene scene = new Scene(g, 1440, 811);
 
