@@ -1,5 +1,6 @@
 package org.uphf.projetsae201.View;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.Monde;
 
 public class GUI extends Stage{
@@ -32,7 +34,6 @@ public class GUI extends Stage{
         VBox box = new VBox(text, commencer, quitter);
         box.setAlignment(Pos.CENTER);
         box.setSpacing(10);
-        box.setLayoutY(-20);
 
         Image fond = new Image("https://i.etsystatic.com/18279207/r/il/0baebc/5022632129/il_570xN.5022632129_kwst.jpg");
 
@@ -40,14 +41,16 @@ public class GUI extends Stage{
 
         Background bg = new Background(backgroundImage);
 
-        Scene scene = new Scene(box, 500,   300);
+        Scene scene = new Scene(box, 535,   300);
         box.setBackground(bg);
         box.getChildren().addAll(root);
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
-        this.setTitle("Jeu de la mine");
+        this.setTitle("Acceuil");
         this.setScene(scene);
         this.setResizable(false);
         this.show();
+        commencer.setOnMouseClicked(new EventGUI(this));
+        quitter.setOnMouseClicked(new EventGUI(this));
 
     }
 
@@ -61,20 +64,25 @@ public class GUI extends Stage{
         Button quitter2 = new Button("Quitter");
         quitter2.setFont(new Font(15));
 
-        Text text2 = new Text("Choisissez le mode d'affichage :");
-        text2.setFont(new Font(20));
+        Text text = new Text("Choisissez le mode d'affichage :");
+        text.setFont(new Font(20));
 
-        VBox box2 = new VBox(text2, console, graphique, quitter2);
-        box2.setAlignment(Pos.CENTER);
-        box2.setSpacing(10);
-        box2.setLayoutY(-20);
+        VBox box = new VBox(text, console, graphique, quitter2);
+        box.setAlignment(Pos.CENTER);
+        box.setSpacing(10);
 
+        Image fond = new Image("https://i.etsystatic.com/18279207/r/il/0baebc/5022632129/il_570xN.5022632129_kwst.jpg");
 
-        Scene scene2 = new Scene(box2, 300, 400);
-        box2.getChildren().addAll(gui);
+        BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
+
+        Background bg = new Background(backgroundImage);
+
+        Scene scene = new Scene(box, 535,   300);
+        box.setBackground(bg);
+        box.getChildren().addAll(gui);
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
-        this.setTitle("Jeu de la mine");
-        this.setScene(scene2);
+        this.setTitle("Choix du mode");
+        this.setScene(scene);
         this.setResizable(false);
         this.show();
     }
