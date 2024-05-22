@@ -17,10 +17,10 @@ public class Main extends Application {
 
     @Override public void start(Stage stage){
 
-        Monde m = new Monde(5,5,5,5);
-        System.out.println(m);
+        Monde m = new Monde(5,5,10,10);
+//        System.out.println(m);
         Secteur a= new PlanDeau();
-        System.out.println(a);
+//        System.out.println(a);
         new AffichageConsole(m);
 
 
