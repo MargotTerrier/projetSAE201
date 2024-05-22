@@ -31,13 +31,15 @@ public class Monde {
         // le nb de terrains represente au moins 90% +- 10% -
         this.nbTerrains = (int) (0.9*(this.largeurMonde*this.longueurMonde))+new Random().nextInt((int) (0.1*(this.largeurMonde*this.longueurMonde)+1))-1;
 
-        //System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
-        //System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
-        //System.out.println(this.nbTerrains);
+//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
+//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
+//        System.out.println(this.nbTerrains);
 
 
         // Mme Lepreux nous a dit au moins un plans d'eau.
-        this.nbPlanEau = 1 + this.largeurMonde*this.longueurMonde+this.nbTerrains;
+        this.nbPlanEau = 1 + (this.largeurMonde*this.longueurMonde)-this.nbTerrains;
+
+        System.out.println(this.nbPlanEau);
 
         // au moins une mine d'or et une mine de nickel
         this.nbMines = 2+ new Random().nextInt(2);
