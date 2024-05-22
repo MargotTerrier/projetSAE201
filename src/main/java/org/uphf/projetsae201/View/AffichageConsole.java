@@ -30,7 +30,9 @@ public class AffichageConsole {
                 if (i%2 ==0) {
 //                    System.out.println("terre 1 ");
                     if ((map[i][j]instanceof Terrain)) {
+
                         Terrain t = (Terrain) map[i][j];
+                        System.out.print(t.getDistrict());
                         if (t.getDistrict() instanceof Entrepot) {
                             temp += "E " + ((Entrepot) t.getDistrict()).getId() + "|";
                         }
@@ -43,7 +45,7 @@ public class AffichageConsole {
                     }
                     else if ((map[i][j]instanceof PlanDeau)){
 //                        System.out.print(map[i][j]);
-                        System.out.println("eau1");
+//                        System.out.println("eau1");
                         temp += "X X|";
                     }
                 }
@@ -60,13 +62,14 @@ public class AffichageConsole {
                         }
                     }
                     else if ((map[i][j]instanceof PlanDeau)){
-                        System.out.println("eau2");
+//                        System.out.println("eau2");
                         temp += "X X|";
                     }
                 }
             }
             System.out.println(temp);
         }
+        System.out.println(s);
 
     }
 
