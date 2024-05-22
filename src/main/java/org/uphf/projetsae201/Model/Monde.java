@@ -1,9 +1,7 @@
-package org.uphf.projetsae201;
+package org.uphf.projetsae201.Model;
 
 
-import java.util.ArrayList;
 import java.util.Random;
-import java.util.*;
 
 public class Monde {
     private int nbTerrains;

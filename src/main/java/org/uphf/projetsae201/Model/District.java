@@ -1,4 +1,4 @@
-package org.uphf.projetsae201;
+package org.uphf.projetsae201.Model;
 
 
 abstract class District{

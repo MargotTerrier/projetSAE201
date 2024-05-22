@@ -1,4 +1,4 @@
-package org.uphf.projetsae201;
+package org.uphf.projetsae201.View;
 
 public class AffichageConsole {
 //    private Secteur[][] m ;

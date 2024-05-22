@@ -1,4 +1,4 @@
-package org.uphf.projetsae201;
+package org.uphf.projetsae201.Model;
 
 public class Terrain extends Secteur{
     private District district;
