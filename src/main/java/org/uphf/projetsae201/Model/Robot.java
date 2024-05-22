@@ -31,18 +31,32 @@ public class Robot {
 
     public void VerifDeplacer(Robot R, Monde m){
         /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
-        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence*/
+        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence, au fur et à mesure.
+        Pas de else if pour passser dans toutes les vérifications, si un monde de taille 1 x 1 est créé par exemple*/
         direction.add("Haut");
         direction.add("Bas");
         direction.add("Gauche");
         direction.add("Droit");
+
+        // vérification du bord du monde
         if (coordonneesX == 0){ // si le robot est sur la première ligne
-            direction.remove(0);
+            direction.removeFirst();
         }
-        if (coordonneesY == 0){
+        if (coordonneesX == m.getLongueurMonde()){ // si le robot est sur la dernière ligne
+            direction.remove(1);
+        }
+        if (coordonneesY == 0){ // si le robot est sur la première colonne
             direction.remove(2);
         }
-        if (coordonneesX == m.getLargeurMonde()) // si le robot est sur la dernière ligne
+        if (coordonneesY == m.getLargeurMonde()){ // si le robot est sur la dernière colonne
+            direction.removeLast();
+        }
+
+        // Vérification de la présence d'un plans d'eau
+        for (int i = 0; i < this.direction.size(); i++) { // parcours des directions restantes
+
+        }
+
     }
 
     public boolean extraire(Mine m){
@@ -78,7 +92,11 @@ public class Robot {
         return idRobot;
     }
 
-//    public ArrayList<String> getDirection(){
-//
-//    }
+    public int getCoordonneesX() {
+        return coordonneesX;
+    }
+
+    public int getCoordonneesY() {
+        return coordonneesY;
+    }
 }
