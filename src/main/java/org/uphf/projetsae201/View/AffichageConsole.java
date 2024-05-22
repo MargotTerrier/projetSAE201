@@ -23,6 +23,7 @@ public class AffichageConsole {
 
                 //On sépare les cas en paire et impair afin de savoir si on est sur la ligne des mine ou des Robots.
                 if (i%2 == 0) {
+                    System.out.print(map[i][j]);
                     if ((map[i][j]instanceof Terrain)) {
                         Terrain t = (Terrain) map[i][j];
                         if (t.getDistrict() instanceof Entrepot) {
