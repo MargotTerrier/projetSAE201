@@ -17,19 +17,16 @@ public class Monde {
     private Secteur[][] lstSecteur;
 
 
-
-
-
-    public Monde( int nbEntrepots, int nbRobot, int longueurMonde, int largeurMonde) {
+    public Monde(int nbEntrepots, int nbRobot, int longueurMonde, int largeurMonde) {
 
         this.nbEntrepots = nbEntrepots;
-        this.compteurTour =0;
+        this.compteurTour = 0;
         this.nbRobot = nbRobot;
         this.longueurMonde = longueurMonde;
         this.largeurMonde = largeurMonde;
 
         // le nb de terrains represente au moins 90% +- 10% -
-        this.nbTerrains = (int) (0.9*(this.largeurMonde*this.longueurMonde))+new Random().nextInt((int) (0.1*(this.largeurMonde*this.longueurMonde)+1))-1;
+        this.nbTerrains = (int) (0.9 * (this.largeurMonde * this.longueurMonde)) + new Random().nextInt((int) (0.1 * (this.largeurMonde * this.longueurMonde) + 1)) - 1;
 
 //        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
 //        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
@@ -37,12 +34,12 @@ public class Monde {
 
 
         // Mme Lepreux nous a dit au moins un plans d'eau.
-        this.nbPlanEau = 1 + (this.largeurMonde*this.longueurMonde)-this.nbTerrains;
+        this.nbPlanEau = 1 + (this.largeurMonde * this.longueurMonde) - this.nbTerrains;
 
         System.out.println(this.nbPlanEau);
 
         // au moins une mine d'or et une mine de nickel
-        this.nbMines = 2+ new Random().nextInt(2);
+        this.nbMines = 2 + new Random().nextInt(2);
 
         //on crée un tableau car on connait le nombre de case et c'est fixe
         this.lstSecteur = new Secteur[this.longueurMonde][this.largeurMonde];
@@ -84,9 +81,12 @@ public class Monde {
     public Secteur[][] getLstSecteur() {
         return this.lstSecteur;
     }
-    public String [][] initPas(Secteur [][]  map){
-        String [][]  pas = new String[this.longueurMonde][this.largeurMonde];
 
+    public void creationMonde() {//création d'une grille pour jouer
+        int l;
+        int L;
+        Secteur[][] map = new Secteur[this.longueurMonde][this.largeurMonde];
+        String[][] pas = new String[this.longueurMonde][this.largeurMonde];
         for (int i = 0; i < this.longueurMonde; i++) {
             for (int j = 0; j < this.largeurMonde; j++) {
 
@@ -94,62 +94,50 @@ public class Monde {
                 pas[i][j] = "V";
             }
         }
-        return pas;
 
-    }
-    public void creationMonde() {//création d'une grille pour jouer
-        int l ;
-        int L;
-        Secteur [][]  map = new Secteur[this.longueurMonde][this.largeurMonde];
-        String [][]  pas = initPas(map);
-
-        for (int x = 0; x < this.nbPlanEau;) {
+        for (int x = 0; x < this.nbPlanEau; ) {
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
-            if (!(pas[l][L].equals("O"))){
+            if (!(pas[l][L].equals("O"))) {
                 pas[l][L] = "O";
                 map[l][L] = new PlanDeau();
-                x+=1;
+                x += 1;
             }
         }
 
-        for (int x = 0; x < this.nbRobot;) {
+        for (int x = 0; x < this.nbRobot; ) {
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
-            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O"))){
+            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O"))) {
                 pas[l][L] = "R";
-                ((Terrain) this.lstSecteur[l][L]).setRobot(new Robot(l,L));
-                x+=1;
+                ((Terrain) map[l][L]).setRobot(new Robot(l, L));
+                x += 1;
             }
         }
 
-        for (int x = 0; x < this.nbEntrepots;) {
+        for (int x = 0; x < this.nbEntrepots; ) {
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
-            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E"))){
+            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E"))) {
                 pas[l][L] = "E";
-                ((Terrain) this.lstSecteur[l][L]).setDistrict(new Entrepot());
-                x+=1;
+                ((Terrain) map[l][L]).setDistrict(new Entrepot());
+                x += 1;
             }
         }
 
-        for (int x = 0; x < this.nbMines;) {
+        for (int x = 0; x < this.nbMines; ) {
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
-            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E")) && !(pas[l][L].equals("M"))){
+            if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E")) && !(pas[l][L].equals("M"))) {
                 pas[l][L] = "M";
-                ((Terrain) this.lstSecteur[l][L]).setDistrict(new Mine());
-                x+=1;
+                ((Terrain) map[l][L]).setDistrict(new Mine());
+                x += 1;
             }
+
+
+            this.lstSecteur = map;
         }
 
 
-        this.lstSecteur = map;
     }
-
-
-
-
-
-
 }
