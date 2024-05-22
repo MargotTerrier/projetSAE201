@@ -37,8 +37,13 @@ public class Robot {
         }
     }
 
-    public void seVider(){
-
+    public boolean vider(Entrepot e){
+        if (this.nbMineraisExtraits == 0) return false;
+        else {
+            e.remplissage(this);
+            this.nbMineraisExtraits = 0;
+            return true;
+        }
     }
 
     public int getCapaciteExtraction(){
