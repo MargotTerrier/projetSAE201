@@ -13,20 +13,36 @@ public class Robot {
     private int capaciteExtraction;
     private int capaciteStockage;
     private int nbMineraisExtraits; // Nombre de minerais dans sa besace
-    private ArrayList<String> direction;
+    private int coordonneesX;
+    private int coordonneesY;
+    private ArrayList<String> direction; // Sous la forme ["Haut", "Bas", "Gauche", "Droit"]
 
-    public Robot(){
+    public Robot(int x, int y){
         idRobot = id;
         id ++;
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
-
+        this.direction = new ArrayList<>();
+        this.coordonneesX = x;
+        this.coordonneesY = y;
 
     }
 
-    public void deplacer(Event e){
-
+    public void VerifDeplacer(Robot R, Monde m){
+        /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
+        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence*/
+        direction.add("Haut");
+        direction.add("Bas");
+        direction.add("Gauche");
+        direction.add("Droit");
+        if (coordonneesX == 0){ // si le robot est sur la première ligne
+            direction.remove(0);
+        }
+        if (coordonneesY == 0){
+            direction.remove(2);
+        }
+        if (coordonneesX == m.getLargeurMonde()) // si le robot est sur la dernière ligne
     }
 
     public boolean extraire(Mine m){
