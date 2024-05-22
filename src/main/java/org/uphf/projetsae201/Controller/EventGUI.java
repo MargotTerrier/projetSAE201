@@ -33,6 +33,9 @@ public class EventGUI implements EventHandler {
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 gui.close();
+            } else if (((Button) event.getSource()).getText().equals("Console")) {
+                gui.close();
+                gui.mondeconsole();
             }
         }
         else if (s.getTitle().equals("Jeu de la mine")) {

@@ -1,6 +1,5 @@
 package org.uphf.projetsae201.View;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,12 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.Monde;
+import org.uphf.projetsae201.Model.PlanDeau;
+import org.uphf.projetsae201.Model.Secteur;
 
 public class GUI extends Stage{
 
@@ -88,6 +88,7 @@ public class GUI extends Stage{
         this.show();
 
         graphique.setOnMouseClicked(new EventGUI(this));
+        console.setOnMouseClicked(new EventGUI(this));
         quitter2.setOnMouseClicked(new EventGUI(this));
     }
 
@@ -121,4 +122,15 @@ public class GUI extends Stage{
         redemarrer.setOnMouseClicked(new EventGUI(this));
 
     }
+
+    public void mondeconsole(){
+
+        Monde m = new Monde(5,5,10,10);
+//        System.out.println(m);
+        Secteur a= new PlanDeau();
+//        System.out.println(a);
+        new AffichageConsole(m);
+
+    }
+
 }
