@@ -1,4 +1,4 @@
-package org.uphf.projetsae201.Controller;
+package org.uphf.projetsae201;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -7,9 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.uphf.projetsae201.Model.Monde;
-import org.uphf.projetsae201.Model.PlanDeau;
-import org.uphf.projetsae201.Model.Secteur;
 
 public class Main extends Application {
 
