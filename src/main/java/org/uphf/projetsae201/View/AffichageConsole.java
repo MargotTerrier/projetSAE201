@@ -12,6 +12,7 @@ public class AffichageConsole {
     public void affichage() {
         Secteur [][] map = m.getLstSecteur();
         String temp ;
+        String temp2;
         String s =new String(new char[map[0].length*4]).replace("\0", "=");
 
 
@@ -23,16 +24,17 @@ public class AffichageConsole {
 
             System.out.println(s);
             temp = "|";
+            temp2 = "|";
 
             for(int j = 0; j < map[0].length; j++) {
 
                 //On sépare les cas en paire et impair afin de savoir si on est sur la ligne des mine ou des Robots.
-                if (i%2 ==0) {
-//                    System.out.println("terre 1 ");
-                    if ((map[i][j]instanceof Terrain)) {
 
+                    if ((map[i][j]instanceof Terrain)) {
+//                        System.out.println("terre 1 ");
+                        //ligne District
                         Terrain t = (Terrain) map[i][j];
-                        System.out.print(t.getDistrict());
+//                        System.out.print(t.getDistrict());
                         if (t.getDistrict() instanceof Entrepot) {
                             temp += "E " + ((Entrepot) t.getDistrict()).getId() + "|";
                         }
@@ -42,41 +44,35 @@ public class AffichageConsole {
                         else {
                             temp += "   |";
                         }
+
+                        //ligne Robot
+                        if(t.getRobot() != null) {
+                            temp2 += "R " + t.getRobot().getIdRobot() + "|";
+                        }
+                        else  {
+                            temp2 += "   |";
+                        }
                     }
                     else if ((map[i][j]instanceof PlanDeau)){
 //                        System.out.print(map[i][j]);
 //                        System.out.println("eau1");
                         temp += "X X|";
+                        temp2 += "X X|";
                     }
-                }
-                else if (i%2 != 0) {
 //                    System.out.print(map[i][j]);
 //                    System.out.println("terre2");
-                    if (map[i][j] instanceof Terrain) {
-                        Terrain t = (Terrain) map[i][j];
-                        if(t.getRobot() != null) {
-                            temp += "R " + t.getRobot().getIdRobot() + "|";
-                        }
-                        else  {
-                            temp += "   |";
-                        }
-                    }
-                    else if ((map[i][j]instanceof PlanDeau)){
-//                        System.out.println("eau2");
-                        temp += "X X|";
-                    }
-                }
             }
             System.out.println(temp);
+            System.out.println(temp2);
         }
         System.out.println(s);
-
     }
-
-
-
-
 }
+
+
+
+
+
 
 
 
