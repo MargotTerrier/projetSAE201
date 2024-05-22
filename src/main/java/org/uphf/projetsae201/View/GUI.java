@@ -117,5 +117,8 @@ public class GUI extends Stage{
         this.setScene(scene);
         this.show();
 
+        quit.setOnMouseClicked(new EventGUI(this));
+        redemarrer.setOnMouseClicked(new EventGUI(this));
+
     }
 }

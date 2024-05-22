@@ -35,5 +35,14 @@ public class EventGUI implements EventHandler {
                 gui.close();
             }
         }
+        else if (s.getTitle().equals("Jeu de la mine")) {
+            if (((Button) event.getSource()).getText().equals("Quitter le jeu")) {
+                gui.close();
+            }
+            else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
+                gui.close();
+                gui.monde();
+            }
+        }
     }
 }
