@@ -1,64 +1,48 @@
 package org.uphf.projetsae201.View;
 
+import org.uphf.projetsae201.Model.Entrepot;
+import org.uphf.projetsae201.Model.Monde;
+import org.uphf.projetsae201.Model.Secteur;
+import org.uphf.projetsae201.Model.Terrain;
+
 public class AffichageConsole {
-//    private Secteur[][] m ;
-//    private String[][][][] Affiche ;
-//    public AffichageConsole(Monde map) {
-//
-//        this.m = map.getLstSecteur();
-//        this.Affiche = new String[map.getLongueurMonde()][map.getLargeurMonde()][2][2];
-//        for (int i = 0; i < map.getLongueurMonde(); i++) {
-//            for (int j = 0; j < map.getLargeurMonde(); j++) {
-//                // Initialisation du tableau 2x2 pour chaque élément du tableau principal
-//                this.Affiche[i][j] = new String[2][2];
-//            }
-//        }
-//        affichage();
-//    }
-//
-//    public void affichage() {
-//        for(int i = 0; i < m.length; i++) {
-//            for (int j = 0; j < m[i].length; j++) {
-//                if (m[i][j] instanceof Terrain) {
-//                    Terrain t = (Terrain) m[i][j];
-//                    //Ligne du bas//
-//                    if (t.getRobot() != null) {
-//                        this.Affiche[i][j][1][0] = "|R";
-//                        this.Affiche[i][j][1][1] = "" + (t.getRobot().getIdRobot()) + "|";
-//                    }
-//                    else {
-//                        this.Affiche[i][j][1][0] = "| ";
-//                        this.Affiche[i][j][1][1] = " |";
-//                    }
-//
-//                    //Ligne de haut//
-//                    if (t.getDistrict() != null) {
-//                        if (t.getDistrict() instanceof Mine) {
-//                            this.Affiche[i][j][1][0] = "|M";
-//                            this.Affiche[i][j][1][1] = "" + (t.getDistrict().getId()) + "|";
-//                        }
-//                    }
-//                    if (t.getDistrict() instanceof Entrepot) {
-//                        this.Affiche[i][j][1][0] = "|E";
-//                        this.Affiche[i][j][1][1] = "" + (t.getDistrict().getId()) + "|";
-//                    }
-//                } else {
-//                    this.Affiche[i][j][1][0] = "|x";
-//                    this.Affiche[i][j][1][1] = "x|";
-//                }
-//            }
-//        }
-//        for (int i = 0; i < this.Affiche.length; i++) {
-//            for (int j = 0; j < this.Affiche[i].length; j++) {
-//                for (int k = 0; k < this.Affiche[i][j].length; k++) {
-//                    for (int l = 0; l < this.Affiche[i][j][k].length; l++) {
-//                        System.out.println(this.Affiche[i][j][k][l]);
-//                    }
-//                }
-//            }
-//        }
-//
-//    }
+    private Monde m ;
+    public AffichageConsole(Monde m ) {
+        this.m = m;
+    }
+
+    public void affichage() {
+        Secteur [][] map = m.getLstSecteur();
+        String temp ;
+
+        //*2 car on a 4 case par secteur
+        for(int i = 0; i < map.length*2; i++) {
+            String s =new String(new char[map[i].length*2]).replace("\0", "=");
+            System.out.print(s);
+
+            for(int j = 0; j < map[i].length; j++) {
+
+                //On sépare les cas en paire et impair afin de savoir si on est sur la ligne des mine ou des Robots.
+                if (i%2 == 0) {
+                    else if ((map[i][j]instanceof Terrain){
+                        Terrain t = (Terrain) map[i][j];
+                        if (t.getDistrict()==null){
+
+                        }
+                        if (t.getDistrict() instanceof Entrepot){
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+
+
+
+
 }
 
 

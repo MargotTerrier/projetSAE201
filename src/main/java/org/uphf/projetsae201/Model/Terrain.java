@@ -13,6 +13,9 @@ public class Terrain extends Secteur{
     }
 
     public District getDistrict() {
+        if (district == null){
+            return null;
+        }
         return district;
     }
 
