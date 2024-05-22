@@ -26,4 +26,12 @@ public class Terrain extends Secteur{
     public Robot getRobot() {
         return robot;
     }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public void setRobot(Robot robot) {
+        this.robot = robot;
+    }
 }
