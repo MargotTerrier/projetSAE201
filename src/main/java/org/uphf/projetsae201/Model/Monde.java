@@ -85,6 +85,7 @@ public class Monde {
     public void creationMonde() {//création d'une grille pour jouer
         int l;
         int L;
+        int minerai = 0;
         Secteur[][] map = new Secteur[this.longueurMonde][this.largeurMonde];
         String[][] pas = new String[this.longueurMonde][this.largeurMonde];
         for (int i = 0; i < this.longueurMonde; i++) {
@@ -120,7 +121,13 @@ public class Monde {
             L = new Random().nextInt(this.largeurMonde);
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E"))) {
                 pas[l][L] = "E";
-                ((Terrain) map[l][L]).setDistrict(new Entrepot());
+                if (x==0){
+                    ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Or));
+                } else if (x==1)
+                {
+                    ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Nickel));
+                }
+                else {((Terrain) map[l][L]).setDistrict(new Entrepot());}
                 x += 1;
             }
         }
@@ -128,9 +135,16 @@ public class Monde {
         for (int x = 0; x < this.nbMines; ) {
             l = new Random().nextInt(this.longueurMonde);
             L = new Random().nextInt(this.largeurMonde);
+
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E")) && !(pas[l][L].equals("M"))) {
                 pas[l][L] = "M";
-                ((Terrain) map[l][L]).setDistrict(new Mine());
+                if (x==0){
+                    ((Terrain) map[l][L]).setDistrict(new  Mine(Minerai.Or));
+                } else if (x==1)
+                {
+                    ((Terrain) map[l][L]).setDistrict(new  Mine(Minerai.Nickel));
+                }
+                else {((Terrain) map[l][L]).setDistrict(new  Mine());}
                 x += 1;
             }
 

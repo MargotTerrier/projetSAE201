@@ -29,21 +29,21 @@ public class Robot {
 
     }
 
-    public void VerifDeplacer(Robot R, Monde m){
-        /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
-        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence*/
-        direction.add("Haut");
-        direction.add("Bas");
-        direction.add("Gauche");
-        direction.add("Droit");
-        if (coordonneesX == 0){ // si le robot est sur la première ligne
-            direction.remove(0);
-        }
-        if (coordonneesY == 0){
-            direction.remove(2);
-        }
-        if (coordonneesX == m.getLargeurMonde()) // si le robot est sur la dernière ligne
-    }
+//    public void VerifDeplacer(Robot R, Monde m){
+//        /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
+//        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence*/
+//        direction.add("Haut");
+//        direction.add("Bas");
+//        direction.add("Gauche");
+//        direction.add("Droit");
+//        if (coordonneesX == 0){ // si le robot est sur la première ligne
+//            direction.remove(0);
+//        }
+//        if (coordonneesY == 0){
+//            direction.remove(2);
+//        }
+//        if (coordonneesX == m.getLargeurMonde()) // si le robot est sur la dernière ligne
+//    }
 
     public boolean extraire(Mine m){
         if (m.extraction(this) == -1) return false; // Vérifie que la mine n'est pas vide
