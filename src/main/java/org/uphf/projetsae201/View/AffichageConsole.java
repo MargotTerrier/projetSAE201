@@ -29,7 +29,7 @@ public class AffichageConsole {
                         if (t.getDistrict()==null){
 
                         }
-                        if (t.getDistrict() instanceof Entrepot){
+                        else if (t.getDistrict() instanceof Entrepot){
 
                         }
 
