@@ -7,6 +7,11 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.uphf.projetsae201.Model.Monde;
+import org.uphf.projetsae201.Model.PlanDeau;
+import org.uphf.projetsae201.Model.Secteur;
+import org.uphf.projetsae201.View.AffichageConsole;
+
 
 public class Main extends Application {
 
@@ -16,7 +21,7 @@ public class Main extends Application {
         System.out.println(m);
         Secteur a= new PlanDeau();
         System.out.println(a);
-//        new  AffichageConsole(m);
+        new AffichageConsole(m);
 
 
 
