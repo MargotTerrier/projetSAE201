@@ -29,20 +29,47 @@ public class Robot {
 
     }
 
-    public void VerifDeplacer(Robot R, Monde m){
+    public void VerifDeplacer(Monde m){
         /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
-        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence*/
-        direction.add("Haut");
-        direction.add("Bas");
-        direction.add("Gauche");
-        direction.add("Droit");
-        if (coordonneesX == 0){ // si le robot est sur la première ligne
-            direction.remove(0);
+        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence, au fur et à mesure.
+        Pas de else if pour passser dans toutes les vérifications, si un monde de taille 1 x 1 est créé par exemple*/
+        this.direction.add("Haut");
+        this.direction.add("Bas");
+        this.direction.add("Gauche");
+        this.direction.add("Droit");
+
+        // vérification du bord du monde
+        if (this.coordonneesX == 0){ // si le robot est sur la première ligne
+            this.direction.removeFirst();
         }
-        if (coordonneesY == 0){
-            direction.remove(2);
+        if (this.coordonneesX == m.getLongueurMonde()){ // si le robot est sur la dernière colonne
+            this.direction.removeLast();
         }
-        if (coordonneesX == m.getLargeurMonde()) // si le robot est sur la dernière ligne
+        if (this.coordonneesY == 0){ // si le robot est sur la première colonne
+            this.direction.remove(2);
+        }
+        if (this.coordonneesY == m.getLargeurMonde()){ // si le robot est sur la dernière colonne
+            this.direction.remove(1);
+        }
+
+        // Vérification de la présence d'un plans d'eau
+        for (int i = 0; i < this.direction.size(); i++) { // parcours des directions restantes
+            if (this.direction.get(i) == "Haut"){
+                int tmpX = this.coordonneesX - 1;
+                int tmpY = this.coordonneesY;
+            } else if (this.direction.get(i) == "Bas") {
+                int tmpX = this.coordonneesX + 1;
+                int tmpY = this.coordonneesY;
+            } else if (this.direction.get(i) == "Gauche") {
+                int tmpX = this.coordonneesX;
+                int tmpY = this.coordonneesY - 1;
+            } else if (this.direction.get(i) == "Droit") {
+                int tmpX = this.coordonneesX;
+                int tmpY = this.coordonneesY + 1;
+            }
+            if (m.getLstSecteur()[tmpX][tmpY] )
+        }
+
     }
 
     public boolean extraire(Mine m){
@@ -78,7 +105,11 @@ public class Robot {
         return idRobot;
     }
 
-//    public ArrayList<String> getDirection(){
-//
-//    }
+    public int getCoordonneesX() {
+        return coordonneesX;
+    }
+
+    public int getCoordonneesY() {
+        return coordonneesY;
+    }
 }
