@@ -210,7 +210,7 @@ public class GUI extends Stage{
         Button unloadButton = new Button("Décharger des minerais");
 
         VBox buttonBox = new VBox(10, moveButton, extractButton, unloadButton);
-        buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center;");
+        buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
         VBox choix = new VBox(10, robotComboBox, buttonBox);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
@@ -260,6 +260,7 @@ public class GUI extends Stage{
         this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Jeu de la mine");
+        scene.setFill(Color.PEACHPUFF);
         this.setScene(scene);
         this.setResizable(false);
         this.show();
