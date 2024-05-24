@@ -160,34 +160,28 @@ public class Monde {
         }
     }
     public void inverseRobot(Robot r1,Robot r2){
-        Robot temp = r1;
-        ((Terrain)this.lstSecteur[r1.getCoordonneesX()][r1.getCoordonneesY()]).setRobot(r2);
-        ((Terrain)this.lstSecteur[r2.getCoordonneesX()][r2.getCoordonneesY()]).setRobot(temp);
+
 
 
     }
     public void deplacerRobot(String direction,Terrain T){
         Robot r=T.getRobot();
-        r.VerifDeplacer(this);
+        if (r.verifDeplacement(this,direction)) {//vérifie si on peut se déplacer
+            int tmpY = r.getCoordonneesY();
+            int tmpX = r.getCoordonneesX();
 
-
-        if (r.getDirection().contains(direction)){
-            if (direction=="Haut"){
-                Robot rM = ((Terrain)this.lstSecteur[r.getCoordonneesY()][r.getCoordonneesX()]).getRobot();
-                T.setRobot(rM);
-
-
+            switch (direction) {
+                case "Haut" -> tmpX -= 1;
+                case "Bas" -> tmpX += 1;
+                case "Gauche" -> tmpY -= 1;
+                case "Droit" -> tmpY += 1;
             }
-            else if (direction=="Bas"){
 
-            }
-            else if (direction=="Gauche"){
+            Robot temp = new Robot(r);
+            Robot r2 = ((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
+            ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
 
-            }
-            else if (direction=="Droit"){
-
-            }
+            ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(temp);
         }
-
     }
 }

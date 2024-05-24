@@ -15,7 +15,16 @@ public class Robot {
     private int coordonneesY;
     private ArrayList<String> direction; // Sous la forme ["Haut", "Bas", "Gauche", "Droit"]
 
+    public Robot(Robot r) { //constructeur par copie
+        this.idRobot = r.getIdRobot();
+        this.capaciteExtraction = r.getCapaciteExtraction();
+        this.capaciteStockage = r.getCapaciteStockage();
+        this.nbMineraisExtraits = r.getNbMineraisExtraits();
+        this.coordonneesX = r.getCoordonneesX();
+        this.coordonneesY = r.getCoordonneesY();
+        this.direction = r.getDirection();
 
+    }
     public Robot(int x, int y){
         idRobot = id;
         id ++;
@@ -39,21 +48,26 @@ public class Robot {
         int tmpX = this.coordonneesX;
 
         switch (direction) {
-            case "Haut" -> tmpY -= 1;
-            case "Bas" -> tmpY += 1;
-            case "Gauche" -> tmpX -= 1;
-            case "Droit" -> tmpX += 1;
+            case "Haut" -> tmpX -= 1;
+            case "Bas" -> tmpX += 1;
+            case "Gauche" -> tmpY -= 1;
+            case "Droit" -> tmpY += 1;
         }
-        return (!EstPasDansLeMonde(tmpX,tmpY,m) && !estPlanEau(tmpX,tmpY,m));
-
-
+        if ((EstPasDansLeMonde(tmpX,tmpY,m))){
+            return false;
+        }
+        else return !(estPlanEau(tmpX, tmpY, m));
     }
 
     public boolean estPlanEau(int x , int y, Monde m ){
-        return ((Secteur) m.getLstSecteur()[x][y]) instanceof PlanDeau;
+
+        return ( m.getLstSecteur()[x][y] instanceof PlanDeau);
     }
 
     public boolean EstPasDansLeMonde(int x,int y,Monde m){
+//        System.out.println(x);
+//        System.out.println(y);
+//        System.out.print(x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde());
         return (x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde()) ;
     }
 
