@@ -6,6 +6,7 @@ import javafx.event.Event;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Robot {
     private static int id =1;
@@ -17,17 +18,20 @@ public class Robot {
     private int coordonneesY;
     private ArrayList<String> direction; // Sous la forme ["Haut", "Bas", "Gauche", "Droit"]
 
+
     public Robot(int x, int y){
         idRobot = id;
         id ++;
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
+
         this.direction = new ArrayList<>();
         this.direction.add("Haut"); //Le déplacement par défaut d'un robot se fait dans toute les directions possibles (haut, bas, gauche, droite)
         this.direction.add("Bas");
         this.direction.add("Gauche");
         this.direction.add("Droit");
+
         this.coordonneesX = x;
         this.coordonneesY = y;
 
@@ -92,6 +96,11 @@ public class Robot {
         }
     }
 
+    public void deplacer(String dir){
+
+
+    }
+
     public int getCapaciteExtraction(){
         return this.capaciteExtraction;
     }
@@ -108,7 +117,26 @@ public class Robot {
         return idRobot;
     }
 
-//    public ArrayList<String> getDirection(){
+    public int getCoordonneesY() {
+        return coordonneesY;
+    }
+
+    public int getCoordonneesX() {
+        return coordonneesX;
+    }
+
+    public void setCoordonneesX(int coordonneesX) {
+        this.coordonneesX = coordonneesX;
+    }
+
+    public void setCoordonneesY(int coordonneesY) {
+        this.coordonneesY = coordonneesY;
+    }
+
+    public ArrayList<String> getDirection() {
+        return direction;
+    }
+    //    public ArrayList<String> getDirection(){
 //
 //    }
 }
