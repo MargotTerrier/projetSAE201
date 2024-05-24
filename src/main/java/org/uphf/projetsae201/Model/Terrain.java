@@ -33,6 +33,7 @@ public class Terrain extends Secteur{
 
     public void setRobot(Robot robot) {
         this.robot = robot;
+
     }
-    
+
 }
