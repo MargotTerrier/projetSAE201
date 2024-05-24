@@ -24,19 +24,18 @@ public class Robot {
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
         this.direction = new ArrayList<>();
+        this.direction.add("Haut"); //Le déplacement par défaut d'un robot se fait dans toute les directions possibles (haut, bas, gauche, droite)
+        this.direction.add("Bas");
+        this.direction.add("Gauche");
+        this.direction.add("Droit");
         this.coordonneesX = x;
         this.coordonneesY = y;
 
     }
 
     public void VerifDeplacer(Monde m) {
-        /*Le déplacement par défaut d'un robot se fait dans toute les directions possible exceptée les diagonales.
-        Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification de leur présence, au fur et à mesure.
-        Pas de else if pour passser dans toutes les vérifications, si un monde de taille 1 x 1 est créé par exemple*/
-        this.direction.add("Haut");
-        this.direction.add("Bas");
-        this.direction.add("Gauche");
-        this.direction.add("Droit");
+        /*Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification, au fur et à mesure.
+        Pas de else if pour passser dans toutes les vérifications*/
 
         // vérification du bord du monde
         if (this.coordonneesX == 0) { // si le robot est sur la première ligne
@@ -54,22 +53,25 @@ public class Robot {
 
         // Vérification de la présence d'un plans d'eau
         for (int i = 0; i < this.direction.size(); i++) { // parcours des directions restantes
+            int tmpX = -1;
+            int tmpY = 0;
             if (this.direction.get(i) == "Haut") {
-                int tmpX = this.coordonneesX - 1;
-                int tmpY = this.coordonneesY;
+                tmpX = this.coordonneesX - 1;
+                tmpY = this.coordonneesY;
             } else if (this.direction.get(i) == "Bas") {
-                int tmpX = this.coordonneesX + 1;
-                int tmpY = this.coordonneesY;
+                tmpX = this.coordonneesX + 1;
+                tmpY = this.coordonneesY;
             } else if (this.direction.get(i) == "Gauche") {
-                int tmpX = this.coordonneesX;
-                int tmpY = this.coordonneesY - 1;
+                tmpX = this.coordonneesX;
+                tmpY = this.coordonneesY - 1;
             } else if (this.direction.get(i) == "Droit") {
-                int tmpX = this.coordonneesX;
-                int tmpY = this.coordonneesY + 1;
+                tmpX = this.coordonneesX;
+                tmpY = this.coordonneesY + 1;
             }
-            //if (m.getLstSecteur()[tmpX][tmpY]) {
-
-
+            if (tmpX == -1) break; // On casse le for s'il n'y a plus de direction
+            if (m.getLstSecteur()[tmpX][tmpY] instanceof PlanDeau) {
+                this.direction.remove(i);
+            }
         }
     }
 
