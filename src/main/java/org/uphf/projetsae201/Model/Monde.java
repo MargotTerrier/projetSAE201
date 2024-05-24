@@ -81,7 +81,20 @@ public class Monde {
     public int getLargeurMonde() {
         return largeurMonde;
     }
+    public ArrayList<District> getDistrict(){
+        ArrayList<District> districts = new ArrayList<>();
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                if (this.lstSecteur[i][j] instanceof Terrain) {
+                    if (((((Terrain) this.lstSecteur[i][j]).getDistrict() != null))) {
+                        districts.add((District) ((Terrain) this.lstSecteur[i][j]).getDistrict());
+                    }
+                }
+            }
+        }
 
+
+    }
     public Secteur[][] getLstSecteur() {
         return this.lstSecteur;
     }
