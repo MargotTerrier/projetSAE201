@@ -9,6 +9,11 @@ public class Terrain extends Secteur{
         district = null;
         robot = null;
     }
+    public Terrain(District d){
+        super();
+        district = d;
+        robot = null;
+    }
 
     public Terrain(District d, Robot r){
         super();

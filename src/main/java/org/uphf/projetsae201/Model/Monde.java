@@ -154,16 +154,10 @@ public class Monde {
                 else {((Terrain) map[l][L]).setDistrict(new  Mine());}
                 x += 1;
             }
-
-
             this.lstSecteur = map;
         }
     }
-    public void inverseRobot(Robot r1,Robot r2){
 
-
-
-    }
     public void deplacerRobot(String direction,Terrain T){
         Robot r=T.getRobot();
         if (r.verifDeplacement(this,direction)) {//vérifie si on peut se déplacer
@@ -176,12 +170,27 @@ public class Monde {
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
             }
+            if (((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot()!=null) {
+                Robot r2 =((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
+                Robot temp = new Robot(r);
 
-            Robot temp = new Robot(r);
-            Robot r2 = ((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
-            ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
+                ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
+                ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(temp);
 
-            ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(temp);
+                r2.setCoordonneesX(temp.getCoordonneesX());
+                r2.setCoordonneesY(temp.getCoordonneesY());
+            }
+            else {
+                ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(r);
+                ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(null);
+                r.setCoordonneesX(tmpX);
+                r.setCoordonneesY(tmpY);
+
+
+
+            }
         }
+
     }
+
 }
