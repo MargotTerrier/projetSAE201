@@ -19,7 +19,7 @@ public class EventGUI implements EventHandler {
         Stage s = ((Stage) ((Node) event.getSource()).getScene().getWindow());
 
         // Boutons pour la fenêtre d'acceuil
-        if (s.getTitle().equals("Acceuil")) {
+        if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
                 gui.close();
                 gui.gui();

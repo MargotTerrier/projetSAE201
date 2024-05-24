@@ -57,7 +57,7 @@ public class GUI extends Stage{
         // changer l'icone du jeu
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
 
-        this.setTitle("Acceuil");
+        this.setTitle("Accueil");
         this.setScene(scene);
         this.setResizable(false);
         this.show();
@@ -131,7 +131,7 @@ public class GUI extends Stage{
         Button redemarrer = new Button("Redémarrer une partie");
         redemarrer.setFont(new Font(15));
 
-        Label tour = new Label("Tour " );
+        Label tour = new Label("Tour ");
         tour.setLayoutY(10);
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
@@ -140,6 +140,7 @@ public class GUI extends Stage{
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
+
 
 
         HBox jeu = new HBox();
