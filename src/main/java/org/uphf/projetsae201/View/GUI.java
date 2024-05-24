@@ -14,9 +14,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
-import org.uphf.projetsae201.Model.Monde;
-import org.uphf.projetsae201.Model.PlanDeau;
-import org.uphf.projetsae201.Model.Secteur;
+import org.uphf.projetsae201.Model.*;
 
 public class GUI extends Stage{
 
@@ -168,11 +166,10 @@ public class GUI extends Stage{
                 imageView.setFitWidth(50);
                 imageView.setPreserveRatio(true);
 
-//                if (secteur instanceof PlanDeau) {
-//                    imageView.setImage(planDeauImage);
-//                }
+                StackPane stackPane = new StackPane(imageView);
+                stackPane.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
 
-                grille.add(imageView, x, y);
+                grille.add(stackPane, x, y);
 
             }
         }
@@ -260,9 +257,26 @@ public class GUI extends Stage{
     /* Création de la fenêtre de jeu en mode console */
     public void mondeconsole(Monde m){
 
-//        System.out.println(m);
-        Secteur a= new PlanDeau();
-//        System.out.println(a);
+
+        Robot r=new Robot(3,3);
+        ((Terrain) m.getLstSecteur()[3][3]).setRobot(r);
+        (m.getLstSecteur()[4][3]) = new PlanDeau();
+        new AffichageConsole(m);
+//        System.out.println(m.getLstSecteur()[4][3]instanceof PlanDeau);
+//        System.out.println(r.EstPasDansLeMonde(4,3,m));
+//        System.out.println(r.estPlanEau(4,3,m));
+
+//        m.deplacerRobot("Droit",(Terrain) m.getLstSecteur()[3][3]);
+//        System.out.println("ok");
+//        m.deplacerRobot("Haut",(Terrain) m.getLstSecteur()[3][4]);
+//        System.out.println("ok");
+//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[2][4]);
+//        System.out.println("ok");
+//        m.deplacerRobot("Bas",(Terrain) m.getLstSecteur()[2][3]);
+//        System.out.println("ok");
+//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[3][3]);
+//        System.out.println("ok");
+
         new AffichageConsole(m);
 
     }
