@@ -129,7 +129,13 @@ public class Monde {
             L = new Random().nextInt(this.largeurMonde);
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O"))) {
                 pas[l][L] = "R";
-                ((Terrain) map[l][L]).setRobot(new Robot(l, L));
+                if (x == 0) {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
+                } else if (x == 1) {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
+                } else {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.RandomMinerai()));
+                }
                 x += 1;
             }
         }
