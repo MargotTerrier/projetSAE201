@@ -5,7 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.uphf.projetsae201.Model.Monde;
 import org.uphf.projetsae201.View.GUI;
+
+import java.util.Random;
 
 public class EventGUI implements EventHandler {
     GUI gui;
@@ -19,7 +22,7 @@ public class EventGUI implements EventHandler {
         Stage s = ((Stage) ((Node) event.getSource()).getScene().getWindow());
 
         // Boutons pour la fenêtre d'acceuil
-        if (s.getTitle().equals("Acceuil")) {
+        if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
                 gui.close();
                 gui.gui();
@@ -33,13 +36,13 @@ public class EventGUI implements EventHandler {
         else if (s.getTitle().equals("Choix du mode")) {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
                 gui.close();
-                gui.monde();
+                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Console")) {
                 gui.close();
-                gui.mondeconsole();
+                gui.mondeconsole(new Monde(2,new Random().nextInt(5) + 1,10,10));
             }
         }
 
@@ -50,7 +53,7 @@ public class EventGUI implements EventHandler {
             }
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 gui.close();
-                gui.monde();
+                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
             }
         }
     }

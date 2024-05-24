@@ -3,8 +3,8 @@ package org.uphf.projetsae201.View;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -57,7 +57,7 @@ public class GUI extends Stage{
         // changer l'icone du jeu
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
 
-        this.setTitle("Acceuil");
+        this.setTitle("Accueil");
         this.setScene(scene);
         this.setResizable(false);
         this.show();
@@ -119,7 +119,7 @@ public class GUI extends Stage{
 
 
     /* Création de la fenêtre de jeu en mode graphique */
-    public void monde(){
+    public void monde(Monde m){
         Group g = new Group();
         Scene scene = new Scene(g, 1440, 811);
 
@@ -131,7 +131,7 @@ public class GUI extends Stage{
         Button redemarrer = new Button("Redémarrer une partie");
         redemarrer.setFont(new Font(15));
 
-        Label tour = new Label("Tour " );
+        Label tour = new Label("Tour ");
         tour.setLayoutY(10);
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
@@ -141,8 +141,85 @@ public class GUI extends Stage{
         top.setLayoutX(10);
         top.setSpacing(15);
 
+        GridPane grille = new GridPane(m.getLongueurMonde(),m.getLargeurMonde());
+        grille.setStyle("-fx-background-image: url('" + "https://png.pngtree.com/thumb_back/fw800/background/20231231/pngtree-cartoon-style-top-view-of-brown-earth-seamless-game-interface-background-image_13887101.png" + "');");
 
-        HBox jeu = new HBox();
+        for(int y = 0; y < m.getLongueurMonde(); y++){
+            for(int x = 0; x < m.getLargeurMonde(); x++){
+
+                // Create a new TextField in each Iteration
+                TextField tf = new TextField();
+                tf.setPrefHeight(50);
+                tf.setPrefWidth(50);
+                tf.setAlignment(Pos.CENTER);
+                tf.setEditable(false);
+                //tf.setStyle("-fx-background-color: transparent;");
+
+                // Iterate the Index using the loops
+                grille.setRowIndex(tf,y);
+                grille.setColumnIndex(tf,x);
+                grille.getChildren().add(tf);
+            }
+        }
+        grille.setMaxHeight(GridPane.USE_PREF_SIZE);
+
+        HBox jeu = new HBox(grille);
+        jeu.setLayoutY(100);
+        jeu.setLayoutX(10);
+
+        TableView<Monde> table = new TableView();
+
+        VBox commande = new VBox();
+        TableColumn<Monde, String> element = new TableColumn<>("Elément");
+        TableColumn<Monde, Integer> ligne = new TableColumn<>("Ligne");
+        TableColumn<Monde, String> colonne = new TableColumn<>("Colonne");
+        TableColumn<Monde, String> type = new TableColumn<>("Type minerai");
+        TableColumn<Monde, String> info = new TableColumn<>("Information");
+        table.getColumns().addAll(element, ligne, colonne, type, info);
+        commande.getChildren().add(table);
+
+
+
+        Label action = new Label("Actions");
+        action.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+
+        ComboBox<String> robotComboBox = new ComboBox<>();
+        robotComboBox.getItems().addAll("Robot 1", "Robot 2", "Robot 3");
+        robotComboBox.setPromptText("Choisir un robot");
+
+        Button moveButton = new Button("Se déplacer");
+        Button extractButton = new Button("Extraire des minerais");
+        Button unloadButton = new Button("Décharger des minerais");
+
+        VBox buttonBox = new VBox(10, moveButton, extractButton, unloadButton);
+        buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center;");
+
+        VBox choix = new VBox(10, robotComboBox, buttonBox);
+        choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
+
+        StackPane root = new StackPane(new VBox(10, action, choix));
+        root.setStyle("-fx-padding: 10; -fx-alignment: center;");
+
+        TableView<Monde> tableStatus = new TableView();
+
+        TableColumn<Monde, String> nameCol = new TableColumn<>("N° robot");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Monde, String> statusCol = new TableColumn<>("Status de l'action");
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        tableStatus.getColumns().addAll(nameCol, statusCol);
+
+        Label statuslabel = new Label("Status des robots");
+
+        VBox statusBox = new VBox(statuslabel, tableStatus);
+
+        HBox act = new HBox(root, statusBox);
+
+        commande.getChildren().add(act);
+
+        jeu.getChildren().addAll(commande);
+        jeu.setSpacing(100);
 
         g.getChildren().addAll(top, tour, jeu);
 
@@ -162,9 +239,8 @@ public class GUI extends Stage{
 
 
     /* Création de la fenêtre de jeu en mode console */
-    public void mondeconsole(){
+    public void mondeconsole(Monde m){
 
-        Monde m = new Monde(2,new Random().nextInt(5) + 1,10,10);
 //        System.out.println(m);
         Secteur a= new PlanDeau();
 //        System.out.println(a);
