@@ -183,6 +183,7 @@ public class Monde {
                 case "Bas" -> tmpX += 1;
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
+                case "Extraire" ->
             }
             if (((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot()!=null) {
                 Robot r2 =((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();

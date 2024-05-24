@@ -52,6 +52,13 @@ public class Robot {
             case "Bas" -> tmpX += 1;
             case "Gauche" -> tmpY -= 1;
             case "Droit" -> tmpY += 1;
+            case "Extraire" -> {
+                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine ;
+            }
+            case "Vider" -> {
+                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot ;
+            }
+
         }
         if ((EstPasDansLeMonde(tmpX,tmpY,m))){
             return false;
