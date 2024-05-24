@@ -55,6 +55,9 @@ public class EventGUI implements EventHandler {
                 gui.close();
                 gui.monde(new Monde(2,new Random().nextInt(2,5),10,10));
             }
+//            else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
+//
+//            }
         }
     }
 }
