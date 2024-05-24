@@ -1,6 +1,5 @@
 package org.uphf.projetsae201.View;
 
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -8,12 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.Monde;
+import org.uphf.projetsae201.Model.PlanDeau;
+import org.uphf.projetsae201.Model.Secteur;
 
 public class GUI extends Stage{
 
@@ -29,7 +31,9 @@ public class GUI extends Stage{
 
 
         Text text = new Text("Jeu de la mine");
-        text.setFont(new Font(20));
+        text.setStrokeWidth(2);
+        text.setStroke(Color.WHITE);
+        text.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
 
         VBox box = new VBox(text, commencer, quitter);
         box.setAlignment(Pos.CENTER);
@@ -41,7 +45,7 @@ public class GUI extends Stage{
 
         Background bg = new Background(backgroundImage);
 
-        Scene scene = new Scene(box, 535,   300);
+        Scene scene = new Scene(box, 572,   320);
         box.setBackground(bg);
         box.getChildren().addAll(root);
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
@@ -66,7 +70,9 @@ public class GUI extends Stage{
         quitter2.setFont(new Font(15));
 
         Text text = new Text("Choisissez le mode d'affichage :");
-        text.setFont(new Font(20));
+        text.setStrokeWidth(2);
+        text.setStroke(Color.WHITE);
+        text.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
 
         VBox box = new VBox(text, console, graphique, quitter2);
         box.setAlignment(Pos.CENTER);
@@ -78,7 +84,7 @@ public class GUI extends Stage{
 
         Background bg = new Background(backgroundImage);
 
-        Scene scene = new Scene(box, 535,   300);
+        Scene scene = new Scene(box, 572,   320);
         box.setBackground(bg);
         box.getChildren().addAll(gui);
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
@@ -88,6 +94,7 @@ public class GUI extends Stage{
         this.show();
 
         graphique.setOnMouseClicked(new EventGUI(this));
+        console.setOnMouseClicked(new EventGUI(this));
         quitter2.setOnMouseClicked(new EventGUI(this));
     }
 
@@ -117,5 +124,19 @@ public class GUI extends Stage{
         this.setScene(scene);
         this.show();
 
+        quit.setOnMouseClicked(new EventGUI(this));
+        redemarrer.setOnMouseClicked(new EventGUI(this));
+
     }
+
+    public void mondeconsole(){
+
+        Monde m = new Monde(5,5,10,10);
+//        System.out.println(m);
+        Secteur a= new PlanDeau();
+//        System.out.println(a);
+        new AffichageConsole(m);
+
+    }
+
 }
