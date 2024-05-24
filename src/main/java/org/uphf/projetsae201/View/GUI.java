@@ -144,6 +144,7 @@ public class GUI extends Stage{
         grille.setHgap(0);
         grille.setVgap(0);
 
+
         Secteur[][] secteurs = m.getLstSecteur();
         for (int i = 0; i < secteurs.length; i++) {
             for (int j = 0; j < secteurs[i].length; j++) {
@@ -157,12 +158,15 @@ public class GUI extends Stage{
                 }
                 else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
                     imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Tvrv-h_SRSdcIHdMDEWmZcPCLBFlp0lZDm9hsxDoTA&s"));
+                    addInfo(secteurs[i][j], i, j);
                 }
                 else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
                     imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0n0HbXM5ZlpvMvMLQMeAXQvP75j85PindGegKyUvIjA&s"));
+                    addInfo(secteurs[i][j], i, j);
                 }
                 else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
                     imageView.setImage(new Image("https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg"));
+                    addInfo(secteurs[i][j], i, j);
                 }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
@@ -176,7 +180,7 @@ public class GUI extends Stage{
         jeu.setLayoutY(100);
         jeu.setLayoutX(50);
 
-        TableView<Monde> table = new TableView();
+        TableView<Monde> tableInfo = new TableView();
 
         VBox commande = new VBox();
         TableColumn<Monde, String> element = new TableColumn<>("Elément");
@@ -189,10 +193,9 @@ public class GUI extends Stage{
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
         TableColumn<Monde, String> info = new TableColumn<>("Information");
         info.setCellValueFactory(new PropertyValueFactory<>("info"));
-        table.getColumns().addAll(element, ligne, colonne, type, info);
-        table.setMinWidth(600);
-        commande.getChildren().add(table);
-
+        tableInfo.getColumns().addAll(element, ligne, colonne, type, info);
+        tableInfo.setMinWidth(600);
+        commande.getChildren().add(tableInfo);
 
 
         Label action = new Label("Actions");
@@ -293,6 +296,33 @@ public class GUI extends Stage{
 
         new AffichageConsole(m);
 
+    }
+
+
+    private void addInfo(Secteur secteur, int posX, int posY) {
+        if (secteur instanceof Terrain) {
+            Terrain terrain = (Terrain) secteur;
+            String type = "";
+            String mineraiType = "";
+            String info = "";
+
+            if (terrain.getDistrict() instanceof Mine) {
+                Mine mine = (Mine) terrain.getDistrict();
+                type = "Mine";
+                mineraiType = mine.getTypeMinerai().toString();
+                info = "Minerai restant: " + mine.getNbMinerais();
+            } else if (terrain.getDistrict() instanceof Entrepot) {
+                Entrepot entrepot = (Entrepot) terrain.getDistrict();
+                type = "Entrepôt";
+                mineraiType = "-";
+                info = "Capacité: " + entrepot.getnbMineraisStockees();
+            } else if (terrain.getRobot() instanceof Robot) {
+                Robot robot = terrain.getRobot();
+                type = "Robot";
+                mineraiType = "-";
+                info = "Position: " + robot.getCoordonneesX() + ", " + robot.getCoordonneesY();
+            }
+        }
     }
 
 }
