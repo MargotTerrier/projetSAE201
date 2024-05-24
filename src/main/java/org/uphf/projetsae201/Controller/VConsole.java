@@ -1,8 +1,6 @@
 package org.uphf.projetsae201.Controller;
 
-import org.uphf.projetsae201.Model.Monde;
-import org.uphf.projetsae201.Model.Robot;
-import org.uphf.projetsae201.Model.Terrain;
+import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.AffichageConsole;
 
 import java.util.ArrayList;
@@ -18,6 +16,7 @@ public class VConsole {
         Scanner sc = new Scanner(System.in);
         Monde m =new Monde(5,1,5,5);
         ArrayList<Robot> lstRobots = m.getRobots();
+        ArrayList<District> lstDistrict = m.getDistrict();
         int cpt = 0;
 
 
@@ -31,6 +30,12 @@ public class VConsole {
                 boolean Valide = false;
                 while (!Valide){
                     Robot robot = lstRobots.get(i);
+                    for (int j=0;j<lstDistrict.size();j++){
+                        if(lstDistrict.get(j) instanceof Mine){
+                            ((Mine)lstDistrict.get(j))
+                        }
+                    }
+
                     System.out.println("Prochain mouvement de Robot"+i+"Type de Minerai : "+robot.getTypeMinerai());
                     System.out.println("Action Possible : Haut,Bas,Gauche,Droit,Extraire,Vider");
                     String direction = sc.nextLine();
