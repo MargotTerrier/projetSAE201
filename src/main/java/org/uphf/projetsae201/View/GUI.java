@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.*;
@@ -142,35 +143,24 @@ public class GUI extends Stage{
         grille.setStyle("-fx-background-image: url('" + "https://png.pngtree.com/thumb_back/fw800/background/20231231/pngtree-cartoon-style-top-view-of-brown-earth-seamless-game-interface-background-image_13887101.png" + "');");
         grille.setHgap(0);
         grille.setVgap(0);
-        Image planDeauImage = new Image("https://static.vecteezy.com/ti/vecteur-libre/p1/1844767-eau-texture-vue-de-dessus-fond-vecteur-conception-illustration-gratuit-vectoriel.jpg");
 
-        for(int y = 0; y < m.getLongueurMonde(); y++){
-            for(int x = 0; x < m.getLargeurMonde(); x++){
-
-//                // Create a new TextField in each Iteration
-//                TextField tf = new TextField();
-//                tf.setPrefHeight(50);
-//                tf.setPrefWidth(50);
-//                tf.setAlignment(Pos.CENTER);
-//                tf.setEditable(false);
-//                tf.setStyle("-fx-background-color: transparent; -fx-border-color: black;");
-//
-//                // Iterate the Index using the loops
-//                grille.setRowIndex(tf,y);
-//                grille.setColumnIndex(tf,x);
-//                grille.getChildren().add(tf);
-
-                Secteur[][] secteur = m.getLstSecteur();
+        Secteur[][] secteurs = m.getLstSecteur();
+        for (int i = 0; i < secteurs.length; i++) {
+            for (int j = 0; j < secteurs[i].length; j++) {
+                StackPane cell = new StackPane();
+                cell.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Bordures pour chaque cellule
                 ImageView imageView = new ImageView();
-                imageView.setFitHeight(50);
-                imageView.setFitWidth(50);
-                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(60);
+                imageView.setFitWidth(60);
+                if (secteurs[i][j] instanceof PlanDeau) {
+                    imageView.setImage(new Image("https://static.vecteezy.com/ti/vecteur-libre/p1/1844767-eau-texture-vue-de-dessus-fond-vecteur-conception-illustration-gratuit-vectoriel.jpg"));
+                    }
+//                    else if (secteurs[i][j] instanceof Robot) {
+//                    imageView.setImage(new Image("https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg"));
+//                }
 
-                StackPane stackPane = new StackPane(imageView);
-                stackPane.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
-
-                grille.add(stackPane, x, y);
-
+                cell.getChildren().add(imageView);
+                grille.add(cell, j, i);
             }
         }
         grille.setMaxHeight(GridPane.USE_PREF_SIZE);
@@ -230,7 +220,12 @@ public class GUI extends Stage{
 
         VBox statusBox = new VBox(statuslabel, tableStatus);
 
+        statusBox.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.CENTER);
+
         HBox act = new HBox(root, statusBox);
+        act.setSpacing(30);
+        act.setAlignment(Pos.CENTER);
 
         commande.getChildren().add(act);
 
