@@ -67,7 +67,7 @@ public class Robot {
                 int tmpX = this.coordonneesX;
                 int tmpY = this.coordonneesY + 1;
             }
-            if (m.getLstSecteur()[tmpX][tmpY] )
+            if (m.getLstSecteur()[tmpX][tmpY] ){
         }
 
     }
