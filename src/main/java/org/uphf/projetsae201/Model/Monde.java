@@ -25,12 +25,12 @@ public class Monde {
         this.longueurMonde = longueurMonde;
         this.largeurMonde = largeurMonde;
 
-        // Mme Lepreux nous a dit au moins un plans d'eau.
+
 
 
         // le nb de terrains represente au moins 90% +- 10%(nbPlanDeau) -
         int maxSize = this.longueurMonde*this.largeurMonde;
-
+        // Mme Lepreux nous a dit au moins un plans d'eau.
         this.nbPlanEau = new Random().nextInt(1,((int) ((maxSize + 1) * 0.1)));
         this.nbTerrains = maxSize - this.nbPlanEau;
 
