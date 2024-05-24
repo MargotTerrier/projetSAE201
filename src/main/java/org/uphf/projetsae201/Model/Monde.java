@@ -1,6 +1,7 @@
 package org.uphf.projetsae201.Model;
 
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import static java.lang.System.in;
@@ -36,11 +37,11 @@ public class Monde {
         this.nbPlanEau = new Random().nextInt(1,((int) ((maxSize + 1) * 0.1)));
         this.nbTerrains = maxSize - this.nbPlanEau;
 
-
-        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
-        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
-        System.out.println(this.nbTerrains);
-        System.out.println(this.nbPlanEau);
+//
+//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
+//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
+//        System.out.println(this.nbTerrains);
+//        System.out.println(this.nbPlanEau);
 
 
 
@@ -89,6 +90,19 @@ public class Monde {
         return this.lstSecteur;
     }
 
+    public ArrayList<Robot> getRobots() {
+        ArrayList<Robot> robots = new ArrayList<>();
+        for(int i = 0; i < this.longueurMonde; i++) {
+            for(int j = 0; j < this.largeurMonde; j++) {
+                if(this.lstSecteur[i][j] instanceof Terrain) {
+                    if((((Terrain) this.lstSecteur[i][j]).getRobot()!=null)) {
+                        robots.add((Robot) ((Terrain) this.lstSecteur[i][j]).getRobot());
+                    }
+                }
+            }
+        }
+        return robots;
+    }
     public void creationMonde() {//création d'une grille pour jouer
         int l;
         int L;
