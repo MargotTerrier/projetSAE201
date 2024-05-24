@@ -42,7 +42,7 @@ public class EventGUI implements EventHandler {
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Console")) {
                 gui.close();
-                gui.mondeconsole(new Monde(2,new Random().nextInt(5) + 1,10,10));
+                gui.mondeconsole(new Monde(2,new Random().nextInt(2,5),10,10));
             }
         }
 
@@ -53,7 +53,7 @@ public class EventGUI implements EventHandler {
             }
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 gui.close();
-                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
+                gui.monde(new Monde(2,new Random().nextInt(2,5),10,10));
             }
         }
     }
