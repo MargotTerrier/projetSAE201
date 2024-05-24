@@ -275,7 +275,7 @@ public class GUI extends Stage{
     public void mondeconsole(Monde m){
 
 
-        Robot r=new Robot(3,3);
+        Robot r=new Robot(3,3, Minerai.Or);
         ((Terrain) m.getLstSecteur()[3][3]).setRobot(r);
         (m.getLstSecteur()[4][3]) = new PlanDeau();
         new AffichageConsole(m);
