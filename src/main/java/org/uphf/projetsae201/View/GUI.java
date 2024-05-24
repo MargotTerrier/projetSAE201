@@ -166,6 +166,8 @@ public class GUI extends Stage{
                 }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
+
+
             }
         }
         grille.setMaxHeight(GridPane.USE_PREF_SIZE);
@@ -178,10 +180,15 @@ public class GUI extends Stage{
 
         VBox commande = new VBox();
         TableColumn<Monde, String> element = new TableColumn<>("Elément");
+        element.setCellValueFactory(new PropertyValueFactory<>("element"));
         TableColumn<Monde, Integer> ligne = new TableColumn<>("Ligne");
+        ligne.setCellValueFactory(new PropertyValueFactory<>("ligne"));
         TableColumn<Monde, String> colonne = new TableColumn<>("Colonne");
+        colonne.setCellValueFactory(new PropertyValueFactory<>("colonne"));
         TableColumn<Monde, String> type = new TableColumn<>("Type minerai");
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
         TableColumn<Monde, String> info = new TableColumn<>("Information");
+        info.setCellValueFactory(new PropertyValueFactory<>("info"));
         table.getColumns().addAll(element, ligne, colonne, type, info);
         table.setMinWidth(600);
         commande.getChildren().add(table);
@@ -205,7 +212,10 @@ public class GUI extends Stage{
         VBox choix = new VBox(10, robotComboBox, buttonBox);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
 
-        StackPane root = new StackPane(new VBox(10, action, choix));
+        VBox actions = new VBox(10, action, choix);
+        actions.setAlignment(Pos.CENTER);
+
+        StackPane root = new StackPane(actions);
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
 
         TableView<Monde> tableStatus = new TableView();
@@ -223,10 +233,14 @@ public class GUI extends Stage{
         Label statuslabel = new Label("Status des robots");
         statuslabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 
-        VBox statusBox = new VBox(statuslabel, tableStatus);
+        // bouton pour fermer la fenêtre
+        Button valider = new Button("Valider le tour");
+        valider.setFont(new Font(15));
+
+        VBox statusBox = new VBox(statuslabel, tableStatus, valider);
 
         statusBox.setAlignment(Pos.CENTER);
-        root.setAlignment(Pos.CENTER);
+        statusBox.setSpacing(10);
 
         HBox act = new HBox(root, statusBox);
         act.setSpacing(30);
