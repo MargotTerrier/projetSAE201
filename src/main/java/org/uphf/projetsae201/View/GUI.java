@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -16,8 +17,6 @@ import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.Monde;
 import org.uphf.projetsae201.Model.PlanDeau;
 import org.uphf.projetsae201.Model.Secteur;
-
-import java.util.Random;
 
 public class GUI extends Stage{
 
@@ -143,29 +142,45 @@ public class GUI extends Stage{
 
         GridPane grille = new GridPane(m.getLongueurMonde(),m.getLargeurMonde());
         grille.setStyle("-fx-background-image: url('" + "https://png.pngtree.com/thumb_back/fw800/background/20231231/pngtree-cartoon-style-top-view-of-brown-earth-seamless-game-interface-background-image_13887101.png" + "');");
+        grille.setHgap(0);
+        grille.setVgap(0);
+        Image planDeauImage = new Image("https://static.vecteezy.com/ti/vecteur-libre/p1/1844767-eau-texture-vue-de-dessus-fond-vecteur-conception-illustration-gratuit-vectoriel.jpg");
 
         for(int y = 0; y < m.getLongueurMonde(); y++){
             for(int x = 0; x < m.getLargeurMonde(); x++){
 
-                // Create a new TextField in each Iteration
-                TextField tf = new TextField();
-                tf.setPrefHeight(50);
-                tf.setPrefWidth(50);
-                tf.setAlignment(Pos.CENTER);
-                tf.setEditable(false);
-                //tf.setStyle("-fx-background-color: transparent;");
+//                // Create a new TextField in each Iteration
+//                TextField tf = new TextField();
+//                tf.setPrefHeight(50);
+//                tf.setPrefWidth(50);
+//                tf.setAlignment(Pos.CENTER);
+//                tf.setEditable(false);
+//                tf.setStyle("-fx-background-color: transparent; -fx-border-color: black;");
+//
+//                // Iterate the Index using the loops
+//                grille.setRowIndex(tf,y);
+//                grille.setColumnIndex(tf,x);
+//                grille.getChildren().add(tf);
 
-                // Iterate the Index using the loops
-                grille.setRowIndex(tf,y);
-                grille.setColumnIndex(tf,x);
-                grille.getChildren().add(tf);
+                Secteur[][] secteur = m.getLstSecteur();
+                ImageView imageView = new ImageView();
+                imageView.setFitHeight(50);
+                imageView.setFitWidth(50);
+                imageView.setPreserveRatio(true);
+
+//                if (secteur instanceof PlanDeau) {
+//                    imageView.setImage(planDeauImage);
+//                }
+
+                grille.add(imageView, x, y);
+
             }
         }
         grille.setMaxHeight(GridPane.USE_PREF_SIZE);
 
         HBox jeu = new HBox(grille);
         jeu.setLayoutY(100);
-        jeu.setLayoutX(10);
+        jeu.setLayoutX(50);
 
         TableView<Monde> table = new TableView();
 
@@ -176,6 +191,7 @@ public class GUI extends Stage{
         TableColumn<Monde, String> type = new TableColumn<>("Type minerai");
         TableColumn<Monde, String> info = new TableColumn<>("Information");
         table.getColumns().addAll(element, ligne, colonne, type, info);
+        table.setMinWidth(600);
         commande.getChildren().add(table);
 
 
@@ -210,7 +226,10 @@ public class GUI extends Stage{
 
         tableStatus.getColumns().addAll(nameCol, statusCol);
 
+        tableStatus.setPrefHeight(200);
+
         Label statuslabel = new Label("Status des robots");
+        statuslabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 
         VBox statusBox = new VBox(statuslabel, tableStatus);
 
