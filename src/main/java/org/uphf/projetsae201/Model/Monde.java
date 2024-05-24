@@ -81,7 +81,20 @@ public class Monde {
     public int getLargeurMonde() {
         return largeurMonde;
     }
+    public ArrayList<District> getDistrict(){
+        ArrayList<District> districts = new ArrayList<>();
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                if (this.lstSecteur[i][j] instanceof Terrain) {
+                    if (((((Terrain) this.lstSecteur[i][j]).getDistrict() != null))) {
+                        districts.add((District) ((Terrain) this.lstSecteur[i][j]).getDistrict());
+                    }
+                }
+            }
+        }
 
+
+    }
     public Secteur[][] getLstSecteur() {
         return this.lstSecteur;
     }
@@ -129,7 +142,13 @@ public class Monde {
             L = new Random().nextInt(this.largeurMonde);
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O"))) {
                 pas[l][L] = "R";
-                ((Terrain) map[l][L]).setRobot(new Robot(l, L));
+                if (x == 0) {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
+                } else if (x == 1) {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
+                } else {
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.RandomMinerai()));
+                }
                 x += 1;
             }
         }
