@@ -29,12 +29,10 @@ public class Monde {
         this.largeurMonde = largeurMonde;
 
 
-
-
         // le nb de terrains represente au moins 90% +- 10%(nbPlanDeau) -
-        int maxSize = this.longueurMonde*this.largeurMonde;
+        int maxSize = this.longueurMonde * this.largeurMonde;
         // Mme Lepreux nous a dit au moins un plans d'eau.
-        this.nbPlanEau = new Random().nextInt(1,((int) ((maxSize + 1) * 0.1)));
+        this.nbPlanEau = new Random().nextInt(1, ((int) ((maxSize + 1) * 0.1)));
         this.nbTerrains = maxSize - this.nbPlanEau;
 
 //
@@ -42,8 +40,6 @@ public class Monde {
 //        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
 //        System.out.println(this.nbTerrains);
 //        System.out.println(this.nbPlanEau);
-
-
 
 
         // au moins une mine d'or et une mine de nickel
@@ -92,10 +88,10 @@ public class Monde {
 
     public ArrayList<Robot> getRobots() {
         ArrayList<Robot> robots = new ArrayList<>();
-        for(int i = 0; i < this.longueurMonde; i++) {
-            for(int j = 0; j < this.largeurMonde; j++) {
-                if(this.lstSecteur[i][j] instanceof Terrain) {
-                    if((((Terrain) this.lstSecteur[i][j]).getRobot()!=null)) {
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                if (this.lstSecteur[i][j] instanceof Terrain) {
+                    if ((((Terrain) this.lstSecteur[i][j]).getRobot() != null)) {
                         robots.add((Robot) ((Terrain) this.lstSecteur[i][j]).getRobot());
                     }
                 }
@@ -103,6 +99,7 @@ public class Monde {
         }
         return robots;
     }
+
     public void creationMonde() {//création d'une grille pour jouer
         int l;
         int L;
@@ -142,13 +139,13 @@ public class Monde {
             L = new Random().nextInt(this.largeurMonde);
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E"))) {
                 pas[l][L] = "E";
-                if (x==0){
+                if (x == 0) {
                     ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Or));
-                } else if (x==1)
-                {
+                } else if (x == 1) {
                     ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Nickel));
+                } else {
+                    ((Terrain) map[l][L]).setDistrict(new Entrepot());
                 }
-                else {((Terrain) map[l][L]).setDistrict(new Entrepot());}
                 x += 1;
             }
         }
@@ -159,22 +156,22 @@ public class Monde {
 
             if (!(pas[l][L].equals("R")) && !(pas[l][L].equals("O")) && !(pas[l][L].equals("E")) && !(pas[l][L].equals("M"))) {
                 pas[l][L] = "M";
-                if (x==0){
-                    ((Terrain) map[l][L]).setDistrict(new  Mine(Minerai.Or));
-                } else if (x==1)
-                {
-                    ((Terrain) map[l][L]).setDistrict(new  Mine(Minerai.Nickel));
+                if (x == 0) {
+                    ((Terrain) map[l][L]).setDistrict(new Mine(Minerai.Or));
+                } else if (x == 1) {
+                    ((Terrain) map[l][L]).setDistrict(new Mine(Minerai.Nickel));
+                } else {
+                    ((Terrain) map[l][L]).setDistrict(new Mine());
                 }
-                else {((Terrain) map[l][L]).setDistrict(new  Mine());}
                 x += 1;
             }
             this.lstSecteur = map;
         }
     }
 
-    public void deplacerRobot(String direction,Terrain T){
-        Robot r=T.getRobot();
-        if (r.verifDeplacement(this,direction)) {//vérifie si on peut se déplacer
+    public void deplacerRobot(String direction, Terrain T) {
+        Robot r = T.getRobot();
+        if (r.verifDeplacement(this, direction)) {//vérifie si on peut se déplacer
             int tmpY = r.getCoordonneesY();
             int tmpX = r.getCoordonneesX();
 
@@ -183,10 +180,20 @@ public class Monde {
                 case "Bas" -> tmpX += 1;
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
-                case "Extraire" ->
+                case "Extraire" -> {
+                    if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
+                        r.extraire((Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                    }
+                }
+                case "Vider" -> {
+                    if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
+                        r.vider((Entrepot) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                    }
+
+                }
             }
-            if (((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot()!=null) {
-                Robot r2 =((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
+            if (((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot() != null) {
+                Robot r2 = ((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
                 Robot temp = new Robot(r);
 
                 ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
@@ -194,18 +201,15 @@ public class Monde {
 
                 r2.setCoordonneesX(temp.getCoordonneesX());
                 r2.setCoordonneesY(temp.getCoordonneesY());
-            }
-            else {
+            } else {
                 ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(r);
                 ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(null);
                 r.setCoordonneesX(tmpX);
                 r.setCoordonneesY(tmpY);
 
 
-
             }
         }
 
     }
-
 }
