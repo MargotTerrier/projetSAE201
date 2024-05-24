@@ -17,6 +17,8 @@ import org.uphf.projetsae201.Model.Monde;
 import org.uphf.projetsae201.Model.PlanDeau;
 import org.uphf.projetsae201.Model.Secteur;
 
+import java.util.Random;
+
 public class GUI extends Stage{
 
 
@@ -123,14 +125,10 @@ public class GUI extends Stage{
 
         // bouton pour fermer la fenêtre
         Button quit = new Button("Quitter le jeu");
-        quit.setLayoutX(10);
-        quit.setLayoutY(10);
         quit.setFont(new Font(15));
 
         //bouton pour redémarrer une nouvelle partie
         Button redemarrer = new Button("Redémarrer une partie");
-        redemarrer.setLayoutX(140);
-        redemarrer.setLayoutY(10);
         redemarrer.setFont(new Font(15));
 
         Label tour = new Label("Tour " );
@@ -138,14 +136,22 @@ public class GUI extends Stage{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
+        HBox top = new HBox(quit, redemarrer);
+        top.setLayoutY(10);
+        top.setLayoutX(10);
+        top.setSpacing(15);
 
-        g.getChildren().addAll(quit, redemarrer, tour);
+
+        HBox jeu = new HBox();
+
+        g.getChildren().addAll(top, tour, jeu);
 
         //changer l'icone du jeu
         this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
 
         this.setTitle("Jeu de la mine");
         this.setScene(scene);
+        this.setResizable(false);
         this.show();
 
         // Event des boutons
@@ -158,7 +164,7 @@ public class GUI extends Stage{
     /* Création de la fenêtre de jeu en mode console */
     public void mondeconsole(){
 
-        Monde m = new Monde(2,5,10,10);
+        Monde m = new Monde(2,new Random().nextInt(5) + 1,10,10);
 //        System.out.println(m);
         Secteur a= new PlanDeau();
 //        System.out.println(a);
