@@ -44,16 +44,16 @@ public class GUI extends Stage{
         box.setSpacing(10);
 
         // Image de fond
-        Image fond = new Image("https://i.etsystatic.com/18279207/r/il/0baebc/5022632129/il_570xN.5022632129_kwst.jpg");
+        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
         BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
         Background bg = new Background(backgroundImage);
 
-        Scene scene = new Scene(box, 572,   320);
+        Scene scene = new Scene(box, 570,   320);
         box.setBackground(bg);
         box.getChildren().addAll(root);
 
         // changer l'icone du jeu
-        this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
+        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Accueil");
         this.setScene(scene);
@@ -93,16 +93,16 @@ public class GUI extends Stage{
         box.setSpacing(10);
 
         // Image de fond
-        Image fond = new Image("https://i.etsystatic.com/18279207/r/il/0baebc/5022632129/il_570xN.5022632129_kwst.jpg");
+        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
         BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
         Background bg = new Background(backgroundImage);
 
-        Scene scene = new Scene(box, 572,   320);
+        Scene scene = new Scene(box, 570,   320);
         box.setBackground(bg);
         box.getChildren().addAll(gui);
 
         // changer l'icone du jeu
-        this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
+        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Choix du mode");
         this.setScene(scene);
@@ -140,7 +140,7 @@ public class GUI extends Stage{
         top.setSpacing(15);
 
         GridPane grille = new GridPane(m.getLongueurMonde(),m.getLargeurMonde());
-        grille.setStyle("-fx-background-image: url('" + "https://png.pngtree.com/thumb_back/fw800/background/20231231/pngtree-cartoon-style-top-view-of-brown-earth-seamless-game-interface-background-image_13887101.png" + "');");
+        grille.setStyle("-fx-background-image: url('" + getClass().getResource("/Images/Terre.png").toExternalForm() + "');");
         grille.setHgap(0);
         grille.setVgap(0);
 
@@ -154,18 +154,18 @@ public class GUI extends Stage{
                 imageView.setFitHeight(60);
                 imageView.setFitWidth(60);
                 if (secteurs[i][j] instanceof PlanDeau) {
-                    imageView.setImage(new Image("https://static.vecteezy.com/ti/vecteur-libre/p1/1844767-eau-texture-vue-de-dessus-fond-vecteur-conception-illustration-gratuit-vectoriel.jpg"));
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
                 }
                 else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
-                    imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Tvrv-h_SRSdcIHdMDEWmZcPCLBFlp0lZDm9hsxDoTA&s"));
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
                     addInfo(secteurs[i][j], i, j);
                 }
                 else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
-                    imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0n0HbXM5ZlpvMvMLQMeAXQvP75j85PindGegKyUvIjA&s"));
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
                     addInfo(secteurs[i][j], i, j);
                 }
                 else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
-                    imageView.setImage(new Image("https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg"));
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot.png")));
                     addInfo(secteurs[i][j], i, j);
                 }
                 cell.getChildren().add(imageView);
@@ -257,7 +257,7 @@ public class GUI extends Stage{
         g.getChildren().addAll(top, tour, jeu);
 
         //changer l'icone du jeu
-        this.getIcons().add(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlXw-Np3cMZ4kj518EfxS3uKmiZ6Wx6tbHvJ2CJRBVxA&s"));
+        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Jeu de la mine");
         this.setScene(scene);
