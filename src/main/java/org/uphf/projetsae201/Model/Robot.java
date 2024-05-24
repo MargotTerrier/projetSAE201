@@ -2,8 +2,6 @@ package org.uphf.projetsae201.Model;
 
 
 
-import javafx.event.Event;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,21 +15,48 @@ public class Robot {
     private int coordonneesY;
     private ArrayList<String> direction; // Sous la forme ["Haut", "Bas", "Gauche", "Droit"]
 
+
     public Robot(int x, int y){
         idRobot = id;
         id ++;
         this.capaciteStockage= new Random().nextInt(10-5) + 5;
         this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
         this.nbMineraisExtraits=0;
+
         this.direction = new ArrayList<>();
         this.direction.add("Haut"); //Le déplacement par défaut d'un robot se fait dans toute les directions possibles (haut, bas, gauche, droite)
         this.direction.add("Bas");
         this.direction.add("Gauche");
         this.direction.add("Droit");
+
         this.coordonneesX = x;
         this.coordonneesY = y;
 
     }
+
+    public boolean verifDeplacement(Monde m, String direction){
+        int tmpY = this.coordonneesY;
+        int tmpX = this.coordonneesX;
+
+        switch (direction) {
+            case "Haut" -> tmpY -= 1;
+            case "Bas" -> tmpY += 1;
+            case "Gauche" -> tmpX -= 1;
+            case "Droit" -> tmpX += 1;
+        }
+        return (!EstPasDansLeMonde(tmpX,tmpY,m) && !estPlanEau(tmpX,tmpY,m));
+
+
+    }
+
+    public boolean estPlanEau(int x , int y, Monde m ){
+        return ((Secteur) m.getLstSecteur()[x][y]) instanceof PlanDeau;
+    }
+
+    public boolean EstPasDansLeMonde(int x,int y,Monde m){
+        return (x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde()) ;
+    }
+
 
     public void VerifDeplacer(Monde m) {
         /*Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification, au fur et à mesure.
@@ -92,6 +117,11 @@ public class Robot {
         }
     }
 
+    public void deplacer(String dir){
+
+
+    }
+
     public int getCapaciteExtraction(){
         return this.capaciteExtraction;
     }
@@ -108,7 +138,26 @@ public class Robot {
         return idRobot;
     }
 
-//    public ArrayList<String> getDirection(){
+    public int getCoordonneesY() {
+        return coordonneesY;
+    }
+
+    public int getCoordonneesX() {
+        return coordonneesX;
+    }
+
+    public void setCoordonneesX(int coordonneesX) {
+        this.coordonneesX = coordonneesX;
+    }
+
+    public void setCoordonneesY(int coordonneesY) {
+        this.coordonneesY = coordonneesY;
+    }
+
+    public ArrayList<String> getDirection() {
+        return direction;
+    }
+    //    public ArrayList<String> getDirection(){
 //
 //    }
 }

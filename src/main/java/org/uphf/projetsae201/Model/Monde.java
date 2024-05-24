@@ -3,6 +3,8 @@ package org.uphf.projetsae201.Model;
 
 import java.util.Random;
 
+import static java.lang.System.in;
+
 public class Monde {
     private int nbTerrains;
     private int nbMines;
@@ -25,12 +27,12 @@ public class Monde {
         this.longueurMonde = longueurMonde;
         this.largeurMonde = largeurMonde;
 
-        // Mme Lepreux nous a dit au moins un plans d'eau.
+
 
 
         // le nb de terrains represente au moins 90% +- 10%(nbPlanDeau) -
         int maxSize = this.longueurMonde*this.largeurMonde;
-
+        // Mme Lepreux nous a dit au moins un plans d'eau.
         this.nbPlanEau = new Random().nextInt(1,((int) ((maxSize + 1) * 0.1)));
         this.nbTerrains = maxSize - this.nbPlanEau;
 
@@ -156,7 +158,36 @@ public class Monde {
 
             this.lstSecteur = map;
         }
+    }
+    public void inverseRobot(Robot r1,Robot r2){
+        Robot temp = r1;
+        ((Terrain)this.lstSecteur[r1.getCoordonneesX()][r1.getCoordonneesY()]).setRobot(r2);
+        ((Terrain)this.lstSecteur[r2.getCoordonneesX()][r2.getCoordonneesY()]).setRobot(temp);
 
+
+    }
+    public void deplacerRobot(String direction,Terrain T){
+        Robot r=T.getRobot();
+        r.VerifDeplacer(this);
+
+
+        if (r.getDirection().contains(direction)){
+            if (direction=="Haut"){
+                Robot rM = ((Terrain)this.lstSecteur[r.getCoordonneesY()][r.getCoordonneesX()]).getRobot();
+                T.setRobot(rM);
+
+
+            }
+            else if (direction=="Bas"){
+
+            }
+            else if (direction=="Gauche"){
+
+            }
+            else if (direction=="Droit"){
+
+            }
+        }
 
     }
 }
