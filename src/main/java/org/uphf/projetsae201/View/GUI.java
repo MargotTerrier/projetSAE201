@@ -154,11 +154,16 @@ public class GUI extends Stage{
                 imageView.setFitWidth(60);
                 if (secteurs[i][j] instanceof PlanDeau) {
                     imageView.setImage(new Image("https://static.vecteezy.com/ti/vecteur-libre/p1/1844767-eau-texture-vue-de-dessus-fond-vecteur-conception-illustration-gratuit-vectoriel.jpg"));
-                    }
-//                    else if (secteurs[i][j] instanceof Robot) {
-//                    imageView.setImage(new Image("https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg"));
-//                }
-
+                }
+                else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
+                    imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Tvrv-h_SRSdcIHdMDEWmZcPCLBFlp0lZDm9hsxDoTA&s"));
+                }
+                else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
+                    imageView.setImage(new Image("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0n0HbXM5ZlpvMvMLQMeAXQvP75j85PindGegKyUvIjA&s"));
+                }
+                else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
+                    imageView.setImage(new Image("https://img.freepik.com/premium-vector/cute-robot-waving-hand-cartoon-illustration_138676-2744.jpg"));
+                }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
             }
