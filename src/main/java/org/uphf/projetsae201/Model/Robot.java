@@ -2,11 +2,8 @@ package org.uphf.projetsae201.Model;
 
 
 
-import javafx.event.Event;
-
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Semaphore;
 
 public class Robot {
     private static int id =1;
@@ -36,6 +33,30 @@ public class Robot {
         this.coordonneesY = y;
 
     }
+
+    public boolean verifDeplacement(Monde m, String direction){
+        int tmpY = this.coordonneesY;
+        int tmpX = this.coordonneesX;
+
+        switch (direction) {
+            case "Haut" -> tmpY -= 1;
+            case "Bas" -> tmpY += 1;
+            case "Gauche" -> tmpX -= 1;
+            case "Droit" -> tmpX += 1;
+        }
+        return (!EstPasDansLeMonde(tmpX,tmpY,m) && !estPlanEau(tmpX,tmpY,m));
+
+
+    }
+
+    public boolean estPlanEau(int x , int y, Monde m ){
+        return ((Secteur) m.getLstSecteur()[x][y]) instanceof PlanDeau;
+    }
+
+    public boolean EstPasDansLeMonde(int x,int y,Monde m){
+        return (x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde()) ;
+    }
+
 
     public void VerifDeplacer(Monde m) {
         /*Les directions impossible (hors du monde ou plan d'eau) sont éliminées après vérification, au fur et à mesure.
