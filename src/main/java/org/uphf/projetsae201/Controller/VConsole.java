@@ -10,11 +10,13 @@ public class VConsole {
     public VConsole(){
         this.lancer();
     }
+
+
     public void lancer(){
 
         boolean Fin=false;
         Scanner sc = new Scanner(System.in);
-        Monde m =new Monde(5,1,5,5);
+        Monde m =new Monde(2,1,5,5);
         ArrayList<Robot> lstRobots = m.getRobots();
         ArrayList<District> lstDistrict = m.getDistrict();
         int cpt = 0;
@@ -30,13 +32,7 @@ public class VConsole {
                 boolean Valide = false;
                 while (!Valide){
                     Robot robot = lstRobots.get(i);
-                    for (int j=0;j<lstDistrict.size();j++){
-                        if(lstDistrict.get(j) instanceof Mine){
-                            ((Mine)lstDistrict.get(j))
-                        }
-                    }
-
-                    System.out.println("Prochain mouvement de Robot"+i+"Type de Minerai : "+robot.getTypeMinerai());
+                    System.out.println("Prochain mouvement de Robot"+i+" Type de Minerai : "+robot.getTypeMinerai());
                     System.out.println("Action Possible : Haut,Bas,Gauche,Droit,Extraire,Vider");
                     String direction = sc.nextLine();
                     if(robot.verifDeplacement(m,direction)){
@@ -44,7 +40,7 @@ public class VConsole {
                         m.deplacerRobot(direction,((Terrain)m.getLstSecteur()[robot.getCoordonneesX()][robot.getCoordonneesY()]));
                     }
                     else{
-                        System.out.println("Impossible de faire ça ici");
+                        System.out.println("Impossible de faire ça ici. Choississez une autre action");
                     }
 
                 }
