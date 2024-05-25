@@ -78,7 +78,9 @@ public class Robot {
     public boolean extraire(Mine m){
         if (m.extraction(this) == -1 || this.getTypeMinerai()!=m.getTypeMinerai()) return false; // Vérifie que la mine n'est pas vide
         else {
+            System.out.println("extraction en cours");
             this.nbMineraisExtraits += m.extraction(this);
+            System.out.println(this.nbMineraisExtraits);
             return true;
         }
     }

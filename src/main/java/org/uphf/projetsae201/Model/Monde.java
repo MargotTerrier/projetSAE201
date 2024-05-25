@@ -203,8 +203,9 @@ public class Monde {
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
                 case "Extraire" -> {
-                    System.out.println("aled");
+                    System.out.println("Wi");
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
+                        System.out.println("Extraire");
                         r.extraire((Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                     }
                 }

@@ -21,11 +21,11 @@ public class VConsole {
         ArrayList<District> lstDistrict = m.getDistrict();
         int cpt = 0;
 
-
+        new AffichageConsole(m);
         while (!Fin) {
             cpt+=1;
             System.out.println("Tour N°"+cpt);
-            new AffichageConsole(m);
+
 
             //on demande une action à tous les robots
             for(int i=0;i<lstRobots.size();i++){
@@ -38,6 +38,7 @@ public class VConsole {
                     if(robot.verifDeplacement(m,direction)){
                         Valide=true;
                         m.deplacerRobot(direction,((Terrain)m.getLstSecteur()[robot.getCoordonneesX()][robot.getCoordonneesY()]));
+                        new AffichageConsole(m);
                     }
                     else{
                         System.out.println("Impossible de faire ça ici. Choississez une autre action");
