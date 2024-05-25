@@ -46,10 +46,14 @@ public class Robot {
             case "Gauche" -> tmpY -= 1;
             case "Droit" -> tmpY += 1;
             case "Extraire" -> {
-                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine ;
+                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine){
+                    return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai;
+                }
             }
             case "Vider" -> {
-                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot ;
+                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot){
+                    return (((Entrepot) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai()) == this.typeMinerai;
+            }
             }
 
         }

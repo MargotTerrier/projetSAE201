@@ -38,8 +38,8 @@ public class Entrepot extends District{
     }
 
 
-    public String getTypeMinerai() {
-        return typeMinerai.toString();
+    public Minerai getTypeMinerai() {
+        return typeMinerai;
     }
 
     public String getNbMinerais() {
