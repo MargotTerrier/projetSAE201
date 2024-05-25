@@ -81,6 +81,11 @@ public class Monde {
     public int getLargeurMonde() {
         return largeurMonde;
     }
+
+    public Secteur[][] getLstSecteur() {
+        return this.lstSecteur;
+    }
+
     public ArrayList<District> getDistrict(){
         ArrayList<District> districts = new ArrayList<>();
         for (int i = 0; i < this.longueurMonde; i++) {
@@ -95,9 +100,7 @@ public class Monde {
         return districts;
 
     }
-    public Secteur[][] getLstSecteur() {
-        return this.lstSecteur;
-    }
+
 
     public ArrayList<Robot> getRobots() {
         ArrayList<Robot> robots = new ArrayList<>();
@@ -229,6 +232,27 @@ public class Monde {
 
             }
         }
+
+    }
+
+    public boolean verifFin(){
+       ArrayList<Robot> robots = this.getRobots();
+       ArrayList<District> districts = this.getDistrict();
+       boolean fin = true;
+
+       for(Robot i : robots){
+           if(i.getNbMineraisExtraits()!=0){
+               fin = false;
+           }
+       }
+       for(District d : districts){
+           if(d instanceof Mine){
+               if (((Mine) d).getNbMinerais()!=0){
+                   fin = false;
+               }
+           }
+       }
+       return fin;
 
     }
 }
