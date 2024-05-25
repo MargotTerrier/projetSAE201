@@ -48,10 +48,8 @@ public class VConsole {
 
 
             }
-            System.out.println();
-            new AffichageConsole(m);
-            sc.nextLine();
-            Fin=true;
+
+            Fin=m.verifFin();
 
 
         }
