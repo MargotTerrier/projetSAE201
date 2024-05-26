@@ -4,6 +4,8 @@ import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.AffichageConsole;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class VConsole {
@@ -16,16 +18,10 @@ public class VConsole {
 
         boolean Fin=false;
         Scanner sc = new Scanner(System.in);
-        Monde m =new Monde(2,0,5,5);
+        Monde m =new Monde(2   ,new Random().nextInt(2,5),10,10);
 
-        m.getLstSecteur()[0][0]= new Terrain(new Mine(Minerai.Or),new Robot(0,0,Minerai.Or));
-        m.getLstSecteur()[0][1]= new Terrain(new Mine(Minerai.Nickel),new Robot(0,1,Minerai.Nickel));
         ArrayList<District> lstDistrict = m.getDistrict();
-        for (District d : lstDistrict){
-            if (d instanceof Mine){
-                ((Mine) d).setNbMinerais(1);
-            }
-        }
+
         int cpt = 0;
 
         new AffichageConsole(m);
@@ -34,7 +30,7 @@ public class VConsole {
             cpt+=1;
             System.out.println("Tour N°"+cpt);
             ArrayList<Robot> lstRobots = m.getRobots();
-
+            lstRobots.sort(Comparator.comparingInt(Robot::getIdRobot)); //permet de jouer toujours dans le même ordre
             //on demande une action à tous les robots
             for(Robot robot : lstRobots){
                 boolean Valide = false;
@@ -46,6 +42,7 @@ public class VConsole {
                     System.out.println("Action Possible : Haut,Bas,Gauche,Droit,Extraire,Vider");
                     String direction = sc.nextLine();
 
+                    //Vérification que l'action est réalisable
                     if(robot.verifDeplacement(m,direction)){
                         Valide=true;
                         m.deplacerRobot(direction,((Terrain)m.getLstSecteur()[robot.getCoordonneesX()][robot.getCoordonneesY()]));
@@ -63,6 +60,8 @@ public class VConsole {
             Fin=m.verifFin();
 
 
+
         }
+        System.out.println("Bravo vous avez Fini en "+cpt+" tours");
     }
 }

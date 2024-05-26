@@ -3,6 +3,7 @@ package org.uphf.projetsae201.View;
 import org.uphf.projetsae201.Model.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class AffichageConsole {
     private Monde m ;
@@ -70,6 +71,8 @@ public class AffichageConsole {
         System.out.println(s);
 
         //Affiche les données de tous ce qui compose le monde
+        lstDistrict.sort(Comparator.comparingInt(District::getId));
+
         for (int j=0;j<lstDistrict.size();j++) {
             if (lstDistrict.get(j) instanceof Mine) {
                 Mine mine = ((Mine) lstDistrict.get(j));
