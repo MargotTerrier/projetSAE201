@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
+import org.uphf.projetsae201.Controller.VConsole;
 import org.uphf.projetsae201.Model.*;
 
 public class GUI extends Stage{
@@ -274,29 +275,7 @@ public class GUI extends Stage{
 
     /* Création de la fenêtre de jeu en mode console */
     public void mondeconsole(Monde m){
-
-
-        Robot r=new Robot(3,3, Minerai.Or);
-        ((Terrain) m.getLstSecteur()[3][3]).setRobot(r);
-        (m.getLstSecteur()[4][3]) = new PlanDeau();
-        new AffichageConsole(m);
-//        System.out.println(m.getLstSecteur()[4][3]instanceof PlanDeau);
-//        System.out.println(r.EstPasDansLeMonde(4,3,m));
-//        System.out.println(r.estPlanEau(4,3,m));
-
-//        m.deplacerRobot("Droit",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Haut",(Terrain) m.getLstSecteur()[3][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[2][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Bas",(Terrain) m.getLstSecteur()[2][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-
-        new AffichageConsole(m);
-
+        new VConsole();
     }
 
 

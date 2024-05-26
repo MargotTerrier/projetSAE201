@@ -1,8 +1,5 @@
 package org.uphf.projetsae201.Model;
 
-
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot {
@@ -68,9 +65,6 @@ public class Robot {
     }
 
     public boolean EstPasDansLeMonde(int x, int y, Monde m) {
-//        System.out.println(x);
-//        System.out.println(y);
-//        System.out.print(x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde());
         return (x < 0 || x >= m.getLongueurMonde() || y < 0 || y >= m.getLargeurMonde());
     }
 
