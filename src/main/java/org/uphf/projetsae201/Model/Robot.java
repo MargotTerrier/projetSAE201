@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Robot {
-    private static int id =1;
+    private static int id = 1;
     private int idRobot;
     private int capaciteExtraction;
     private int capaciteStockage;
@@ -15,7 +15,7 @@ public class Robot {
     private int coordonneesY;
     private Minerai typeMinerai;
 
-    public Robot(Robot r) { //constructeur par copie
+    public Robot(Robot r) { //constructeur par recopie
         this.idRobot = r.getIdRobot();
         this.capaciteExtraction = r.getCapaciteExtraction();
         this.capaciteStockage = r.getCapaciteStockage();
@@ -25,19 +25,19 @@ public class Robot {
         this.typeMinerai = r.getTypeMinerai();
     }
 
-    public Robot(int x, int y,Minerai minerai){
+    public Robot(int x, int y, Minerai minerai) {
         idRobot = id;
-        id ++;
-        this.capaciteStockage= new Random().nextInt(10-5) + 5;
-        this.capaciteExtraction= new Random().nextInt(4-1) + 1 ;
-        this.nbMineraisExtraits=0;
+        id++;
+        this.capaciteStockage = new Random().nextInt(10 - 5) + 5;
+        this.capaciteExtraction = new Random().nextInt(4 - 1) + 1;
+        this.nbMineraisExtraits = 0;
         this.coordonneesX = x;
         this.coordonneesY = y;
-        this.typeMinerai=minerai;
+        this.typeMinerai = minerai;
 
     }
 
-    public boolean verifDeplacement(Monde m, String direction){
+    public boolean verifDeplacement(Monde m, String direction) {
         int tmpY = this.coordonneesY;
         int tmpX = this.coordonneesX;
 
@@ -47,75 +47,51 @@ public class Robot {
             case "Gauche" -> tmpY -= 1;
             case "Droit" -> tmpY += 1;
             case "Extraire" -> {
-                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine){
+                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine) {
                     return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai && ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getNbMinerais() != 0;
                 }
             }
             case "Vider" -> {
-                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot){
+                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot) {
                     return (((Entrepot) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai()) == this.typeMinerai;
-            }
+                }
             }
 
         }
-        if ((EstPasDansLeMonde(tmpX,tmpY,m))){
+        if ((EstPasDansLeMonde(tmpX, tmpY, m))) {
             return false;
-        }
-        else return !(estPlanEau(tmpX, tmpY, m));
+        } else return !(estPlanEau(tmpX, tmpY, m));
     }
 
-    public boolean estPlanEau(int x , int y, Monde m ){
-        return ( m.getLstSecteur()[x][y] instanceof PlanDeau);
+    public boolean estPlanEau(int x, int y, Monde m) {
+        return (m.getLstSecteur()[x][y] instanceof PlanDeau);
     }
 
-    public boolean EstPasDansLeMonde(int x,int y,Monde m){
+    public boolean EstPasDansLeMonde(int x, int y, Monde m) {
 //        System.out.println(x);
 //        System.out.println(y);
 //        System.out.print(x < 0 || x>m.getLongueurMonde() || y<0 || y>m.getLargeurMonde());
-        return (x < 0 || x>=m.getLongueurMonde() || y<0 || y>=m.getLargeurMonde()) ;
+        return (x < 0 || x >= m.getLongueurMonde() || y < 0 || y >= m.getLargeurMonde());
     }
 
-
-//    public boolean extraire(Mine m){
-//        if (m.extraction(this) == -1 || this.getTypeMinerai()!=m.getTypeMinerai()){
-//            System.out.println("Impossible");
-//            return false;
-//        }
-//
-//        // Vérifie que la mine n'est pas vide
-//        else {
-//            System.out.println("extraction en cours");
-//            this.nbMineraisExtraits += m.extraction(this);
-//            System.out.println(this.nbMineraisExtraits);
-//            return true;
-//        }
-//    }
-
-    public boolean vider(Entrepot e){
-        if (this.nbMineraisExtraits == 0) return false;
-        else {
-            e.remplissage(this);
-            this.nbMineraisExtraits = 0;
-            return true;
-        }
-    }
 
     public Minerai getTypeMinerai() {
         return typeMinerai;
     }
-    public int getCapaciteExtraction(){
+
+    public int getCapaciteExtraction() {
         return this.capaciteExtraction;
     }
 
-    public int getCapaciteStockage(){
+    public int getCapaciteStockage() {
         return this.capaciteStockage;
     }
 
-    public int getNbMineraisExtraits(){
+    public int getNbMineraisExtraits() {
         return this.nbMineraisExtraits;
     }
 
-    public int getIdRobot(){
+    public int getIdRobot() {
         return idRobot;
     }
 
@@ -146,9 +122,4 @@ public class Robot {
     public void setCapaciteExtraction(int capaciteExtraction) {
         this.capaciteExtraction = capaciteExtraction;
     }
-
-
-    //    public ArrayList<String> getDirection(){
-//
-//    }
 }

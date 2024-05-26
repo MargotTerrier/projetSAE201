@@ -4,7 +4,6 @@ package org.uphf.projetsae201.Model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static java.lang.System.in;
 
 public class Monde {
     private int nbTerrains;
@@ -31,15 +30,10 @@ public class Monde {
 
         // le nb de terrains represente au moins 90% +- 10%(nbPlanDeau) -
         int maxSize = this.longueurMonde * this.largeurMonde;
+
         // Mme Lepreux nous a dit au moins un plans d'eau.
         this.nbPlanEau = new Random().nextInt(1, ((int) ((maxSize + 1) * 0.1)));
         this.nbTerrains = maxSize - this.nbPlanEau;
-
-//
-//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(0))-1);
-//        System.out.println((int) (0.9*(this.largeurMonde*this.longueurMonde)+0.1*(this.largeurMonde*this.longueurMonde)-1));
-//        System.out.println(this.nbTerrains);
-//        System.out.println(this.nbPlanEau);
 
 
         // au moins une mine d'or et une mine de nickel
@@ -86,6 +80,7 @@ public class Monde {
         return this.lstSecteur;
     }
 
+    //récupère les districts dans un monde
     public ArrayList<District> getDistrict(){
         ArrayList<District> districts = new ArrayList<>();
         for (int i = 0; i < this.longueurMonde; i++) {
@@ -101,7 +96,7 @@ public class Monde {
 
     }
 
-
+    //récupère les robots dans un monde
     public ArrayList<Robot> getRobots() {
         ArrayList<Robot> robots = new ArrayList<>();
         for (int i = 0; i < this.longueurMonde; i++) {
@@ -116,9 +111,9 @@ public class Monde {
         return robots;
     }
 
-    public void creationMonde() {//création d'une grille pour jouer
-        int l;
-        int L;
+    //création d'une grille pour jouer
+    public void creationMonde() {
+        int l;int L;
 
         Secteur[][] map = new Secteur[this.longueurMonde][this.largeurMonde];
         String[][] pas = new String[this.longueurMonde][this.largeurMonde];
@@ -193,8 +188,7 @@ public class Monde {
 
     public void deplacerRobot(String direction, Terrain T) {
         Robot r = T.getRobot();
-        System.out.println(r);
-        System.out.println(r.getTypeMinerai());
+
         if (r.verifDeplacement(this, direction)) {//vérifie si on peut se déplacer
             int tmpY = r.getCoordonneesY();
             int tmpX = r.getCoordonneesX();
@@ -246,32 +240,24 @@ public class Monde {
 
         if (MineraiSuffisant && StockageSuffisant) {
             minerai = robot.getCapaciteExtraction();
-            System.out.println("max");
         }
         else if (MineraiSuffisant && !StockageSuffisant) {
-            System.out.println("stock pas bon");
             minerai = robot.getCapaciteStockage()-robot.getNbMineraisExtraits();
         }
         else if (!MineraiSuffisant && !StockageSuffisant){
-            System.out.println("stock pas bon et minerai aussi");
             minerai = Math.min(robot.getCapaciteStockage() - robot.getNbMineraisExtraits(), mine.getNbMinerais());
         }
         else {
-            System.out.println("minerai pas bon ");
             minerai = mine.getNbMinerais();
         }
 
         robot.setnbMineraisExtraits(robot.getNbMineraisExtraits() + minerai);
         mine.setNbMinerais(mine.getNbMinerais() - minerai);
-        System.out.println(minerai);
-
     }
 
     public void vider (Robot robot, Entrepot entrepot){
         entrepot.setnbMineraisStockes(entrepot.getnbMineraisStockees() + robot.getNbMineraisExtraits());
         robot.setnbMineraisExtraits(0);
-
-
     }
 
 
@@ -279,7 +265,6 @@ public class Monde {
        ArrayList<Robot> robots = this.getRobots();
        ArrayList<District> districts = this.getDistrict();
        boolean fin = true;
-
        for(Robot i : robots){
            if (i.getNbMineraisExtraits() != 0) {
                fin = false;
@@ -294,6 +279,5 @@ public class Monde {
            }
        }
        return fin;
-
     }
 }
