@@ -39,22 +39,4 @@ public class Mine extends District{
         this.nbMinerais = nbMinerais;
     }
 
-//    public int extraction(Robot r){ // retourne le nombre de minerais qui sera extrait
-//        if (this.nbMinerais == 0) {
-//            System.out.println("VIDE");
-//            return -1; // Si la mine est vide, retourne  -1
-//        }
-//        else if (this.nbMinerais - r.getCapaciteExtraction() < 0) {
-//
-//            System.out.println("aled");// S'il y moins de minerais dans la mine que la capacité d'extraction du robot
-//            int tmp = this.nbMinerais;
-//            this.nbMinerais = 0;
-//            return tmp; // retourne le nombre de minerais restant dans la mine
-//        }
-//        else {
-//            System.out.println("EXTRACTION MAX");
-//            this.nbMinerais -= r.getCapaciteExtraction();
-//            return r.getCapaciteExtraction(); // retourne le nombre de minerais max que le robot peut extraire
-//        }
-//    }
 }

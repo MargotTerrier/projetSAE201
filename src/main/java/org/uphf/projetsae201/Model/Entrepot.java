@@ -33,11 +33,6 @@ public class Entrepot extends District{
         return this.nbMineraisStockes;
     }
 
-    public void remplissage(Robot rob){
-        this.nbMineraisStockes += rob.getNbMineraisExtraits();
-    }
-
-
     public Minerai getTypeMinerai() {
         return typeMinerai;
     }
