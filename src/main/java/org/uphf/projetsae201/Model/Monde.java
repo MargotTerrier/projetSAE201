@@ -81,13 +81,18 @@ public class Monde {
     public int getLargeurMonde() {
         return largeurMonde;
     }
+
+    public Secteur[][] getLstSecteur() {
+        return this.lstSecteur;
+    }
+
     public ArrayList<District> getDistrict(){
         ArrayList<District> districts = new ArrayList<>();
         for (int i = 0; i < this.longueurMonde; i++) {
             for (int j = 0; j < this.largeurMonde; j++) {
                 if (this.lstSecteur[i][j] instanceof Terrain) {
                     if (((((Terrain) this.lstSecteur[i][j]).getDistrict() != null))) {
-                        districts.add((District) ((Terrain) this.lstSecteur[i][j]).getDistrict());
+                        districts.add( ((Terrain) this.lstSecteur[i][j]).getDistrict());
                     }
                 }
             }
@@ -95,9 +100,7 @@ public class Monde {
         return districts;
 
     }
-    public Secteur[][] getLstSecteur() {
-        return this.lstSecteur;
-    }
+
 
     public ArrayList<Robot> getRobots() {
         ArrayList<Robot> robots = new ArrayList<>();
@@ -105,7 +108,7 @@ public class Monde {
             for (int j = 0; j < this.largeurMonde; j++) {
                 if (this.lstSecteur[i][j] instanceof Terrain) {
                     if ((((Terrain) this.lstSecteur[i][j]).getRobot() != null)) {
-                        robots.add((Robot) ((Terrain) this.lstSecteur[i][j]).getRobot());
+                        robots.add( ((Terrain) this.lstSecteur[i][j]).getRobot());
                     }
                 }
             }
@@ -116,7 +119,7 @@ public class Monde {
     public void creationMonde() {//création d'une grille pour jouer
         int l;
         int L;
-        int minerai = 0;
+
         Secteur[][] map = new Secteur[this.longueurMonde][this.largeurMonde];
         String[][] pas = new String[this.longueurMonde][this.largeurMonde];
         for (int i = 0; i < this.longueurMonde; i++) {
@@ -190,6 +193,8 @@ public class Monde {
 
     public void deplacerRobot(String direction, Terrain T) {
         Robot r = T.getRobot();
+        System.out.println(r);
+
         if (r.verifDeplacement(this, direction)) {//vérifie si on peut se déplacer
             int tmpY = r.getCoordonneesY();
             int tmpX = r.getCoordonneesX();
@@ -200,7 +205,9 @@ public class Monde {
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
                 case "Extraire" -> {
+                    System.out.println("Wi");
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
+                        System.out.println("Extraire");
                         r.extraire((Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                     }
                 }
@@ -229,6 +236,28 @@ public class Monde {
 
             }
         }
+
+    }
+
+    public boolean verifFin(){
+       ArrayList<Robot> robots = this.getRobots();
+       ArrayList<District> districts = this.getDistrict();
+       boolean fin = true;
+
+       for(Robot i : robots){
+           if (i.getNbMineraisExtraits() != 0) {
+               fin = false;
+               break;
+           }
+       }
+       for(District d : districts){
+           if(d instanceof Mine){
+               if (((Mine) d).getNbMinerais()!=0){
+                   fin = false;
+               }
+           }
+       }
+       return fin;
 
     }
 }

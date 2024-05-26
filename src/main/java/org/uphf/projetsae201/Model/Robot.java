@@ -46,10 +46,14 @@ public class Robot {
             case "Gauche" -> tmpY -= 1;
             case "Droit" -> tmpY += 1;
             case "Extraire" -> {
-                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine ;
+                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine){
+                    return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai;
+                }
             }
             case "Vider" -> {
-                return ((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot ;
+                if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot){
+                    return (((Entrepot) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai()) == this.typeMinerai;
+            }
             }
 
         }
@@ -74,7 +78,9 @@ public class Robot {
     public boolean extraire(Mine m){
         if (m.extraction(this) == -1 || this.getTypeMinerai()!=m.getTypeMinerai()) return false; // Vérifie que la mine n'est pas vide
         else {
+            System.out.println("extraction en cours");
             this.nbMineraisExtraits += m.extraction(this);
+            System.out.println(this.nbMineraisExtraits);
             return true;
         }
     }

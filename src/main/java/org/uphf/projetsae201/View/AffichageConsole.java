@@ -2,6 +2,8 @@ package org.uphf.projetsae201.View;
 
 import org.uphf.projetsae201.Model.*;
 
+import java.util.ArrayList;
+
 public class AffichageConsole {
     private Monde m ;
     public AffichageConsole(Monde m ) {
@@ -14,10 +16,10 @@ public class AffichageConsole {
         String temp ;
         String temp2;
         String s =new String(new char[map[0].length*4]).replace("\0", "=");
+        ArrayList<District> lstDistrict = m.getDistrict();
 
-
-        //*2 car on a 4 case par secteur
         for(int i = 0; i < map.length; i++) {
+
 //            System.out.println(map.length);
 //            System.out.println(map[i].length);
 //            System.out.println(i);
@@ -66,6 +68,20 @@ public class AffichageConsole {
             System.out.println(temp2);
         }
         System.out.println(s);
+
+        //Affiche les données de tous ce qui compose le monde
+        for (int j=0;j<lstDistrict.size();j++) {
+            if (lstDistrict.get(j) instanceof Mine) {
+                Mine mine = ((Mine) lstDistrict.get(j));
+                System.out.println("Mine " + mine.getId() + " Type de Minerai :" + mine.getTypeMinerai() + " Quantité restante : " + mine.getNbMinerais() + "/" + mine.getCapacite());
+            }
+            if (lstDistrict.get(j) instanceof Entrepot) {
+                Entrepot entrepot = ((Entrepot) lstDistrict.get(j));
+                System.out.println("Entrepot " + entrepot.getId() + " Type de Minerai :" + entrepot.getTypeMinerai() + " Quantité stocké : " + entrepot.getNbMinerais());
+            }
+        }
+
+
     }
 }
 
