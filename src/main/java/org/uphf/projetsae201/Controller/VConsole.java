@@ -30,7 +30,7 @@ public class VConsole {
             cpt+=1;
             System.out.println("Tour N°"+cpt);
             ArrayList<Robot> lstRobots = m.getRobots();
-            lstRobots.sort(Comparator.comparingInt(Robot::getIdRobot)); //permet de jouer toujours dans le même ordre
+
             //on demande une action à tous les robots
             for(Robot robot : lstRobots){
                 boolean Valide = false;

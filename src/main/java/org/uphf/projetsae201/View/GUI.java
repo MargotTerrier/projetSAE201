@@ -259,7 +259,6 @@ public class GUI extends Stage{
 
         //changer l'icone du jeu
         this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
-
         this.setTitle("Jeu de la mine");
         scene.setFill(Color.PEACHPUFF);
         this.setScene(scene);

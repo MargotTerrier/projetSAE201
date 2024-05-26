@@ -61,17 +61,14 @@ public class AffichageConsole {
         //Affiche les données de tous ce qui compose le monde
         //On trie par id
 
-        lstDistrict.sort(Comparator.comparingInt(District::getId));
+        ArrayList<Mine>lstMines = m.getMines();
+        ArrayList<Entrepot>lstEntrepots = m.getEntrepots();
 
-        for (int j=0;j<lstDistrict.size();j++) {
-            if (lstDistrict.get(j) instanceof Mine) {
-                Mine mine = ((Mine) lstDistrict.get(j));
-                System.out.println("Mine " + mine.getId() + " Type de Minerai :" + mine.getTypeMinerai() + " Quantité restante : " + mine.getNbMinerais() + "/" + mine.getCapacite());
-            }
-            if (lstDistrict.get(j) instanceof Entrepot) {
-                Entrepot entrepot = ((Entrepot) lstDistrict.get(j));
-                System.out.println("Entrepot " + entrepot.getId() + " Type de Minerai :" + entrepot.getTypeMinerai() + " Quantité stocké : " + entrepot.getNbMinerais());
-            }
+        for(Mine mine : lstMines){
+            System.out.println("Mine " + mine.getId() + " Type de Minerai :" + mine.getTypeMinerai() + " Quantité restante : " + mine.getNbMinerais() + "/" + mine.getCapacite());
+        }
+        for(Entrepot entrepot : lstEntrepots){
+            System.out.println("Entrepot " + entrepot.getId() + " Type de Minerai :" + entrepot.getTypeMinerai() + " Quantité stocké : " + entrepot.getNbMinerais());
         }
 
     }

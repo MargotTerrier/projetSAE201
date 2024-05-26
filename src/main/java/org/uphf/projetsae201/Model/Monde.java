@@ -2,6 +2,7 @@ package org.uphf.projetsae201.Model;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 
@@ -93,8 +94,38 @@ public class Monde {
             }
         }
         return districts;
-
     }
+    //recupère les Mines
+    public ArrayList<Mine> getMines(){
+        ArrayList<Mine> mines = new ArrayList<>();
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                if (this.lstSecteur[i][j] instanceof Terrain) {
+                    if (((((Terrain) this.lstSecteur[i][j]).getDistrict() != null))&& ((((Terrain) this.lstSecteur[i][j]).getDistrict() instanceof Mine) )){
+                        mines.add( (Mine) ((Terrain) this.lstSecteur[i][j]).getDistrict());
+                    }
+                }
+            }
+        }
+        mines.sort(Comparator.comparingInt(Mine::getId));
+        return mines;
+    }
+    //recupère les Entrepots
+    public ArrayList<Entrepot> getEntrepots(){
+        ArrayList<Entrepot> entrepots = new ArrayList<>();
+        for (int i = 0; i < this.longueurMonde; i++) {
+            for (int j = 0; j < this.largeurMonde; j++) {
+                if (this.lstSecteur[i][j] instanceof Terrain) {
+                    if (((((Terrain) this.lstSecteur[i][j]).getDistrict() != null))&& ((((Terrain) this.lstSecteur[i][j]).getDistrict() instanceof Entrepot) )){
+                        entrepots.add( (Entrepot) ((Terrain) this.lstSecteur[i][j]).getDistrict());
+                    }
+                }
+            }
+        }
+        entrepots.sort(Comparator.comparingInt(Entrepot::getId));//Trie
+        return entrepots;
+    }
+
 
     //récupère les robots dans un monde
     public ArrayList<Robot> getRobots() {
@@ -108,6 +139,7 @@ public class Monde {
                 }
             }
         }
+        robots.sort(Comparator.comparingInt(Robot::getIdRobot)); //permet de jouer toujours dans le même ordre
         return robots;
     }
 
