@@ -139,6 +139,15 @@ public class Robot {
         this.nbMineraisExtraits = nbMineraisExtraits;
     }
 
+    public void setCapaciteStockage(int capaciteStockage) {
+        this.capaciteStockage = capaciteStockage;
+    }
+
+    public void setCapaciteExtraction(int capaciteExtraction) {
+        this.capaciteExtraction = capaciteExtraction;
+    }
+
+
     //    public ArrayList<String> getDirection(){
 //
 //    }
