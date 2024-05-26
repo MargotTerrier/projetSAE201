@@ -16,7 +16,9 @@ public class VConsole {
 
         boolean Fin=false;
         Scanner sc = new Scanner(System.in);
-        Monde m =new Monde(2,1,5,5);
+        Monde m =new Monde(2,0,5,5);
+
+        m.getLstSecteur()[0][0]= new Terrain(new Mine(Minerai.Or),new Robot(0,0,Minerai.Or));
         ArrayList<Robot> lstRobots = m.getRobots();
         ArrayList<District> lstDistrict = m.getDistrict();
         int cpt = 0;
@@ -32,9 +34,12 @@ public class VConsole {
                 boolean Valide = false;
                 while (!Valide){
                     Robot robot = lstRobots.get(i);
-                    System.out.println("Prochain mouvement de Robot"+i+" Type de Minerai : "+robot.getTypeMinerai());
+
+                    //affichage
+                    System.out.println("Prochain mouvement de Robot"+i+" Type de Minerai : "+robot.getTypeMinerai()+" Nombre de minerai extrait : "+robot.getNbMineraisExtraits()+"/"+robot.getCapaciteStockage()+   " Capacite d'extraction : "+robot.getCapaciteExtraction());
                     System.out.println("Action Possible : Haut,Bas,Gauche,Droit,Extraire,Vider");
                     String direction = sc.nextLine();
+
                     if(robot.verifDeplacement(m,direction)){
                         Valide=true;
                         m.deplacerRobot(direction,((Terrain)m.getLstSecteur()[robot.getCoordonneesX()][robot.getCoordonneesY()]));
@@ -45,7 +50,6 @@ public class VConsole {
                     }
 
                 }
-
 
 
             }

@@ -205,10 +205,10 @@ public class Monde {
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
                 case "Extraire" -> {
-                    System.out.println("Wi");
+                    System.out.println("RECU");
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
                         System.out.println("Extraire");
-                        r.extraire((Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                        this.extraire(r,(Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                     }
                 }
                 case "Vider" -> {
@@ -238,6 +238,22 @@ public class Monde {
         }
 
     }
+
+    public void extraire(Robot robot, Mine mine){
+        boolean MineraiSuffisant = mine.getNbMinerais() < robot.getCapaciteExtraction();
+        boolean StockageSuffisant = robot.getCapaciteStockage() < (robot.getNbMineraisExtraits()+robot.getCapaciteStockage());
+        int minerai;
+
+        if (MineraiSuffisant && StockageSuffisant) minerai = robot.getCapaciteExtraction();
+        else if (MineraiSuffisant && !StockageSuffisant) minerai = robot.getCapaciteStockage()-robot.getNbMineraisExtraits();
+        else if (!MineraiSuffisant && !StockageSuffisant) minerai = Math.min(robot.getCapaciteStockage() - robot.getNbMineraisExtraits(), mine.getNbMinerais());
+        else  minerai = mine.getNbMinerais();
+
+        robot.setnbMineraisExtraits(robot.getCapaciteExtraction() + minerai);
+        mine.setNbMinerais(mine.getNbMinerais() - minerai);
+
+    }
+
 
     public boolean verifFin(){
        ArrayList<Robot> robots = this.getRobots();

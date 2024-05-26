@@ -47,7 +47,7 @@ public class Robot {
             case "Droit" -> tmpY += 1;
             case "Extraire" -> {
                 if(((Terrain)m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine){
-                    return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai;
+                    return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai && ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getNbMinerais() != 0;
                 }
             }
             case "Vider" -> {
@@ -75,15 +75,20 @@ public class Robot {
     }
 
 
-    public boolean extraire(Mine m){
-        if (m.extraction(this) == -1 || this.getTypeMinerai()!=m.getTypeMinerai()) return false; // Vérifie que la mine n'est pas vide
-        else {
-            System.out.println("extraction en cours");
-            this.nbMineraisExtraits += m.extraction(this);
-            System.out.println(this.nbMineraisExtraits);
-            return true;
-        }
-    }
+//    public boolean extraire(Mine m){
+//        if (m.extraction(this) == -1 || this.getTypeMinerai()!=m.getTypeMinerai()){
+//            System.out.println("Impossible");
+//            return false;
+//        }
+//
+//        // Vérifie que la mine n'est pas vide
+//        else {
+//            System.out.println("extraction en cours");
+//            this.nbMineraisExtraits += m.extraction(this);
+//            System.out.println(this.nbMineraisExtraits);
+//            return true;
+//        }
+//    }
 
     public boolean vider(Entrepot e){
         if (this.nbMineraisExtraits == 0) return false;
@@ -129,6 +134,9 @@ public class Robot {
         this.coordonneesY = coordonneesY;
     }
 
+    public void setnbMineraisExtraits(int nbMineraisExtraits) {
+        this.nbMineraisExtraits = nbMineraisExtraits;
+    }
 
     //    public ArrayList<String> getDirection(){
 //
