@@ -205,17 +205,15 @@ public class Monde {
                 case "Gauche" -> tmpY -= 1;
                 case "Droit" -> tmpY += 1;
                 case "Extraire" -> {
-                    System.out.println("RECU");
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
-                        System.out.println("Extraire");
                         this.extraire(r,(Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                         System.out.println(r.getTypeMinerai());
                         T.setRobot(r);
                     }
                 }
                 case "Vider" -> {
-                    if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
-                        r.vider((Entrepot) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                    if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Entrepot) {
+                        this.vider(r,(Entrepot) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                     }
 
                 }
@@ -270,9 +268,10 @@ public class Monde {
     }
 
     public void vider (Robot robot, Entrepot entrepot){
-
-        entrepot.set
+        entrepot.setnbMineraisStockes(entrepot.getnbMineraisStockees() + robot.getNbMineraisExtraits());
         robot.setnbMineraisExtraits(0);
+
+
     }
 
 

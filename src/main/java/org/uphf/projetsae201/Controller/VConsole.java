@@ -19,8 +19,13 @@ public class VConsole {
         Monde m =new Monde(2,0,5,5);
 
         m.getLstSecteur()[0][0]= new Terrain(new Mine(Minerai.Or),new Robot(0,0,Minerai.Or));
-
+        m.getLstSecteur()[0][1]= new Terrain(new Mine(Minerai.Nickel),new Robot(0,1,Minerai.Nickel));
         ArrayList<District> lstDistrict = m.getDistrict();
+        for (District d : lstDistrict){
+            if (d instanceof Mine){
+                ((Mine) d).setNbMinerais(1);
+            }
+        }
         int cpt = 0;
 
         new AffichageConsole(m);
