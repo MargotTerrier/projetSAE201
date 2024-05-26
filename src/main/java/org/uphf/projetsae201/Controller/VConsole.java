@@ -19,24 +19,25 @@ public class VConsole {
         Monde m =new Monde(2,0,5,5);
 
         m.getLstSecteur()[0][0]= new Terrain(new Mine(Minerai.Or),new Robot(0,0,Minerai.Or));
-        ArrayList<Robot> lstRobots = m.getRobots();
+
         ArrayList<District> lstDistrict = m.getDistrict();
         int cpt = 0;
 
         new AffichageConsole(m);
+
         while (!Fin) {
             cpt+=1;
             System.out.println("Tour N°"+cpt);
-
+            ArrayList<Robot> lstRobots = m.getRobots();
 
             //on demande une action à tous les robots
-            for(int i=0;i<lstRobots.size();i++){
+            for(Robot robot : lstRobots){
                 boolean Valide = false;
+
                 while (!Valide){
-                    Robot robot = lstRobots.get(i);
 
                     //affichage
-                    System.out.println("Prochain mouvement de Robot"+i+" Type de Minerai : "+robot.getTypeMinerai()+" Nombre de minerai extrait : "+robot.getNbMineraisExtraits()+"/"+robot.getCapaciteStockage()+   " Capacite d'extraction : "+robot.getCapaciteExtraction());
+                    System.out.println("Prochain mouvement de Robot "+robot.getIdRobot()+" Type de Minerai : "+robot.getTypeMinerai()+" Nombre de minerai extrait : "+robot.getNbMineraisExtraits()+"/"+robot.getCapaciteStockage()+   " Capacite d'extraction : "+robot.getCapaciteExtraction());
                     System.out.println("Action Possible : Haut,Bas,Gauche,Droit,Extraire,Vider");
                     String direction = sc.nextLine();
 

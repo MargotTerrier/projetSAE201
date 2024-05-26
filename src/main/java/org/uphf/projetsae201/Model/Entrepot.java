@@ -45,4 +45,8 @@ public class Entrepot extends District{
     public String getNbMinerais() {
         return String.valueOf(nbMineraisStockes);
     }
+    public void setnbMineraisStockes(int nbMineraisStockes) {
+        this.nbMineraisStockes = nbMineraisStockes;
+    }
+
 }

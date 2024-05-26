@@ -22,6 +22,7 @@ public class Robot {
         this.nbMineraisExtraits = r.getNbMineraisExtraits();
         this.coordonneesX = r.getCoordonneesX();
         this.coordonneesY = r.getCoordonneesY();
+        this.typeMinerai = r.getTypeMinerai();
     }
 
     public Robot(int x, int y,Minerai minerai){

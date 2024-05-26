@@ -194,7 +194,7 @@ public class Monde {
     public void deplacerRobot(String direction, Terrain T) {
         Robot r = T.getRobot();
         System.out.println(r);
-
+        System.out.println(r.getTypeMinerai());
         if (r.verifDeplacement(this, direction)) {//vérifie si on peut se déplacer
             int tmpY = r.getCoordonneesY();
             int tmpX = r.getCoordonneesX();
@@ -209,6 +209,8 @@ public class Monde {
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
                         System.out.println("Extraire");
                         this.extraire(r,(Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                        System.out.println(r.getTypeMinerai());
+                        T.setRobot(r);
                     }
                 }
                 case "Vider" -> {
@@ -241,7 +243,7 @@ public class Monde {
 
     public void extraire(Robot robot, Mine mine){
         boolean MineraiSuffisant = mine.getNbMinerais() > robot.getCapaciteExtraction();
-        boolean StockageSuffisant = robot.getCapaciteStockage() > (robot.getNbMineraisExtraits()+robot.getNbMineraisExtraits());
+        boolean StockageSuffisant = robot.getCapaciteStockage() > (robot.getNbMineraisExtraits()+robot.getCapaciteExtraction());
         int minerai;
 
         if (MineraiSuffisant && StockageSuffisant) {
@@ -265,6 +267,12 @@ public class Monde {
         mine.setNbMinerais(mine.getNbMinerais() - minerai);
         System.out.println(minerai);
 
+    }
+
+    public void vider (Robot robot, Entrepot entrepot){
+
+        entrepot.set
+        robot.setnbMineraisExtraits(0);
     }
 
 
