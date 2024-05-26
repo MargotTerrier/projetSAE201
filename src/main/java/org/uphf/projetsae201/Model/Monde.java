@@ -240,17 +240,30 @@ public class Monde {
     }
 
     public void extraire(Robot robot, Mine mine){
-        boolean MineraiSuffisant = mine.getNbMinerais() < robot.getCapaciteExtraction();
-        boolean StockageSuffisant = robot.getCapaciteStockage() < (robot.getNbMineraisExtraits()+robot.getCapaciteStockage());
+        boolean MineraiSuffisant = mine.getNbMinerais() > robot.getCapaciteExtraction();
+        boolean StockageSuffisant = robot.getCapaciteStockage() > (robot.getNbMineraisExtraits()+robot.getNbMineraisExtraits());
         int minerai;
 
-        if (MineraiSuffisant && StockageSuffisant) minerai = robot.getCapaciteExtraction();
-        else if (MineraiSuffisant && !StockageSuffisant) minerai = robot.getCapaciteStockage()-robot.getNbMineraisExtraits();
-        else if (!MineraiSuffisant && !StockageSuffisant) minerai = Math.min(robot.getCapaciteStockage() - robot.getNbMineraisExtraits(), mine.getNbMinerais());
-        else  minerai = mine.getNbMinerais();
+        if (MineraiSuffisant && StockageSuffisant) {
+            minerai = robot.getCapaciteExtraction();
+            System.out.println("max");
+        }
+        else if (MineraiSuffisant && !StockageSuffisant) {
+            System.out.println("stock pas bon");
+            minerai = robot.getCapaciteStockage()-robot.getNbMineraisExtraits();
+        }
+        else if (!MineraiSuffisant && !StockageSuffisant){
+            System.out.println("stock pas bon et minerai aussi");
+            minerai = Math.min(robot.getCapaciteStockage() - robot.getNbMineraisExtraits(), mine.getNbMinerais());
+        }
+        else {
+            System.out.println("minerai pas bon ");
+            minerai = mine.getNbMinerais();
+        }
 
-        robot.setnbMineraisExtraits(robot.getCapaciteExtraction() + minerai);
+        robot.setnbMineraisExtraits(robot.getNbMineraisExtraits() + minerai);
         mine.setNbMinerais(mine.getNbMinerais() - minerai);
+        System.out.println(minerai);
 
     }
 
