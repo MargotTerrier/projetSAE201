@@ -73,7 +73,7 @@ public class AffichageConsole {
         for (int j=0;j<lstDistrict.size();j++) {
             if (lstDistrict.get(j) instanceof Mine) {
                 Mine mine = ((Mine) lstDistrict.get(j));
-                System.out.println("Mine " + mine.getId() + " Type de Minerai :" + mine.getTypeMinerai() + " Quantité restante : " + mine.getNbMinerais() + "/" + mine.getNbMinerais());
+                System.out.println("Mine " + mine.getId() + " Type de Minerai :" + mine.getTypeMinerai() + " Quantité restante : " + mine.getNbMinerais() + "/" + mine.getCapacite());
             }
             if (lstDistrict.get(j) instanceof Entrepot) {
                 Entrepot entrepot = ((Entrepot) lstDistrict.get(j));
