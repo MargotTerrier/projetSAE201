@@ -29,12 +29,15 @@ public class EventGUI implements EventHandler {
     public EventGUI(VGraphique v) {
         this.v = v;
         this.gui = v.getGUI();
+        gui.Affiche(this);
+
     }
 
 
     @Override
     public void handle(Event event) {
         Stage s = ((Stage) ((Node) event.getSource()).getScene().getWindow());
+
 
         // Boutons pour la fenêtre d'acceuil
         if (s.getTitle().equals("Accueil")) {
@@ -47,6 +50,8 @@ public class EventGUI implements EventHandler {
                 agui.close();
             }
         }
+
+
 
         // Boutons pour la fenêtre du mode de jeu
         else if (s.getTitle().equals("Choix du mode")) {
@@ -62,30 +67,42 @@ public class EventGUI implements EventHandler {
             }
         }
 
+
+
         // Boutons pour la fenêtre du jeu
         else if (s.getTitle().equals("Jeu de la mine")) {
-            System.out.println("aled");
+
 
             if (((Button) event.getSource()).getText().equals("Quitter le jeu")) {
-
                 gui.close();
             }
+
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
-
-                gui.close();
                 new VGraphique();
+                gui.close();
+
             }
+
             else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
 
             }
+
             else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
 
             }
             else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
 
             }
+            else if (((Button) event.getSource()).getText().equals("Suivant")) {
+
+            }
+            else if (((Button) event.getSource()).getText().equals("Précédent")) {
+
+            }
 
         }
+
     }
+
 
 }
