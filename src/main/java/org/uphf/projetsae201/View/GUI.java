@@ -21,7 +21,7 @@ import org.uphf.projetsae201.Model.*;
 
 public class GUI extends Stage{
 
-
+    EventGUI eg = new EventGUI(this);
     /* Création de la fenêtre d'acceuil */
     public GUI(){
 
@@ -63,8 +63,8 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        commencer.setOnMouseClicked(new EventGUI(this));
-        quitter.setOnMouseClicked(new EventGUI(this));
+        commencer.setOnMouseClicked(eg);
+        quitter.setOnMouseClicked(eg);
 
     }
 
@@ -112,9 +112,9 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        graphique.setOnMouseClicked(new EventGUI(this));
-        console.setOnMouseClicked(new EventGUI(this));
-        quitter2.setOnMouseClicked(new EventGUI(this));
+        graphique.setOnMouseClicked(eg);
+        console.setOnMouseClicked(eg);
+        quitter2.setOnMouseClicked(eg);
     }
 
 
@@ -220,17 +220,16 @@ public class GUI extends Stage{
         action.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         action.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
-        ComboBox<String> robotComboBox = new ComboBox<>();
-        robotComboBox.getItems().addAll("Robot ", "Robot ", "Robot ");
-        robotComboBox.setPromptText("Choisir un robot");
-        Button moveButton = new Button("Se déplacer");
-        Button extractButton = new Button("Extraire des minerais");
-        Button unloadButton = new Button("Décharger des minerais");
 
-        VBox buttonBox = new VBox(10, moveButton, extractButton, unloadButton);
+        Text robot = new Text("Robot");
+        Button deplacer = new Button("Se déplacer");
+        Button extraire = new Button("Extraire des minerais");
+        Button decharger = new Button("Décharger des minerais");
+
+        VBox buttonBox = new VBox(10, deplacer, extraire, decharger);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        VBox choix = new VBox(10, robotComboBox, buttonBox);
+        VBox choix = new VBox(10, robot, buttonBox);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
 
         VBox actions = new VBox(10, action, choix);
@@ -298,38 +297,15 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        quit.setOnMouseClicked(new EventGUI(this));
-        redemarrer.setOnMouseClicked(new EventGUI(this));
+        quit.setOnMouseClicked(eg);
+        redemarrer.setOnMouseClicked(eg);
+        extraire.setOnMouseClicked(eg);
+        decharger.setOnMouseClicked(eg);
+        valider.setOnMouseClicked(eg);
+
 
     }
 
-
-    /* Création de la fenêtre de jeu en mode console */
-    public void mondeconsole(Monde m){
-
-
-//        Robot r=new Robot(3,3, Minerai.Or);
-//        ((Terrain) m.getLstSecteur()[3][3]).setRobot(r);
-//        (m.getLstSecteur()[4][3]) = new PlanDeau();
-//        new AffichageConsole(m);
-//        System.out.println(m.getLstSecteur()[4][3]instanceof PlanDeau);
-//        System.out.println(r.EstPasDansLeMonde(4,3,m));
-//        System.out.println(r.estPlanEau(4,3,m));
-
-//        m.deplacerRobot("Droit",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Haut",(Terrain) m.getLstSecteur()[3][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[2][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Bas",(Terrain) m.getLstSecteur()[2][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-
-        new VConsole();
-
-    }
 
 
     private void addInfo(ObservableList<Informations> data, Secteur secteur, int posX, int posY) {
