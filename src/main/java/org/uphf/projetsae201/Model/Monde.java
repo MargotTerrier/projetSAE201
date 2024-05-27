@@ -19,6 +19,10 @@ public class Monde {
 
     private Secteur[][] lstSecteur;
 
+    public Monde(int longueurMonde, int largeurMonde) {
+        this.longueurMonde = longueurMonde;
+        this.largeurMonde = largeurMonde;
+    }
 
     public Monde(int nbEntrepots, int nbRobot, int longueurMonde, int largeurMonde) {
 
@@ -262,7 +266,6 @@ public class Monde {
 
             }
         }
-
     }
 
     public void extraire(Robot robot, Mine mine){
