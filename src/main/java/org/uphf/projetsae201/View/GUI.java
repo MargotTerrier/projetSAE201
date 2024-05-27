@@ -46,7 +46,20 @@ public class GUI extends GUIControl{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
-        HBox top = new HBox(quit, redemarrer);
+        Button test1 = new Button("Haut");
+        Button test2 = new Button("Bas");
+        Button test3 = new Button("Gauche");
+        Button test4 = new Button("Droit");
+        Button test5 = new Button("Extraire");
+        Button test6 = new Button("Vider");
+        test1.setOnMouseClicked(eg);
+        test2.setOnMouseClicked(eg);
+        test3.setOnMouseClicked(eg);
+        test4.setOnMouseClicked(eg);
+        test5.setOnMouseClicked(eg);
+        test6.setOnMouseClicked(eg);
+
+        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6);
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
@@ -91,42 +104,28 @@ public class GUI extends GUIControl{
         action.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         action.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
-        Button haut = new Button("Haut");
-        Button bas = new Button("Bas");
-        Button gauche = new Button("Gauche");
-        Button droit = new Button("Droit");
-        Button extraire = new Button("Extraire");
-        Button vider = new Button("Vider");
-        haut.setOnMouseClicked(eg);
-        bas.setOnMouseClicked(eg);
-        gauche.setOnMouseClicked(eg);
-        droit.setOnMouseClicked(eg);
-        extraire.setOnMouseClicked(eg);
-        vider.setOnMouseClicked(eg);
+        Label robotCombo = new Label("Robot ");
+        Button moveButton = new Button("Se déplacer");
+        Button extractButton = new Button("Extraire des minerais");
+        Button unloadButton = new Button("Décharger des minerais");
 
-        VBox buttonBox = new VBox(10, haut, bas, gauche, droit, extraire, vider);
+        VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        HBox dg = new HBox(gauche, droit);
-        dg.setLayoutY(10);
-        dg.setSpacing(20);
-        dg.setStyle("-fx-alignment: center;");
+        Button precedent = new Button("Précédent");
+        Button suivant = new Button("Suivant");
+        precedent.setOnMouseClicked(eg);
+        suivant.setOnMouseClicked(eg);
+        HBox baxt = new HBox(precedent, suivant);
+        baxt.setLayoutY(10);
+        baxt.setSpacing(10);
+        baxt.setStyle("-fx-alignment: center;");
 
-        VBox direction = new VBox(haut, dg, bas);
-        direction.setAlignment(Pos.CENTER);
-        direction.setSpacing(20);
-
-        HBox choix = new HBox(10, direction ,extraire, vider);
+        VBox choix = new VBox(10, buttonBox, baxt);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
-        choix.setSpacing(20);
 
-        Text NRobot = new Text("Robot ");
-        NRobot.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        NRobot.setFill(Color.WHITE);
-
-        VBox actions = new VBox(10, action, NRobot, choix);
+        VBox actions = new VBox(10, action, choix);
         actions.setAlignment(Pos.CENTER);
-        actions.setSpacing(20);
 
         StackPane root = new StackPane(actions);
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
@@ -161,6 +160,7 @@ public class GUI extends GUIControl{
         this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Jeu de la mine");
+        scene.setFill(Color.PEACHPUFF);
         this.setScene(scene);
         this.setResizable(false);
         this.show();
@@ -180,8 +180,8 @@ public class GUI extends GUIControl{
                 StackPane cell = new StackPane();
                 cell.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Bordures pour chaque cellule
                 ImageView imageView = new ImageView();
-                imageView.setFitWidth(60);
                 imageView.setFitHeight(60);
+                imageView.setFitWidth(60);
                 if (secteurs[i][j] instanceof PlanDeau) {
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
                 } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {

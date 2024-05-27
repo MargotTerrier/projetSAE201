@@ -1,14 +1,8 @@
 package org.uphf.projetsae201.Controller;
 
-import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
+import javafx.scene.shape.Circle;
 import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.GUI;
 
