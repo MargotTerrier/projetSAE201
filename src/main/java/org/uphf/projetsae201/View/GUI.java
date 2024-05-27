@@ -72,14 +72,14 @@ public class GUI extends GUIControl{
 
 
         ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
-        TableView<Informations> tableInfo = new TableView();
+        TableView<Informations> tableInfo = new TableView<>();
 
         VBox commande = new VBox();
         TableColumn<Informations, String> element = new TableColumn<>("Elément");
         element.setCellValueFactory(new PropertyValueFactory<>("element"));
         TableColumn<Informations, Integer> ligne = new TableColumn<>("Ligne");
         ligne.setCellValueFactory(new PropertyValueFactory<>("ligne"));
-        TableColumn<Informations, String> colonne = new TableColumn<>("Colonne");
+        TableColumn<Informations, Integer> colonne = new TableColumn<>("Colonne");
         colonne.setCellValueFactory(new PropertyValueFactory<>("colonne"));
         TableColumn<Informations, String> type = new TableColumn<>("Type minerai");
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -133,19 +133,7 @@ public class GUI extends GUIControl{
 
 
         // bouton pour fermer la fenêtre
-        Button valider = new Button("Valider le tour");
-        valider.setFont(new Font(15));
 
-        VBox statusBox = new VBox(valider);
-
-        statusBox.setAlignment(Pos.CENTER);
-        statusBox.setSpacing(10);
-
-        HBox act = new HBox(root, statusBox);
-        act.setSpacing(30);
-        act.setAlignment(Pos.CENTER);
-
-        commande.getChildren().add(act);
 
         jeu.getChildren().addAll(commande);
         jeu.setSpacing(100);
@@ -198,6 +186,7 @@ public class GUI extends GUIControl{
                         Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                     } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==2) {
                         imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot2.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                     } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==3) {
                         imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot3.png")));
                         Informations.addInfo(dataInfo, secteurs[i][j], i, j);
@@ -218,7 +207,11 @@ public class GUI extends GUIControl{
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
             }
+
+
         }
+
+
         return grille;
     }
 
