@@ -80,8 +80,12 @@ public class EventGUI implements EventHandler {
                 new VGraphique();
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
+                v.actualise(i,"Extraire");
+
 
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
+                v.actualise(i,"Vider");
+
 
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
                 if (i <= v.getMonde().getNbRobot() - 2) {
@@ -94,15 +98,22 @@ public class EventGUI implements EventHandler {
                 }
             }
             else if (((Button) event.getSource()).getText().equals("Haut")) {
+                v.actualise(i,"Haut");
 
             }
             else if (((Button) event.getSource()).getText().equals("Bas")) {
+                v.actualise(i,"Bas");
+
 
             }
             else if (((Button) event.getSource()).getText().equals("Gauche")) {
+                v.actualise(i,"Gauche");
+
 
             }
             else if (((Button) event.getSource()).getText().equals("Droit")) {
+                v.actualise(i,"Droit");
+
 
             }
         }

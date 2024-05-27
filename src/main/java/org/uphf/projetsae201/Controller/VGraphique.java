@@ -44,7 +44,6 @@ public class VGraphique {
                 m.deplacerRobot(this.mouvement[index],((Terrain) m.getLstSecteur()[d.getCoordonneesX()][d.getCoordonneesY()]));
                 index += 1;
             }
-
         }
         else {
             gui.Affiche(eg);
