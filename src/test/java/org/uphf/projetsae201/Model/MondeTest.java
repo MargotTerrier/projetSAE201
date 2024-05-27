@@ -1,8 +1,8 @@
 package org.uphf.projetsae201.Model;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -63,8 +63,8 @@ class MondeTest {
         mine.setNbMinerais(50);
 
         monde.extraire(robot, mine);
-        assertEquals("Le robot devrait avoir extrait 5 minerais", 5, robot.getNbMineraisExtraits());
-        assertEquals("Il devrait rester 45 minerais dans la mine", 45, mine.getNbMinerais());
+        Assertions.assertEquals(5, robot.getNbMineraisExtraits(), "Le robot devrait avoir extrait 5 minerais");
+        Assertions.assertEquals(45, mine.getNbMinerais(), "Il devrait rester 45 minerais dans la mine");
     }
 
     @Test
@@ -76,8 +76,8 @@ class MondeTest {
         mine.setNbMinerais(50);
 
         monde.extraire(robot, mine);
-        assertEquals("Le robot devrait avoir extrait 5 minerais", 15, robot.getNbMineraisExtraits());
-        assertEquals("Il devrait rester 95 minerais dans la mine", 48, mine.getNbMinerais());
+        Assertions.assertEquals(15, robot.getNbMineraisExtraits(), "Le robot devrait avoir extrait 5 minerais");
+        Assertions.assertEquals(48, mine.getNbMinerais(), "Il devrait rester 95 minerais dans la mine");
     }
 
     @Test
@@ -90,8 +90,8 @@ class MondeTest {
         mine.setNbMinerais(2);
 
         monde.extraire(robot, mine);
-        assertEquals("Le robot devrait avoir extrait 2 minerais", 2, robot.getNbMineraisExtraits());
-        assertEquals("La mine devrait être vide", 0, mine.getNbMinerais());
+        Assertions.assertEquals(2, robot.getNbMineraisExtraits(), "Le robot devrait avoir extrait 2 minerais");
+        Assertions.assertEquals(0, mine.getNbMinerais(), "La mine devrait être vide");
     }
 
     @Test
@@ -104,8 +104,8 @@ class MondeTest {
         mine.setNbMinerais(2);
 
         monde.extraire(robot, mine);
-        assertEquals("Le robot devrait avoir extrait 1 minerais", 15, robot.getNbMineraisExtraits());
-        assertEquals("Il devrait rester 1 minerais dans la mine", 1, mine.getNbMinerais());
+        Assertions.assertEquals(15, robot.getNbMineraisExtraits(), "Le robot devrait avoir extrait 1 minerais");
+        Assertions.assertEquals(1, mine.getNbMinerais(), "Il devrait rester 1 minerais dans la mine");
     }
 
 
@@ -117,7 +117,7 @@ class MondeTest {
         monde.deplacerRobot("Haut", ((Terrain) monde.getLstSecteur()[2][2]));
         assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
         assertNotNull((((Terrain) monde.getLstSecteur()[1][2]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        assertEquals(1, ((Terrain) monde.getLstSecteur()[1][2]).getRobot().getCoordonneesX()); // Vérifie que les coordonnées X du robot sont correctes
+        Assertions.assertEquals(1, ((Terrain) monde.getLstSecteur()[1][2]).getRobot().getCoordonneesX()); // Vérifie que les coordonnées X du robot sont correctes
     }
 
     @Test
@@ -126,10 +126,10 @@ class MondeTest {
         assertNotNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot()));
         assertNotNull((((Terrain) monde.getLstSecteur()[3][2]).getRobot()));
 
-        assertEquals(3, robot.getCoordonneesX());
-        assertEquals(2, robot.getCoordonneesY());
-        assertEquals(2, autreRobot.getCoordonneesX());
-        assertEquals(2, autreRobot.getCoordonneesY());
+        Assertions.assertEquals(3, robot.getCoordonneesX());
+        Assertions.assertEquals(2, robot.getCoordonneesY());
+        Assertions.assertEquals(2, autreRobot.getCoordonneesX());
+        Assertions.assertEquals(2, autreRobot.getCoordonneesY());
     }
 
     @Test
@@ -137,7 +137,7 @@ class MondeTest {
         monde.deplacerRobot("Gauche", ((Terrain) monde.getLstSecteur()[2][2]) );
         assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
         assertNotNull((((Terrain) monde.getLstSecteur()[2][1]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        assertEquals(1, robot.getCoordonneesY());
+        Assertions.assertEquals(1, robot.getCoordonneesY());
     }
 
     @Test
@@ -145,7 +145,7 @@ class MondeTest {
         monde.deplacerRobot("Droit", ((Terrain) monde.getLstSecteur()[2][2]) );
         assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
         assertNotNull((((Terrain) monde.getLstSecteur()[2][3]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        assertEquals(3, robot.getCoordonneesY());
+        Assertions.assertEquals(3, robot.getCoordonneesY());
     }
 
     @Test
@@ -159,8 +159,8 @@ class MondeTest {
         monde.deplacerRobot("Droit", ((Terrain) monde.getLstSecteur()[2][2]));
         monde.deplacerRobot("Vider", ((Terrain) monde.getLstSecteur()[2][3]));
 
-        assertEquals("L'entrepôt devrait maintenant contenir 15 minerais", 15, entrepot.getnbMineraisStockees());
-        assertEquals("Le robot devrait avoir 0 minerais après vidage", 0, robot.getNbMineraisExtraits());
+        Assertions.assertEquals(15, entrepot.getnbMineraisStockees(), "L'entrepôt devrait maintenant contenir 15 minerais");
+        Assertions.assertEquals(0, robot.getNbMineraisExtraits(), "Le robot devrait avoir 0 minerais après vidage");
 
     }
 
@@ -173,8 +173,8 @@ class MondeTest {
 
         monde.deplacerRobot("Extraire", ((Terrain) monde.getLstSecteur()[1][3]));
 
-        assertEquals("Le robot devrait avoir extrait 3 minerais", 3, robotExtraire.getNbMineraisExtraits());
-        assertEquals("La mine devrait contenir 17 minerais", 17, mine.getNbMinerais());
+        Assertions.assertEquals(3, robotExtraire.getNbMineraisExtraits(), "Le robot devrait avoir extrait 3 minerais");
+        Assertions.assertEquals(17, mine.getNbMinerais(), "La mine devrait contenir 17 minerais");
 
     }
 
@@ -188,8 +188,8 @@ class MondeTest {
         robot.setnbMineraisExtraits(30);
         entrepot.setnbMineraisStockes(20);
         monde.vider(robot, entrepot);
-        assertEquals("L'entrepôt devrait maintenant contenir 50 minerais", 50, entrepot.getnbMineraisStockees());
-        assertEquals("Le robot devrait avoir 0 minerais après vidage", 0, robot.getNbMineraisExtraits());
+        Assertions.assertEquals(50, entrepot.getnbMineraisStockees(), "L'entrepôt devrait maintenant contenir 50 minerais");
+        Assertions.assertEquals(0, robot.getNbMineraisExtraits(), "Le robot devrait avoir 0 minerais après vidage");
     }
 
 
