@@ -84,6 +84,9 @@ public class Monde {
     public Secteur[][] getLstSecteur() {
         return this.lstSecteur;
     }
+    public void increment(){
+        this.compteurTour++;
+    }
 
     //récupère les districts dans un monde
     public ArrayList<District> getDistrict(){

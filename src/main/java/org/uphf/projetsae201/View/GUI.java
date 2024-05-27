@@ -41,7 +41,7 @@ public class GUI extends GUIControl{
         Button redemarrer = new Button("Redémarrer une partie");
         redemarrer.setFont(new Font(15));
 
-        Label tour = new Label("Tour ");
+        Label tour = new Label("Tour "+m.getCompteurTour());
         tour.setLayoutY(10);
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));

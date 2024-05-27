@@ -43,8 +43,9 @@ public class EventGUI implements EventHandler {
         if(this.i==this.robots.size()) {
             this.v.actualise();
             this.i=0;
+            this.v.getMonde().increment();
             gui.setMonde(v.getMonde());
-            gui.Affiche(this);
+
         }
         else {
             gui.Affiche(this);
@@ -106,17 +107,6 @@ public class EventGUI implements EventHandler {
                     i+=1;
                     verif();
                 }
-
-
-            } else if (((Button) event.getSource()).getText().equals("Suivant")) {
-                if (i <= v.getMonde().getNbRobot() - 2) {
-                    i += 1;
-                }
-
-            } else if (((Button) event.getSource()).getText().equals("Précédent")) {
-                if (i >= 1) {
-                    i -= 1;
-                }
             }
             else if (((Button) event.getSource()).getText().equals("Haut")) {
                 if (robots.get(i).verifDeplacement(this.v.getMonde(),"Haut")){
@@ -147,6 +137,8 @@ public class EventGUI implements EventHandler {
                     verif();
                 }
             }
+
+
         }
 
     }
