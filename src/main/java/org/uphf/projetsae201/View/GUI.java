@@ -24,6 +24,9 @@ public class GUI extends GUIControl{
     public GUI(Monde m){
         this.m = m;
     }
+    public void setMonde(Monde m){
+        this.m=m;
+    }
     /* Création de la fenêtre de jeu en mode graphique */
     public void Affiche(EventGUI eg ){
         Group g = new Group();

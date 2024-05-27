@@ -5,10 +5,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.uphf.projetsae201.Model.Robot;
+import org.uphf.projetsae201.Model.Terrain;
 import org.uphf.projetsae201.View.GUI;
 import org.uphf.projetsae201.View.GUIAcceuil;
 import org.uphf.projetsae201.View.GUIChoix;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class EventGUI implements EventHandler {
@@ -17,6 +20,7 @@ public class EventGUI implements EventHandler {
     private GUIChoix cgui;
     private GUIAcceuil agui;
     private int i;
+    private ArrayList<Robot> robots;
 
     public EventGUI(GUIAcceuil agui) {
         this.agui = agui;
@@ -29,6 +33,7 @@ public class EventGUI implements EventHandler {
         this.v = v;
         this.gui = v.getGUI();
         i=0;
+        this.robots=v.getMonde().getRobots();
         gui.Affiche(this);
 
     }
@@ -74,14 +79,12 @@ public class EventGUI implements EventHandler {
             } else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 new VGraphique();
                 gui.close();
-            } else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
-
             } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
 
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
 
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
-                if (i < v.getMonde().getNbRobot() - 1) {
+                if (i <= v.getMonde().getNbRobot() - 2) {
                     i += 1;
                 }
 
@@ -89,9 +92,19 @@ public class EventGUI implements EventHandler {
                 if (i >= 1) {
                     i -= 1;
                 }
+            }
+            else if (((Button) event.getSource()).getText().equals("Haut")) {
 
             }
+            else if (((Button) event.getSource()).getText().equals("Bas")) {
 
+            }
+            else if (((Button) event.getSource()).getText().equals("Gauche")) {
+
+            }
+            else if (((Button) event.getSource()).getText().equals("Droit")) {
+
+            }
         }
 
     }
