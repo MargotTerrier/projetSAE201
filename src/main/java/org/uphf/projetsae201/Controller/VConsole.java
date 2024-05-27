@@ -4,7 +4,7 @@ import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.AffichageConsole;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+
 import java.util.Random;
 import java.util.Scanner;
 
