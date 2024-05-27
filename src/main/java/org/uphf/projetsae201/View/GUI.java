@@ -102,7 +102,7 @@ public class GUI extends GUIControl{
         action.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
 
-        Text NRobot = new Text("Robot ");
+        Text NRobot = new Text("Robot " + (eg.getI()+1));
         NRobot.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         NRobot.setFill(Color.WHITE);
 
