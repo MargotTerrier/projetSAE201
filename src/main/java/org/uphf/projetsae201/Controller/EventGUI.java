@@ -44,6 +44,7 @@ public class EventGUI implements EventHandler {
             this.i=0;
             this.v.getMonde().increment();
             gui.setMonde(v.getMonde());
+            gui.Affiche(this);
 
         }
         else {
