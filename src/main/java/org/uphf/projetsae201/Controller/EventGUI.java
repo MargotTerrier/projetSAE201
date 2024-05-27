@@ -16,7 +16,7 @@ public class EventGUI implements EventHandler {
     private GUI gui;
     private GUIChoix cgui;
     private GUIAcceuil agui;
-    private int n;
+    private int i;
 
     public EventGUI(GUIAcceuil agui) {
         this.agui = agui;
@@ -28,6 +28,7 @@ public class EventGUI implements EventHandler {
     public EventGUI(VGraphique v) {
         this.v = v;
         this.gui = v.getGUI();
+        i=0;
         gui.Affiche(this);
 
     }
@@ -44,12 +45,10 @@ public class EventGUI implements EventHandler {
 
                 agui.close();
                 new GUIChoix();
-            }
-            else if (((Button) event.getSource()).getText().equals("Quitter")) {
+            } else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 agui.close();
             }
         }
-
 
 
         // Boutons pour la fenêtre du mode de jeu
@@ -57,8 +56,7 @@ public class EventGUI implements EventHandler {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
                 cgui.close();
                 new VGraphique();
-            }
-            else if (((Button) event.getSource()).getText().equals("Quitter")) {
+            } else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 cgui.close();
             } else if (((Button) event.getSource()).getText().equals("Console")) {
                 cgui.close();
@@ -67,46 +65,34 @@ public class EventGUI implements EventHandler {
         }
 
 
-
         // Boutons pour la fenêtre du jeu
         else if (s.getTitle().equals("Jeu de la mine")) {
 
 
             if (((Button) event.getSource()).getText().equals("Quitter le jeu")) {
                 gui.close();
-            }
-
-            else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
+            } else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 new VGraphique();
                 gui.close();
+            } else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
+
+            } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
+
+            } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
+
+            } else if (((Button) event.getSource()).getText().equals("Suivant")) {
+                if (i < v.getMonde().getNbRobot() - 1) {
+                    i += 1;
+                }
+
+            } else if (((Button) event.getSource()).getText().equals("Précédent")) {
+                if (i >= 1) {
+                    i -= 1;
+                }
 
             }
-
-            else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
-
-            }
-
-            else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
-
-            }
-            else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
-
-            }
-            else if (((Button) event.getSource()).getText().equals("Suivant")) {
-
-            }
-            else if (((Button) event.getSource()).getText().equals("Précédent")) {
-
-            }
-            else if (((Button) event.getSource()).getText().equals("Précédent")) {
-
-            }
-
-            else if (((Button) event.getSource()).getText().equals("Suivant")) {}
 
         }
 
     }
-
-
 }

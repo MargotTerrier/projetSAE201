@@ -25,7 +25,7 @@ public class GUI extends GUIControl{
         this.m = m;
     }
     /* Création de la fenêtre de jeu en mode graphique */
-    public void Afficher(EventGUI eg ){
+    public void Affiche(EventGUI eg ){
         Group g = new Group();
         VBox r = new VBox();
         Scene scene = new Scene(r, 1440, 811);
@@ -137,8 +137,8 @@ public class GUI extends GUIControl{
         r.getChildren().addAll(g);
 
         // Event des boutons
-        quit.setOnMouseClicked(this.eg);
-        redemarrer.setOnMouseClicked(this.eg);
+        quit.setOnMouseClicked(eg);
+        redemarrer.setOnMouseClicked(eg);
 
         //changer l'icone du jeu
         this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
