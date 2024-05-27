@@ -34,6 +34,7 @@ public class Robot {
 
     }
 
+
     public boolean verifDeplacement(Monde m, String direction) {
         int tmpY = this.coordonneesY;
         int tmpX = this.coordonneesX;
@@ -116,4 +117,9 @@ public class Robot {
     public void setCapaciteExtraction(int capaciteExtraction) {
         this.capaciteExtraction = capaciteExtraction;
     }
+
+    public void resetRobot() {
+        id = 0;
+    }
+
 }

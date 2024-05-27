@@ -24,6 +24,9 @@ public class GUI extends GUIControl{
     public GUI(Monde m){
         this.m = m;
     }
+    public void setMonde(Monde m){
+        this.m=m;
+    }
     /* Création de la fenêtre de jeu en mode graphique */
     public void Affiche(EventGUI eg ){
         Group g = new Group();
@@ -43,7 +46,20 @@ public class GUI extends GUIControl{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
-        HBox top = new HBox(quit, redemarrer);
+        Button test1 = new Button("Haut");
+        Button test2 = new Button("Bas");
+        Button test3 = new Button("Gauche");
+        Button test4 = new Button("Droit");
+        Button test5 = new Button("Extraire");
+        Button test6 = new Button("Vider");
+        test1.setOnMouseClicked(eg);
+        test2.setOnMouseClicked(eg);
+        test3.setOnMouseClicked(eg);
+        test4.setOnMouseClicked(eg);
+        test5.setOnMouseClicked(eg);
+        test6.setOnMouseClicked(eg);
+
+        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6);
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
@@ -96,7 +112,16 @@ public class GUI extends GUIControl{
         VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        VBox choix = new VBox(10, buttonBox);
+        Button precedent = new Button("Précédent");
+        Button suivant = new Button("Suivant");
+        precedent.setOnMouseClicked(eg);
+        suivant.setOnMouseClicked(eg);
+        HBox baxt = new HBox(precedent, suivant);
+        baxt.setLayoutY(10);
+        baxt.setSpacing(10);
+        baxt.setStyle("-fx-alignment: center;");
+
+        VBox choix = new VBox(10, buttonBox, baxt);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
 
         VBox actions = new VBox(10, action, choix);
@@ -104,7 +129,6 @@ public class GUI extends GUIControl{
 
         StackPane root = new StackPane(actions);
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
-
 
 
 
@@ -168,14 +192,27 @@ public class GUI extends GUIControl{
                 imageView.setFitWidth(60);
                 if (secteurs[i][j] instanceof PlanDeau) {
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
+                } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
+                    if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==1) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot1.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==2) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot2.png")));
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==3) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot3.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==4) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot4.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==5) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot5.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    }
                 } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
                     Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                 } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
-                } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot.png")));
                     Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                 }
                 cell.getChildren().add(imageView);

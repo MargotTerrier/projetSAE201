@@ -5,18 +5,22 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.uphf.projetsae201.Model.Robot;
+import org.uphf.projetsae201.Model.Terrain;
 import org.uphf.projetsae201.View.GUI;
 import org.uphf.projetsae201.View.GUIAcceuil;
 import org.uphf.projetsae201.View.GUIChoix;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class EventGUI implements EventHandler {
-    VGraphique v;
+    private VGraphique v;
     private GUI gui;
     private GUIChoix cgui;
     private GUIAcceuil agui;
     private int i;
+    private ArrayList<Robot> robots;
 
     public EventGUI(GUIAcceuil agui) {
         this.agui = agui;
@@ -29,10 +33,23 @@ public class EventGUI implements EventHandler {
         this.v = v;
         this.gui = v.getGUI();
         i=0;
+        this.robots=v.getMonde().getRobots();
         gui.Affiche(this);
 
     }
 
+
+    public void verif(){
+        if(this.i==this.robots.size()) {
+            this.v.actualise();
+            this.i=0;
+            gui.setMonde(v.getMonde());
+            gui.Affiche(this);
+        }
+        else {
+            gui.Affiche(this);
+        }
+    }
 
     @Override
     public void handle(Event event) {
@@ -65,8 +82,10 @@ public class EventGUI implements EventHandler {
         }
 
 
+
         // Boutons pour la fenêtre du jeu
         else if (s.getTitle().equals("Jeu de la mine")) {
+
 
 
             if (((Button) event.getSource()).getText().equals("Quitter le jeu")) {
@@ -74,14 +93,23 @@ public class EventGUI implements EventHandler {
             } else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 new VGraphique();
                 gui.close();
-            } else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
-
             } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Extraire")){
+                    this.v.getMonde().deplacerRobot("Extraire",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
 
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Vider")){
+                    this.v.getMonde().deplacerRobot("Vider",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
+
 
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
-                if (i < v.getMonde().getNbRobot() - 1) {
+                if (i <= v.getMonde().getNbRobot() - 2) {
                     i += 1;
                 }
 
@@ -89,9 +117,36 @@ public class EventGUI implements EventHandler {
                 if (i >= 1) {
                     i -= 1;
                 }
+            }
+            else if (((Button) event.getSource()).getText().equals("Haut")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Haut")){
+                    this.v.getMonde().deplacerRobot("Haut",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
 
             }
-
+            else if (((Button) event.getSource()).getText().equals("Bas")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Bas")){
+                    this.v.getMonde().deplacerRobot("Bas",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
+            }
+            else if (((Button) event.getSource()).getText().equals("Gauche")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Gauche")){
+                    this.v.getMonde().deplacerRobot("Gauche",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
+            }
+            else if (((Button) event.getSource()).getText().equals("Droit")) {
+                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Droit")){
+                    this.v.getMonde().deplacerRobot("Droit",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                    i+=1;
+                    verif();
+                }
+            }
         }
 
     }
