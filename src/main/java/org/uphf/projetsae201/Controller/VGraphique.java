@@ -19,9 +19,16 @@ public class VGraphique {
         gui.monde(this.m);
         boolean Fin=false;
         while(!Fin){
+            boolean Valider = false;
             ArrayList<Robot>robots=m.getRobots();
             ArrayList<Mine>mine=m.getMines();
             ArrayList< Entrepot>entrepot=m.getEntrepots();
+            while(!Valider){
+
+
+
+
+            }
         }
 
     }

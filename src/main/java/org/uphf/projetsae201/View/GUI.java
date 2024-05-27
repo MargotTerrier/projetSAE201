@@ -22,8 +22,8 @@ public class GUI extends Stage{
     private EventGUI eg;
 
     /* Création de la fenêtre d'acceuil */
-    public GUI(EventGUI eventGUI){
-        this.eg = eventGUI;
+    public GUI(){
+        this.eg = new EventGUI(this);
 
         Group root = new Group();
 
