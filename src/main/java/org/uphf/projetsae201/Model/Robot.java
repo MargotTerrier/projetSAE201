@@ -34,7 +34,6 @@ public class Robot {
 
     }
 
-
     public boolean verifDeplacement(Monde m, String direction) {
         int tmpY = this.coordonneesY;
         int tmpX = this.coordonneesX;

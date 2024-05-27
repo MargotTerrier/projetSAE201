@@ -60,7 +60,6 @@ public class VConsole {
             Fin=m.verifFin();
 
 
-
         }
         System.out.println("Bravo vous avez Fini en "+cpt+" tours");
     }

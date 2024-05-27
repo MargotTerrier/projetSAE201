@@ -40,5 +40,4 @@ public class Terrain extends Secteur{
         this.robot = robot;
 
     }
-
 }

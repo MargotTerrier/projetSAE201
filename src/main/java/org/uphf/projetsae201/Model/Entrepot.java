@@ -61,5 +61,4 @@ public class Entrepot extends District{
         this.nbMineraisStockes = nbMineraisStockes;
     }
 
-
 }

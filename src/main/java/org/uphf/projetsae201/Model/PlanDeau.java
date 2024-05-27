@@ -6,5 +6,4 @@ public class PlanDeau extends Secteur{
         super();
     }
 
-
 }

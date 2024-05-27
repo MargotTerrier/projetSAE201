@@ -58,6 +58,5 @@ public class GUIAcceuil extends GUIControl {
         // Event des boutons
         commencer.setOnMouseClicked(eg);
         quitter.setOnMouseClicked(eg);
-
     }
 }

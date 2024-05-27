@@ -69,7 +69,6 @@ public class AffichageConsole {
         for(Entrepot entrepot : lstEntrepots){
             System.out.println("Entrepot " + entrepot.getId() + " Type de Minerai :" + entrepot.getTypeMinerai() + " Quantité stocké : " + entrepot.getNbMinerais());
         }
-
     }
 }
 

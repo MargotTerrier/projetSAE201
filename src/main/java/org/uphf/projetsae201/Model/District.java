@@ -7,5 +7,4 @@ public abstract class District{
     public int getId(){
         return 0;
     }
-
 }

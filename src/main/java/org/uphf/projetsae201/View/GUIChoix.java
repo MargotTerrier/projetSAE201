@@ -65,3 +65,4 @@ public class GUIChoix extends GUIControl{
         quitter2.setOnMouseClicked(eg);
     }
 }
+

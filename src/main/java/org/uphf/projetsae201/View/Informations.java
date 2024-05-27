@@ -80,7 +80,7 @@ public class Informations {
                 Robot robot = terrain.getRobot();
                 type = "Robot " + robot.getIdRobot();
                 mineraiType = robot.getTypeMinerai().toString();
-                info = "Stockage: " + robot.getNbMineraisExtraits() +" / " + robot.getCapaciteStockage() + "\n Capacité exctraction " + robot.getCapaciteExtraction();
+                info = "Stockage: " + robot.getNbMineraisExtraits() +" / " + robot.getCapaciteStockage() + "\nCapacité exctraction " + robot.getCapaciteExtraction();
             }
 
             data.add(new Informations(type, posX+1, posY+1, mineraiType, info));

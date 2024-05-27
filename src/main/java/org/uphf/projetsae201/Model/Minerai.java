@@ -12,4 +12,5 @@ public enum Minerai {
         }
         else return Or;
     }
+
 }

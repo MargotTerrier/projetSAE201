@@ -150,6 +150,5 @@ public class EventGUI implements EventHandler {
                 gui.close();
             }
         }
-
     }
 }
