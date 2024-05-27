@@ -16,7 +16,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
-import org.uphf.projetsae201.Controller.VConsole;
 import org.uphf.projetsae201.Model.*;
 
 public class GUI extends Stage{
@@ -142,52 +141,14 @@ public class GUI extends Stage{
         top.setLayoutX(10);
         top.setSpacing(15);
 
-        GridPane grille = new GridPane(m.getLongueurMonde(),m.getLargeurMonde());
-        grille.setStyle("-fx-background-image: url('" + getClass().getResource("/Images/Terre.png").toExternalForm() + "');");
-        grille.setHgap(0);
-        grille.setVgap(0);
-
-
-        Secteur[][] secteurs = m.getLstSecteur();
-        ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
-        ObservableList<Informations> dataStatus = FXCollections.observableArrayList();
-
-        for (int i = 0; i < secteurs.length; i++) {
-            for (int j = 0; j < secteurs[i].length; j++) {
-                StackPane cell = new StackPane();
-                cell.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Bordures pour chaque cellule
-                ImageView imageView = new ImageView();
-                imageView.setFitHeight(60);
-                imageView.setFitWidth(60);
-                if (secteurs[i][j] instanceof PlanDeau) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
-                }
-                else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
-                    addInfo(dataInfo, secteurs[i][j], i, j);
-                }
-                else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
-                    addInfo(dataInfo, secteurs[i][j], i, j);
-                }
-                else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot.png")));
-                    addInfo(dataInfo, secteurs[i][j], i, j);
-                    addStatus(dataStatus, secteurs[i][j]);
-                }
-                cell.getChildren().add(imageView);
-                grille.add(cell, j, i);
-
-
-            }
-        }
-        grille.setMaxHeight(GridPane.USE_PREF_SIZE);
+        GridPane grille = afficherGrille(m);
 
         HBox jeu = new HBox(grille);
         jeu.setLayoutY(100);
         jeu.setLayoutX(50);
 
 
+        ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
         TableView<Informations> tableInfo = new TableView();
 
         VBox commande = new VBox();
@@ -220,17 +181,15 @@ public class GUI extends Stage{
         action.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         action.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
-        ComboBox<String> robotComboBox = new ComboBox<>();
-        robotComboBox.getItems().addAll("Robot ", "Robot ", "Robot ");
-        robotComboBox.setPromptText("Choisir un robot");
+        Label robotCombo = new Label("Robot ");
         Button moveButton = new Button("Se déplacer");
         Button extractButton = new Button("Extraire des minerais");
         Button unloadButton = new Button("Décharger des minerais");
 
-        VBox buttonBox = new VBox(10, moveButton, extractButton, unloadButton);
+        VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        VBox choix = new VBox(10, robotComboBox, buttonBox);
+        VBox choix = new VBox(10, buttonBox);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
 
         VBox actions = new VBox(10, action, choix);
@@ -240,30 +199,13 @@ public class GUI extends Stage{
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
 
 
-        TableView<Informations> tableStatus = new TableView();
-
-        TableColumn<Informations, String> nameRobot = new TableColumn<>("N° robot");
-        nameRobot.setCellValueFactory(new PropertyValueFactory<>("type"));
-        TableColumn<Informations, String> statusCol = new TableColumn<>("Status de l'action");
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        tableStatus.getColumns().addAll(nameRobot, statusCol);
-        tableStatus.setPrefHeight(200);
-        tableStatus.setItems(dataStatus);
-
-        double tableWidth2 = 300;
-        nameRobot.setPrefWidth(tableWidth2 * 0.5);
-        statusCol.setPrefWidth(tableWidth2 * 0.5);
-
-        Label statuslabel = new Label(" Status des robots ");
-        statuslabel.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
-        statuslabel.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
 
         // bouton pour fermer la fenêtre
         Button valider = new Button("Valider le tour");
         valider.setFont(new Font(15));
 
-        VBox statusBox = new VBox(statuslabel, tableStatus, valider);
+        VBox statusBox = new VBox(valider);
 
         statusBox.setAlignment(Pos.CENTER);
         statusBox.setSpacing(10);
@@ -303,72 +245,38 @@ public class GUI extends Stage{
 
     }
 
+    private GridPane afficherGrille(Monde m) {
+        GridPane grille = new GridPane();
+        grille.setStyle("-fx-background-image: url('" + getClass().getResource("/Images/Terre.png").toExternalForm() + "');");
+        grille.setHgap(0);
+        grille.setVgap(0);
 
-    /* Création de la fenêtre de jeu en mode console */
-    public void mondeconsole(Monde m){
+        Secteur[][] secteurs = m.getLstSecteur();
+        ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
 
-
-//        Robot r=new Robot(3,3, Minerai.Or);
-//        ((Terrain) m.getLstSecteur()[3][3]).setRobot(r);
-//        (m.getLstSecteur()[4][3]) = new PlanDeau();
-//        new AffichageConsole(m);
-//        System.out.println(m.getLstSecteur()[4][3]instanceof PlanDeau);
-//        System.out.println(r.EstPasDansLeMonde(4,3,m));
-//        System.out.println(r.estPlanEau(4,3,m));
-
-//        m.deplacerRobot("Droit",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Haut",(Terrain) m.getLstSecteur()[3][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[2][4]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Bas",(Terrain) m.getLstSecteur()[2][3]);
-//        System.out.println("ok");
-//        m.deplacerRobot("Gauche",(Terrain) m.getLstSecteur()[3][3]);
-//        System.out.println("ok");
-
-        new VConsole();
-
-    }
-
-
-    private void addInfo(ObservableList<Informations> data, Secteur secteur, int posX, int posY) {
-        if (secteur instanceof Terrain) {
-            Terrain terrain = (Terrain) secteur;
-            String type = "";
-            String mineraiType = "";
-            String info = "";
-
-            if (terrain.getDistrict() instanceof Mine) {
-                Mine mine = (Mine) terrain.getDistrict();
-                type = "Mine";
-                mineraiType = mine.getTypeMinerai().toString();
-                info = "Minerai restant: " + mine.getNbMinerais();
-            } else if (terrain.getDistrict() instanceof Entrepot) {
-                Entrepot entrepot = (Entrepot) terrain.getDistrict();
-                type = "Entrepôt";
-                mineraiType = entrepot.getTypeMinerai().toString();
-                info = "Minerais collectés: " + entrepot.getnbMineraisStockees();
-            } else if (terrain.getRobot() instanceof Robot) {
-                Robot robot = terrain.getRobot();
-                type = "Robot " + robot.getIdRobot();
-                mineraiType = robot.getTypeMinerai().toString();
-                info = "Stockage: " + robot.getNbMineraisExtraits() +" / " + robot.getCapaciteStockage() + "\n Capacité exctraction " + robot.getCapaciteExtraction();
+        for (int i = 0; i < secteurs.length; i++) {
+            for (int j = 0; j < secteurs[i].length; j++) {
+                StackPane cell = new StackPane();
+                cell.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Bordures pour chaque cellule
+                ImageView imageView = new ImageView();
+                imageView.setFitHeight(60);
+                imageView.setFitWidth(60);
+                if (secteurs[i][j] instanceof PlanDeau) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
+                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
+                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
+                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot.png")));
+                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                }
+                cell.getChildren().add(imageView);
+                grille.add(cell, j, i);
             }
-
-            data.add(new Informations(type, posX+1, posY+1, mineraiType, info));
         }
-
+        return grille;
     }
-
-    private void addStatus(ObservableList<Informations> data, Secteur secteur) {
-        String type;
-        String status;
-        type = "Robot";
-        status = "Non défini";
-
-        data.add(new Informations(type, status));
-
-    }
-
 }

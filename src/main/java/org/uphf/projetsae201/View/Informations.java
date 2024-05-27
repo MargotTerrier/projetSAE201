@@ -1,12 +1,14 @@
 package org.uphf.projetsae201.View;
 
+import javafx.collections.ObservableList;
+import org.uphf.projetsae201.Model.*;
+
 public class Informations {
     private String element;
     private int ligne;
     private int colonne;
     private String type;
     private String info;
-    private String status;
 
     public Informations(String element, int ligne, int colonne, String type, String info) {
         this.element = element;
@@ -14,11 +16,6 @@ public class Informations {
         this.colonne = colonne;
         this.type = type;
         this.info = info;
-    }
-
-    public Informations(String nom, String status) {
-        this.element = nom;
-        this.status = status;
     }
 
     public String getElement() {
@@ -61,12 +58,33 @@ public class Informations {
         this.info = info;
     }
 
-    public String getStatus() {
-        return status;
-    }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    static void addInfo(ObservableList<Informations> data, Secteur secteur, int posX, int posY) {
+        if (secteur instanceof Terrain) {
+            Terrain terrain = (Terrain) secteur;
+            String type = "";
+            String mineraiType = "";
+            String info = "";
 
+            if (terrain.getDistrict() instanceof Mine) {
+                Mine mine = (Mine) terrain.getDistrict();
+                type = "Mine";
+                mineraiType = mine.getTypeMinerai().toString();
+                info = "Minerai restant: " + mine.getNbMinerais();
+            } else if (terrain.getDistrict() instanceof Entrepot) {
+                Entrepot entrepot = (Entrepot) terrain.getDistrict();
+                type = "Entrepôt";
+                mineraiType = entrepot.getTypeMinerai().toString();
+                info = "Minerais collectés: " + entrepot.getnbMineraisStockees();
+            } else if (terrain.getRobot() instanceof Robot) {
+                Robot robot = terrain.getRobot();
+                type = "Robot " + robot.getIdRobot();
+                mineraiType = robot.getTypeMinerai().toString();
+                info = "Stockage: " + robot.getNbMineraisExtraits() +" / " + robot.getCapaciteStockage() + "\n Capacité exctraction " + robot.getCapaciteExtraction();
+            }
+
+            data.add(new Informations(type, posX+1, posY+1, mineraiType, info));
+        }
+
+    }
 }
