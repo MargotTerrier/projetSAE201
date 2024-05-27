@@ -46,20 +46,7 @@ public class GUI extends GUIControl{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
-        Button test1 = new Button("Haut");
-        Button test2 = new Button("Bas");
-        Button test3 = new Button("Gauche");
-        Button test4 = new Button("Droit");
-        Button test5 = new Button("Extraire");
-        Button test6 = new Button("Vider");
-        test1.setOnMouseClicked(eg);
-        test2.setOnMouseClicked(eg);
-        test3.setOnMouseClicked(eg);
-        test4.setOnMouseClicked(eg);
-        test5.setOnMouseClicked(eg);
-        test6.setOnMouseClicked(eg);
-
-        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6);
+        HBox top = new HBox(quit, redemarrer);
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
@@ -114,28 +101,42 @@ public class GUI extends GUIControl{
         action.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         action.setStyle("-fx-background-color: white; -fx-border-color: black; -fx-border-width: 1;");
 
-        Label robotCombo = new Label("Robot ");
-        Button moveButton = new Button("Se déplacer");
-        Button extractButton = new Button("Extraire des minerais");
-        Button unloadButton = new Button("Décharger des minerais");
 
-        VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
-        buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
+        Text NRobot = new Text("Robot ");
+        NRobot.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        NRobot.setFill(Color.WHITE);
 
-        Button precedent = new Button("Précédent");
-        Button suivant = new Button("Suivant");
-        precedent.setOnMouseClicked(eg);
-        suivant.setOnMouseClicked(eg);
-        HBox baxt = new HBox(precedent, suivant);
-        baxt.setLayoutY(10);
-        baxt.setSpacing(10);
-        baxt.setStyle("-fx-alignment: center;");
+        Button haut = new Button("Haut");
+        Button bas = new Button("Bas");
+        Button gauche = new Button("Gauche");
+        Button droit = new Button("Droit");
+        Button extraire = new Button("Extraire");
+        Button vider = new Button("Vider");
+        haut.setOnMouseClicked(eg);
+        bas.setOnMouseClicked(eg);
+        gauche.setOnMouseClicked(eg);
+        droit.setOnMouseClicked(eg);
+        extraire.setOnMouseClicked(eg);
+        vider.setOnMouseClicked(eg);
 
-        VBox choix = new VBox(10, buttonBox, baxt);
-        choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
+        VBox buttonBox = new VBox(10, extraire, vider);
 
-        VBox actions = new VBox(10, action, choix);
-        actions.setAlignment(Pos.CENTER);
+        HBox dg = new HBox(gauche, droit);
+        dg.setLayoutY(10);
+        dg.setSpacing(20);
+        dg.setStyle("-fx-alignment: center;");
+
+        VBox direction = new VBox(haut, dg, bas);
+        direction.setSpacing(20);
+        direction.setStyle("-fx-alignment: center;");
+
+        HBox choix = new HBox(10, direction, buttonBox);
+        choix.setStyle("-fx-alignment: center;");
+        choix.setSpacing(20);
+
+        VBox actions = new VBox(10, action, NRobot, choix);
+        actions.setSpacing(20);
+        actions.setStyle("-fx-alignment: center;");
 
         StackPane root = new StackPane(actions);
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
@@ -143,6 +144,7 @@ public class GUI extends GUIControl{
 
 
         // bouton pour fermer la fenêtre
+
         HBox act = new HBox(root);
         act.setSpacing(30);
         act.setAlignment(Pos.CENTER);

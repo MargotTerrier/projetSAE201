@@ -37,7 +37,9 @@ public class EventGUI implements EventHandler {
 
     }
 
-
+    public int getI(){
+        return i;
+    }
     public void verif(){
         if(this.i==this.robots.size()) {
             this.v.actualise();
