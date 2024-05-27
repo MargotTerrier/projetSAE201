@@ -45,18 +45,20 @@ public class Robot {
             case "Gauche" -> tmpY -= 1;
             case "Droit" -> tmpY += 1;
             case "Extraire" -> {
-                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine) {
+                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Mine && ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()!=null) {
                     return ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai() == this.typeMinerai && ((Mine) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getNbMinerais() != 0;
                 }
             }
             case "Vider" -> {
-                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot) {
+                if (((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() instanceof Entrepot && ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict() != null ) {
                     return (((Entrepot) ((Terrain) m.getLstSecteur()[tmpX][tmpY]).getDistrict()).getTypeMinerai()) == this.typeMinerai;
                 }
             }
 
         }
+
         if ((EstPasDansLeMonde(tmpX, tmpY, m))) {
+
             return false;
         } else return !(estPlanEau(tmpX, tmpY, m));
     }
@@ -119,7 +121,7 @@ public class Robot {
     }
 
     public void resetRobot() {
-        id = 0;
+        id = 1;
     }
 
 }
