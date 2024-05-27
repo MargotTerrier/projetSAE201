@@ -19,10 +19,11 @@ import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.*;
 
 public class GUI extends Stage{
-
+    private EventGUI eg;
 
     /* Création de la fenêtre d'acceuil */
-    public GUI(){
+    public GUI(EventGUI eventGUI){
+        this.eg = eventGUI;
 
         Group root = new Group();
 
@@ -62,8 +63,8 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        commencer.setOnMouseClicked(new EventGUI(this));
-        quitter.setOnMouseClicked(new EventGUI(this));
+        commencer.setOnMouseClicked(eg);
+        quitter.setOnMouseClicked(eg);
 
     }
 
@@ -111,9 +112,9 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        graphique.setOnMouseClicked(new EventGUI(this));
-        console.setOnMouseClicked(new EventGUI(this));
-        quitter2.setOnMouseClicked(new EventGUI(this));
+        graphique.setOnMouseClicked(eg);
+        console.setOnMouseClicked(eg);
+        quitter2.setOnMouseClicked(eg);
     }
 
 
