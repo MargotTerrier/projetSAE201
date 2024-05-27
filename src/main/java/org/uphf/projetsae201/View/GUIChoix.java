@@ -17,7 +17,8 @@ import org.uphf.projetsae201.Controller.EventGUI;
 public class GUIChoix extends Stage{
     private EventGUI eg;
     /* Création de la fenêtre du choix de mode d'affichage */
-    public GUIChoix(EventGUI eg){
+    public GUIChoix(){
+        EventGUI this.eg = new EventGUI();
         Group gui = new Group();
 
         // bouton pour lancer le jeu en mode console

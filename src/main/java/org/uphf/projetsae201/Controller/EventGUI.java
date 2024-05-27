@@ -7,16 +7,30 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Model.Monde;
 import org.uphf.projetsae201.View.GUI;
+import org.uphf.projetsae201.View.GUIAcceuil;
+import org.uphf.projetsae201.View.GUIChoix;
 
 import java.util.Random;
 
 public class EventGUI implements EventHandler {
     VGraphique v;
     private GUI gui;
+    private GUIChoix cgui;
+    private GUIAcceuil agui;
+
+
+    public EventGUI(GUIAcceuil agui) {
+        this.agui = agui;
+    }
+    public EventGUI(GUIChoix cgui) {
+        this.cgui = cgui;
+    }
+
     public EventGUI(VGraphique v) {
         this.v = v;
         this.gui = v.getGUI();
     }
+
 
     @Override
     public void handle(Event event) {
