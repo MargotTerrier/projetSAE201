@@ -96,7 +96,15 @@ public class GUI extends GUIControl{
         VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        VBox choix = new VBox(10, buttonBox);
+        Button back = new Button("Précédent");
+        Button next = new Button("Suivant");
+
+        HBox baxt = new HBox(back, next);
+        baxt.setLayoutY(10);
+        baxt.setSpacing(10);
+        baxt.setStyle("-fx-alignment: center;");
+
+        VBox choix = new VBox(10, buttonBox, baxt);
         choix.setStyle("-fx-padding: 0; -fx-alignment: center;");
 
         VBox actions = new VBox(10, action, choix);
