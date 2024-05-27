@@ -29,6 +29,7 @@ public class VGraphique {
     public EventGUI getEventGUI(){
         return this.eg;
     }
+
     public void launch(){
         gui.monde(this.m);
         boolean Fin=false;

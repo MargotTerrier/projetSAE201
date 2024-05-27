@@ -1,5 +1,6 @@
 package org.uphf.projetsae201.View;
 
+import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,10 +11,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import org.uphf.projetsae201.Controller.EventGUI;
 
-public class GUIChoix {
+public class GUIChoix extends Stage{
+    private EventGUI eg;
     /* Création de la fenêtre du choix de mode d'affichage */
-    public GUIChoix(){
+    public GUIChoix(EventGUI eg){
         Group gui = new Group();
 
         // bouton pour lancer le jeu en mode console

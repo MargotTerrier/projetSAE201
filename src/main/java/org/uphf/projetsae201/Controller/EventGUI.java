@@ -26,7 +26,7 @@ public class EventGUI implements EventHandler {
         if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
                 gui.close();
-                gui.gui();
+                gui.monde(v.getMonde());
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 gui.close();

@@ -10,10 +10,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 
-public class GUIAcceuil {
-
+public class GUIAcceuil extends Stage {
+    private EventGUI eg;
     public GUIAcceuil(EventGUI eg){
         this.eg = eg;
 
