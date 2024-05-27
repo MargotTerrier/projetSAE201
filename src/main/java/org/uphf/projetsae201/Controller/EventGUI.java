@@ -97,18 +97,21 @@ public class EventGUI implements EventHandler {
                 new VGraphique();
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Extraire")) {
-                if (robots.get(i).verifDeplacement(this.v.getMonde(),"Extraire")){
-                    System.out.println(i);
-                    this.v.getMonde().deplacerRobot("Extraire",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
-                    i+=1;
-                    verif();
+                if(robots.get(i).verifDeplacement(this.v.getMonde(),"Extraire")){
+                    if(((Terrain) v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]).getDistrict() != null){
+                        this.v.getMonde().deplacerRobot("Extraire",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                        i+=1;
+                        verif();
+                    }
                 }
 
             } else if (((Button) event.getSource()).getText().equals("Vider")) {
                 if (robots.get(i).verifDeplacement(this.v.getMonde(),"Vider")){
-                    this.v.getMonde().deplacerRobot("Vider",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
-                    i+=1;
-                    verif();
+                    if(((Terrain) v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]).getDistrict() != null) {
+                        this.v.getMonde().deplacerRobot("Vider", ((Terrain) v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                        i += 1;
+                        verif();
+                    }
                 }
             }
             else if (((Button) event.getSource()).getText().equals("Haut")) {
