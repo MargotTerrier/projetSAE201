@@ -39,11 +39,11 @@ public class EventGUI implements EventHandler {
         // Boutons pour la fenêtre d'acceuil
         if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
-                gui.close();
-                gui.monde(v.getMonde());
+                agui.close();
+                new GUIChoix(this);
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
-                gui.close();
+                agui.close();
             }
         }
 

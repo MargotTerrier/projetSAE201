@@ -15,9 +15,9 @@ import org.uphf.projetsae201.Controller.EventGUI;
 
 public class GUIAcceuil extends Stage {
     private EventGUI eg;
-    public GUIAcceuil(EventGUI eg){
-        this.eg = eg;
+    public GUIAcceuil(){
 
+        this.eg = new EventGUI(this);
 
         Group root = new Group();
 
