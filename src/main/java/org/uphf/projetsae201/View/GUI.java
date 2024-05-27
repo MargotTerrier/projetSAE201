@@ -369,7 +369,6 @@ public class GUI extends Stage{
 
         data.add(new Informations(type, status));
 
-
     }
 
 }
