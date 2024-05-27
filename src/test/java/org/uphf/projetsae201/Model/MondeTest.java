@@ -27,7 +27,6 @@ class MondeTest {
     }
 
 
-
     /*TEST METHODE extraire*/
     @Test
     public void testExtractionMaxCapacity() {
