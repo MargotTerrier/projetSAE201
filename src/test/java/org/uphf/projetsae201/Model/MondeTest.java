@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class MondeTest {
 
+    /*Ici il y a toutes les variables nécessaires aux tests*/
     Monde monde;
     Robot robot;
     Mine mine;
@@ -43,7 +44,6 @@ class MondeTest {
 
         entrepot = new Entrepot(Minerai.Or);
         monde.getLstSecteur()[2][3] = new Terrain(entrepot); //terrain à droite du robot
-
 
         autreRobot = new Robot(3,2,Minerai.Or);
         terrain3 = new Terrain();
@@ -115,16 +115,16 @@ class MondeTest {
     @Test
     void testDeplacementHaut() {
         monde.deplacerRobot("Haut", ((Terrain) monde.getLstSecteur()[2][2]));
-        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
-        assertNotNull((((Terrain) monde.getLstSecteur()[1][2]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        Assertions.assertEquals(1, ((Terrain) monde.getLstSecteur()[1][2]).getRobot().getCoordonneesX()); // Vérifie que les coordonnées X du robot sont correctes
+        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); //vérifie que le terrain initial ne contient plus le robot
+        assertNotNull((((Terrain) monde.getLstSecteur()[1][2]).getRobot())); //vérifie que le terrain du haut contient maintenant le robot
+        Assertions.assertEquals(1, ((Terrain) monde.getLstSecteur()[1][2]).getRobot().getCoordonneesX()); // vérifie les coordonnées du robot
     }
 
     @Test
     void testDeplacementBasOccupe() {
         monde.deplacerRobot("Bas", ((Terrain) monde.getLstSecteur()[2][2]));
-        assertNotNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot()));
-        assertNotNull((((Terrain) monde.getLstSecteur()[3][2]).getRobot()));
+        assertNotNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); //vérifie que le terrain initial contient l'autre robot robot
+        assertNotNull((((Terrain) monde.getLstSecteur()[3][2]).getRobot())); //vérifie que le terrain du bas contient le robot déplacé (les robots on échangés de place)
 
         Assertions.assertEquals(3, robot.getCoordonneesX());
         Assertions.assertEquals(2, robot.getCoordonneesY());
@@ -135,22 +135,22 @@ class MondeTest {
     @Test
     void testDeplacementGauche() {
         monde.deplacerRobot("Gauche", ((Terrain) monde.getLstSecteur()[2][2]) );
-        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
-        assertNotNull((((Terrain) monde.getLstSecteur()[2][1]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        Assertions.assertEquals(1, robot.getCoordonneesY());
+        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); //vérifie que le terrain initial ne contient plus le robot
+        assertNotNull((((Terrain) monde.getLstSecteur()[2][1]).getRobot())); //vérifie que le terrain de gauche contient le robot
+        Assertions.assertEquals(1, robot.getCoordonneesY()); //on vérifie les coordonnées
     }
 
     @Test
     void testDeplacementDroite() {
         monde.deplacerRobot("Droit", ((Terrain) monde.getLstSecteur()[2][2]) );
-        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); // Vérifie que le terrain initial n'a plus de robot
-        assertNotNull((((Terrain) monde.getLstSecteur()[2][3]).getRobot())); // Vérifie que le terrain au-dessus a maintenant un robot
-        Assertions.assertEquals(3, robot.getCoordonneesY());
+        assertNull((((Terrain) monde.getLstSecteur()[2][2]).getRobot())); //vérifie que le terrain initial ne contient plus le robot
+        assertNotNull((((Terrain) monde.getLstSecteur()[2][3]).getRobot())); //vérifie que le terrain de droite contient le robot
+        Assertions.assertEquals(3, robot.getCoordonneesY()); //on vérifie les coordonnées
     }
 
     @Test
     void testDeplacementVider() {
-        robot.setCapaciteStockage(15);
+        robot.setCapaciteStockage(15); //on set les paramètres nécessaires au test
         robot.setCapaciteExtraction(3);
         robot.setnbMineraisExtraits(15);
         entrepot.setnbMineraisStockes(0);
@@ -166,7 +166,7 @@ class MondeTest {
 
     @Test
     void testDeplacementExtraire() {
-        robotExtraire.setCapaciteStockage(15);
+        robotExtraire.setCapaciteStockage(15); //on set les paramètres nécessaires au test
         robotExtraire.setCapaciteExtraction(3);
         robotExtraire.setnbMineraisExtraits(0);
         mine.setNbMinerais(20);
