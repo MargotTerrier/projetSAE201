@@ -85,6 +85,5 @@ public class Informations {
 
             data.add(new Informations(type, posX+1, posY+1, mineraiType, info));
         }
-
     }
 }
