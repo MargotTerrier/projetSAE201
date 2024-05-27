@@ -15,10 +15,14 @@ public class Monde {
     private int nbPlanEau;
     private int longueurMonde;
     private int largeurMonde;
-
-
     private Secteur[][] lstSecteur;
 
+    public Monde(int longueurMonde, int largeurMonde) {
+        this.longueurMonde = longueurMonde;
+        this.largeurMonde = largeurMonde;
+        this.lstSecteur = new Secteur[this.longueurMonde][this.largeurMonde];
+
+    }
 
     public Monde(int nbEntrepots, int nbRobot, int longueurMonde, int largeurMonde) {
 
@@ -110,6 +114,7 @@ public class Monde {
         mines.sort(Comparator.comparingInt(Mine::getId));
         return mines;
     }
+
     //recupère les Entrepots
     public ArrayList<Entrepot> getEntrepots(){
         ArrayList<Entrepot> entrepots = new ArrayList<>();
@@ -262,7 +267,6 @@ public class Monde {
 
             }
         }
-
     }
 
     public void extraire(Robot robot, Mine mine){
@@ -312,4 +316,6 @@ public class Monde {
        }
        return fin;
     }
+
+
 }
