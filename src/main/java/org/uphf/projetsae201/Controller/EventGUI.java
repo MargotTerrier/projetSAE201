@@ -36,7 +36,7 @@ public class EventGUI implements EventHandler {
         else if (s.getTitle().equals("Choix du mode")) {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
                 gui.close();
-                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
+                new VGraphique();
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 gui.close();
@@ -54,6 +54,9 @@ public class EventGUI implements EventHandler {
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 gui.close();
                 gui.monde(new Monde(2,new Random().nextInt(2,5),10,10));
+            }
+            else if (((Button) event.getSource()).getText().equals("Extraire")){
+
             }
 //            else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
 //

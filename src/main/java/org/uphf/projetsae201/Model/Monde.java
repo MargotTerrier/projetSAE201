@@ -110,6 +110,7 @@ public class Monde {
         mines.sort(Comparator.comparingInt(Mine::getId));
         return mines;
     }
+
     //recupère les Entrepots
     public ArrayList<Entrepot> getEntrepots(){
         ArrayList<Entrepot> entrepots = new ArrayList<>();
@@ -312,4 +313,6 @@ public class Monde {
        }
        return fin;
     }
+
+
 }

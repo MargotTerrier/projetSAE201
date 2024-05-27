@@ -308,6 +308,7 @@ public class GUI extends Stage{
 
 
 
+
     private void addInfo(ObservableList<Informations> data, Secteur secteur, int posX, int posY) {
         if (secteur instanceof Terrain) {
             Terrain terrain = (Terrain) secteur;
