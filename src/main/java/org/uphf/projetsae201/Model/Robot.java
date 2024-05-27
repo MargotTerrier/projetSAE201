@@ -116,4 +116,8 @@ public class Robot {
     public void setCapaciteExtraction(int capaciteExtraction) {
         this.capaciteExtraction = capaciteExtraction;
     }
+
+    public void resetRobot() {
+        idRobot = 0;
+    }
 }

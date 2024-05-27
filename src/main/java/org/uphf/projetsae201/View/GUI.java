@@ -192,12 +192,6 @@ public class GUI extends GUIControl{
                 imageView.setFitWidth(60);
                 if (secteurs[i][j] instanceof PlanDeau) {
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/PlanDeau.png")));
-                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
-                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                 } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
                     if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==1) {
                         imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot1.png")));
@@ -214,6 +208,12 @@ public class GUI extends GUIControl{
                         imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot5.png")));
                         Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                     }
+                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
+                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
+                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
+                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                 }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
