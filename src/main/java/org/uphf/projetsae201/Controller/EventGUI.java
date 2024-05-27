@@ -84,10 +84,12 @@ public class EventGUI implements EventHandler {
 
 
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
+
                 v.actualise(i,"Vider");
 
 
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
+                System.out.println("OSKUR");
                 if (i <= v.getMonde().getNbRobot() - 2) {
                     i += 1;
                 }
@@ -98,6 +100,7 @@ public class EventGUI implements EventHandler {
                 }
             }
             else if (((Button) event.getSource()).getText().equals("Haut")) {
+                System.out.println("OSKUR");
                 v.actualise(i,"Haut");
 
             }

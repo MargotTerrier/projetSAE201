@@ -46,13 +46,20 @@ public class GUI extends GUIControl{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
-        Button test1 = new Button("test 1");
-        Button test2 = new Button("test 2");
-        Button test3 = new Button("test 3");
-        Button test4 = new Button("test 4");
-        Button test5 = new Button("test 5");
-        Button test6 = new Button("test 6");
+        Button test1 = new Button("Haut");
+        Button test2 = new Button("Bas");
+        Button test3 = new Button("Gauche");
+        Button test4 = new Button("Droit");
+        Button test5 = new Button("Extraire");
+        Button test6 = new Button("Vider");
         Button test7 = new Button("test 7");
+        test1.setOnMouseClicked(eg);
+        test2.setOnMouseClicked(eg);
+        test3.setOnMouseClicked(eg);
+        test4.setOnMouseClicked(eg);
+        test5.setOnMouseClicked(eg);
+        test6.setOnMouseClicked(eg);
+        test7.setOnMouseClicked(eg);
 
         HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6, test7);
         top.setLayoutY(10);
@@ -107,10 +114,11 @@ public class GUI extends GUIControl{
         VBox buttonBox = new VBox(10, robotCombo, moveButton, extractButton, unloadButton);
         buttonBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-alignment: center; -fx-background-color: white;");
 
-        Button back = new Button("Précédent");
-        Button next = new Button("Suivant");
-
-        HBox baxt = new HBox(back, next);
+        Button precedent = new Button("Précédent");
+        Button suivant = new Button("Suivant");
+        precedent.setOnMouseClicked(eg);
+        suivant.setOnMouseClicked(eg);
+        HBox baxt = new HBox(precedent, suivant);
         baxt.setLayoutY(10);
         baxt.setSpacing(10);
         baxt.setStyle("-fx-alignment: center;");
