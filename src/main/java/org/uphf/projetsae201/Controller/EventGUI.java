@@ -17,7 +17,7 @@ public class EventGUI implements EventHandler {
     private GUI gui;
     private GUIChoix cgui;
     private GUIAcceuil agui;
-
+    private int n;
 
     public EventGUI(GUIAcceuil agui) {
         this.agui = agui;
@@ -51,7 +51,7 @@ public class EventGUI implements EventHandler {
         else if (s.getTitle().equals("Choix du mode")) {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
                 cgui.close();
-                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
+                new VGraphique();
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 cgui.close();
@@ -68,7 +68,7 @@ public class EventGUI implements EventHandler {
             }
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
                 gui.close();
-                gui.monde(new Monde(2,new Random().nextInt(2,5),10,10));
+                new VGraphique();
             }
             else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
 

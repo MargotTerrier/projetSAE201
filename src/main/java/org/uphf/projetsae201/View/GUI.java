@@ -69,10 +69,6 @@ public class GUI extends GUIControl{
 
     }
 
-
-
-
-
     /* Création de la fenêtre de jeu en mode graphique */
     public void monde(Monde m){
         Group g = new Group();
