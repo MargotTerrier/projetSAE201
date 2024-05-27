@@ -11,10 +11,11 @@ import org.uphf.projetsae201.View.GUI;
 import java.util.Random;
 
 public class EventGUI implements EventHandler {
-    GUI gui;
-
-    public EventGUI(GUI gui) {
-        this.gui = gui;
+    VGraphique v;
+    private GUI gui;
+    public EventGUI(VGraphique v) {
+        this.v = v;
+        this.gui = v.getGUI();
     }
 
     @Override

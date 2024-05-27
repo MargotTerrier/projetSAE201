@@ -11,9 +11,23 @@ import static javafx.application.Application.launch;
 public class VGraphique {
     private GUI gui;
     private Monde m;
+    private EventGUI eg;
     public VGraphique() {
         this.m =new Monde(2   ,new Random().nextInt(2,5),10,10);
+
+        this.eg = new EventGUI(this);
+        this.gui = new GUI(eg);
         launch();
+    }
+
+    public GUI getGUI() {
+        return gui;
+    }
+    public Monde getMonde(){
+        return this.m;
+    }
+    public EventGUI getEventGUI(){
+        return this.eg;
     }
     public void launch(){
         gui.monde(this.m);
@@ -24,6 +38,8 @@ public class VGraphique {
             ArrayList<Mine>mine=m.getMines();
             ArrayList< Entrepot>entrepot=m.getEntrepots();
             while(!Valider){
+
+
 
 
 

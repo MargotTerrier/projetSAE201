@@ -22,8 +22,9 @@ public class GUI extends Stage{
     private EventGUI eg;
 
     /* Création de la fenêtre d'acceuil */
-    public GUI(){
-        this.eg = new EventGUI(this);
+    public GUI(EventGUI eg){
+        this.eg = eg;
+
 
         Group root = new Group();
 
@@ -241,8 +242,8 @@ public class GUI extends Stage{
         this.show();
 
         // Event des boutons
-        quit.setOnMouseClicked(new EventGUI(this));
-        redemarrer.setOnMouseClicked(new EventGUI(this));
+        quit.setOnMouseClicked(this.eg);
+        redemarrer.setOnMouseClicked(this.eg);
 
     }
 
