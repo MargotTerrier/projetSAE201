@@ -161,7 +161,6 @@ class MondeTest {
 
         Assertions.assertEquals(15, entrepot.getnbMineraisStockees(), "L'entrepôt devrait maintenant contenir 15 minerais");
         Assertions.assertEquals(0, robot.getNbMineraisExtraits(), "Le robot devrait avoir 0 minerais après vidage");
-
     }
 
     @Test
@@ -175,7 +174,6 @@ class MondeTest {
 
         Assertions.assertEquals(3, robotExtraire.getNbMineraisExtraits(), "Le robot devrait avoir extrait 3 minerais");
         Assertions.assertEquals(17, mine.getNbMinerais(), "La mine devrait contenir 17 minerais");
-
     }
 
 
