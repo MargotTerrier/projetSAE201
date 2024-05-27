@@ -18,8 +18,8 @@ class MondeTest {
     @BeforeEach
     public void setUp() {
         monde = new Monde(5, 5);
-        robot = new Robot(2, 2, Minerai.Or); // Coordonnées initiales et type de minerai
-        mine = new Mine(Minerai.Or); // Minerai initial et quantité
+        robot = new Robot(2, 2, Minerai.Or);
+        mine = new Mine(Minerai.Or);
         entrepot = new Entrepot();
         monde.getLstSecteur()[2][2] = new Terrain(mine);
         monde.getLstSecteur()[2][3] = new Terrain(entrepot);
@@ -29,7 +29,8 @@ class MondeTest {
 
     /*TEST METHODE extraire*/
     @Test
-    public void testExtractionMaxCapacity() {
+    public void testExctractionNormale() {
+        /*Ici, le robot a assez de stockage disponible par rapport a sa capacité d'extraction et la mine a assez de minerai par rapport a la capacité d'extraction du robot*/
         robot.setCapaciteStockage(15);
         robot.setCapaciteExtraction(5);
         robot.setnbMineraisExtraits(0);
@@ -41,7 +42,8 @@ class MondeTest {
     }
 
     @Test
-    public void testExtractionLimitedByStorage() {
+    public void testExtractionLimiteParStockage() {
+        /*Ici, le robot n'a pas assez de stockage par rapport a sa capacité d'extraction et la mine a assez de minerai par rapport a la capacité d'extraction du robot*/
         robot.setCapaciteStockage(15);
         robot.setCapaciteExtraction(3);
         robot.setnbMineraisExtraits(13);
@@ -53,7 +55,9 @@ class MondeTest {
     }
 
     @Test
-    public void testExtractionLimitedByMine() {
+    public void testExtractionLimiteParMine() {
+        /*Ici, le robot a assez de stockage par rapport a sa capacité d'extraction mais la mine n'a pas assez de minerai par rapport a la capacité d'extraction du robot*/
+
         robot.setCapaciteStockage(15);
         robot.setCapaciteExtraction(3);
         robot.setnbMineraisExtraits(0);
@@ -65,7 +69,9 @@ class MondeTest {
     }
 
     @Test
-    public void testExtractionLimitedByBoth() {
+    public void testExtractionLimiteParTout() {
+        /*Ici, le robot n'a pas assez de stockage par rapport a sa capacité d'extraction et la mine n'a assez de minerai par rapport a la capacité d'extraction du robot*/
+
         robot.setCapaciteStockage(15);
         robot.setCapaciteExtraction(3);
         robot.setnbMineraisExtraits(14);
@@ -77,11 +83,17 @@ class MondeTest {
     }
 
 
+
+    /*TEST METHODE deplacerRobot*/
+
+
+
     /*TEST METHODE vider*/
+    /*Tests additionnels de la méthode vider*/
     @Test
     public void testVider() {
-        robot.setnbMineraisExtraits(30); // Supposons que le robot a extrait 30 unités de minerai
-        entrepot.setnbMineraisStockes(20); // Supposons que l'entrepôt contient déjà 20 unités de minerai
+        robot.setnbMineraisExtraits(30);
+        entrepot.setnbMineraisStockes(20);
         monde.vider(robot, entrepot);
         assertEquals("L'entrepôt devrait maintenant contenir 50 minerais", 50, entrepot.getnbMineraisStockees());
         assertEquals("Le robot devrait avoir 0 minerais après vidage", 0, robot.getNbMineraisExtraits());
