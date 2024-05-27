@@ -28,9 +28,7 @@ public class VGraphique {
 
         this.m = new Monde(2, new Random().nextInt(2, 5), 10, 10);
         this.m.getRobots().get(0).resetRobot();
-        for (Mine m : m.getMines()){
-            m.setNbMinerais(0);
-        }
+
         gui = new GUI(m);
         this.eg = new EventGUI(this);
 

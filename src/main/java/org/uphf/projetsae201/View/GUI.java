@@ -90,7 +90,15 @@ public class GUI extends GUIControl{
         tableInfo.setPrefHeight(400);
         tableInfo.setItems(dataInfo);
 
-        this.remplirTableau();
+        for (Robot robotInfo: this.m.getRobots()){
+            dataInfo.add(new Informations("Robot " + robotInfo.getIdRobot(), robotInfo.getCoordonneesX() + 1, robotInfo.getCoordonneesY() + 1, "" + robotInfo.getTypeMinerai(), robotInfo.getNbMineraisExtraits() + "/" + robotInfo.getCapaciteStockage()));
+        }
+        for (Mine mineInfo: this.m.getMines()){
+            dataInfo.add(new Informations("Mine" + mineInfo.getId(), mineInfo.getX() + 1, mineInfo.getY() + 1, "" + mineInfo.getTypeMinerai(), mineInfo.getNbMinerais() + "/" + mineInfo.getCapacite()));
+        }
+        for (Entrepot entrepotInfo: this.m.getEntrepots()){
+            dataInfo.add(new Informations("Entrepôt" + entrepotInfo.getId(), entrepotInfo.getX() + 1, entrepotInfo.getY() + 1, "" + entrepotInfo.getTypeMinerai(), entrepotInfo.getNbMinerais()));
+        }
 
         double tableWidth = 600;
         element.setPrefWidth(tableWidth * 0.2);
@@ -214,18 +222,6 @@ public class GUI extends GUIControl{
             }
         }
         return grille;
-    }
-    public void remplirTableau(){
-        ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
-        for (Robot robotInfo: this.m.getRobots()){
-            dataInfo.add(new Informations("Robot " + robotInfo.getIdRobot(), robotInfo.getCoordonneesX(), robotInfo.getCoordonneesY(), "" + robotInfo.getTypeMinerai(), robotInfo.getNbMineraisExtraits() + "/" + robotInfo.getCapaciteStockage()));
-        }
-        for (Mine mineInfo: this.m.getMines()){
-            dataInfo.add(new Informations("Mine" + mineInfo.getId(), mineInfo.getX, mineInfo.getY, mineInfo.getTypeMinerai(), mineInfo.getNbMinerais() + "/" + mineInfo.getCapacite()));
-        }
-        for (Entrepot entrepotInfo: this.m.getEntrepots()){
-            dataInfo.add(new Informations("Entrepôt" + entrepotInfo.getId(), entrepotInfo.getX, entrepotInfo.getY, entrepotInfo.getTypeMinerai(), entrepotInfo.getNbMinerais()));
-        }
     }
 
 }
