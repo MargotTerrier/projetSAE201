@@ -19,6 +19,8 @@ import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Controller.VConsole;
 import org.uphf.projetsae201.Model.*;
 
+import java.util.Objects;
+
 public class GUI extends Stage{
 
     EventGUI eg = new EventGUI(this);
@@ -46,16 +48,16 @@ public class GUI extends Stage{
         box.setSpacing(10);
 
         // Image de fond
-        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
-        BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
-        Background bg = new Background(backgroundImage);
+//        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
+//        BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
+//        Background bg = new Background(backgroundImage);
 
         Scene scene = new Scene(box, 570,   320);
-        box.setBackground(bg);
+//        box.setBackground(bg);
         box.getChildren().addAll(root);
 
         // changer l'icone du jeu
-        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
+//        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
 
         this.setTitle("Accueil");
         this.setScene(scene);
@@ -95,7 +97,7 @@ public class GUI extends Stage{
         box.setSpacing(10);
 
         // Image de fond
-        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
+        Image fond = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/ressources/Images/FondAccueil.png")));
         BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
         Background bg = new Background(backgroundImage);
 
@@ -104,7 +106,7 @@ public class GUI extends Stage{
         box.getChildren().addAll(gui);
 
         // changer l'icone du jeu
-        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
+        this.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/ressources/Images/Icone.png"))));
 
         this.setTitle("Choix du mode");
         this.setScene(scene);
