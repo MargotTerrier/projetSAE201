@@ -41,7 +41,7 @@ public class GUI extends GUIControl{
         Button redemarrer = new Button("Redémarrer une partie");
         redemarrer.setFont(new Font(15));
 
-        Label tour = new Label("Tour "+m.getCompteurTour());
+        Label tour = new Label("Tour "+(m.getCompteurTour()+1));
         tour.setLayoutY(10);
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
@@ -94,10 +94,10 @@ public class GUI extends GUIControl{
             dataInfo.add(new Informations("Robot " + robotInfo.getIdRobot(), robotInfo.getCoordonneesX() + 1, robotInfo.getCoordonneesY() + 1, "" + robotInfo.getTypeMinerai(), robotInfo.getNbMineraisExtraits() + "/" + robotInfo.getCapaciteStockage()));
         }
         for (Mine mineInfo: this.m.getMines()){
-            dataInfo.add(new Informations("Mine" + mineInfo.getId(), mineInfo.getX() + 1, mineInfo.getY() + 1, "" + mineInfo.getTypeMinerai(), mineInfo.getNbMinerais() + "/" + mineInfo.getCapacite()));
+            dataInfo.add(new Informations("Mine " + mineInfo.getId(), mineInfo.getX() + 1, mineInfo.getY() + 1, "" + mineInfo.getTypeMinerai(), mineInfo.getNbMinerais() + "/" + mineInfo.getCapacite()));
         }
         for (Entrepot entrepotInfo: this.m.getEntrepots()){
-            dataInfo.add(new Informations("Entrepôt" + entrepotInfo.getId(), entrepotInfo.getX() + 1, entrepotInfo.getY() + 1, "" + entrepotInfo.getTypeMinerai(), entrepotInfo.getNbMinerais()));
+            dataInfo.add(new Informations("Entrepôt " + entrepotInfo.getId(), entrepotInfo.getX() + 1, entrepotInfo.getY() + 1, "" + entrepotInfo.getTypeMinerai(), entrepotInfo.getNbMinerais()));
         }
 
         double tableWidth = 600;
