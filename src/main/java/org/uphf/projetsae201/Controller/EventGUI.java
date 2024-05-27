@@ -39,6 +39,7 @@ public class EventGUI implements EventHandler {
         // Boutons pour la fenêtre d'acceuil
         if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
+
                 agui.close();
                 new GUIChoix();
             }
@@ -63,10 +64,14 @@ public class EventGUI implements EventHandler {
 
         // Boutons pour la fenêtre du jeu
         else if (s.getTitle().equals("Jeu de la mine")) {
+            System.out.println("aled");
+
             if (((Button) event.getSource()).getText().equals("Quitter le jeu")) {
+
                 gui.close();
             }
             else if (((Button) event.getSource()).getText().equals("Redémarrer une partie")) {
+
                 gui.close();
                 new VGraphique();
             }
@@ -79,9 +84,7 @@ public class EventGUI implements EventHandler {
             else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
 
             }
-//            else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
-//
-//            }
+
         }
     }
 

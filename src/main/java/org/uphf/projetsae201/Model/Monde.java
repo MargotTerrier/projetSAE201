@@ -256,6 +256,8 @@ public class Monde {
                 ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
                 ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(temp);
 
+                r.setCoordonneesX(r2.getCoordonneesX());
+                r.setCoordonneesY(r2.getCoordonneesY());
                 r2.setCoordonneesX(temp.getCoordonneesX());
                 r2.setCoordonneesY(temp.getCoordonneesY());
             } else {

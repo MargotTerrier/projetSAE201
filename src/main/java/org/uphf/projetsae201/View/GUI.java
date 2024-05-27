@@ -24,8 +24,6 @@ public class GUI extends GUIControl{
     /* Création de la fenêtre d'acceuil */
     public GUI(EventGUI eg){
         this.eg = eg;
-
-
         Group root = new Group();
 
         // bouton pour commencer une partie
@@ -181,6 +179,9 @@ public class GUI extends GUIControl{
         r.setBackground(bg);
         r.getChildren().addAll(g);
 
+        // Event des boutons
+        quit.setOnMouseClicked(this.eg);
+        redemarrer.setOnMouseClicked(this.eg);
 
         //changer l'icone du jeu
         this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
@@ -190,11 +191,6 @@ public class GUI extends GUIControl{
         this.setScene(scene);
         this.setResizable(false);
         this.show();
-
-        // Event des boutons
-        quit.setOnMouseClicked(this.eg);
-        redemarrer.setOnMouseClicked(this.eg);
-
     }
 
     private GridPane afficherGrille(Monde m) {
