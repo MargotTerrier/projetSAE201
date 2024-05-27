@@ -183,7 +183,7 @@ public class Monde {
                 if (x == 0) {
                     ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
                 } else if (x == 1) {
-                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Or));
+                    ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.Nickel));
                 } else {
                     ((Terrain) map[l][L]).setRobot(new Robot(l,L,Minerai.RandomMinerai()));
                 }
