@@ -52,16 +52,14 @@ public class GUI extends GUIControl{
         Button test4 = new Button("Droit");
         Button test5 = new Button("Extraire");
         Button test6 = new Button("Vider");
-        Button test7 = new Button("test 7");
         test1.setOnMouseClicked(eg);
         test2.setOnMouseClicked(eg);
         test3.setOnMouseClicked(eg);
         test4.setOnMouseClicked(eg);
         test5.setOnMouseClicked(eg);
         test6.setOnMouseClicked(eg);
-        test7.setOnMouseClicked(eg);
 
-        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6, test7);
+        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6);
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
@@ -201,8 +199,21 @@ public class GUI extends GUIControl{
                     imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
                     Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                 } else if (((Terrain) secteurs[i][j]).getRobot() instanceof Robot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==1) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot1.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==2) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot2.png")));
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==3) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot3.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==4) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot4.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getRobot()).getIdRobot()==5) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Robot5.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    }
                 }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
