@@ -241,7 +241,7 @@ public class Monde {
     public void deplacerRobot(String direction, Terrain T) {
         Robot r = T.getRobot();
 
-        if (r.verifDeplacement(this, direction)) {//vérifie si on peut se déplacer
+        if (r.verifDeplacement(this, direction)) {
             int tmpY = r.getCoordonneesY();
             int tmpX = r.getCoordonneesX();
 
@@ -252,39 +252,38 @@ public class Monde {
                 case "Droit" -> tmpY += 1;
                 case "Extraire" -> {
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Mine) {
-                        this.extraire(r,(Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
-                        System.out.println(r.getTypeMinerai());
+                        this.extraire(r, (Mine) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                         T.setRobot(r);
                     }
+                    return;
                 }
                 case "Vider" -> {
                     if (((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict() instanceof Entrepot) {
-                        this.vider(r,(Entrepot) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
+                        this.vider(r, (Entrepot) ((Terrain) this.lstSecteur[tmpX][tmpY]).getDistrict());
                     }
-
+                    return;
                 }
             }
+
             if (((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot() != null) {
                 Robot r2 = ((Terrain) this.lstSecteur[tmpX][tmpY]).getRobot();
-                Robot temp = new Robot(r);
-
                 ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(r2);
-                ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(temp);
-
-                r.setCoordonneesX(r2.getCoordonneesX());
-                r.setCoordonneesY(r2.getCoordonneesY());
-                r2.setCoordonneesX(temp.getCoordonneesX());
-                r2.setCoordonneesY(temp.getCoordonneesY());
+                ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(r);
+                int originalX = r.getCoordonneesX();
+                int originalY = r.getCoordonneesY();
+                r.setCoordonneesX(tmpX);
+                r.setCoordonneesY(tmpY);
+                r2.setCoordonneesX(originalX);
+                r2.setCoordonneesY(originalY);
             } else {
                 ((Terrain) this.lstSecteur[tmpX][tmpY]).setRobot(r);
                 ((Terrain) this.lstSecteur[r.getCoordonneesX()][r.getCoordonneesY()]).setRobot(null);
                 r.setCoordonneesX(tmpX);
                 r.setCoordonneesY(tmpY);
-
-
             }
         }
     }
+
 
     public void extraire(Robot robot, Mine mine){
         boolean MineraiSuffisant = mine.getNbMinerais() > robot.getCapaciteExtraction();

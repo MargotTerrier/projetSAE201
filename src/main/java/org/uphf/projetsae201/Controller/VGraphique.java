@@ -28,6 +28,8 @@ public class VGraphique {
 
         this.m = new Monde(2, new Random().nextInt(2, 5), 10, 10);
         this.m.getRobots().get(0).resetRobot();
+        this.m.getMines().get(0).resetMine();
+        this.m.getEntrepots().get(0).resetId();
 
         gui = new GUI(m);
         this.eg = new EventGUI(this);

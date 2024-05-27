@@ -106,7 +106,6 @@ public class EventGUI implements EventHandler {
 
             } else if (((Button) event.getSource()).getText().equals("Vider")) {
                 if (robots.get(i).verifDeplacement(this.v.getMonde(),"Vider")){
-                    System.out.println("ALED VIDE");
                     this.v.getMonde().deplacerRobot("Vider",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
                     i+=1;
                     verif();
