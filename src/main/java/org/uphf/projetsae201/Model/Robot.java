@@ -118,6 +118,7 @@ public class Robot {
     }
 
     public void resetRobot() {
-        idRobot = 0;
+        id = 0;
     }
+
 }
