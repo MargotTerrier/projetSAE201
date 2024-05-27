@@ -36,7 +36,7 @@ public class EventGUI implements EventHandler {
         else if (s.getTitle().equals("Choix du mode")) {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
                 gui.close();
-                new VGraphique();
+                gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 gui.close();
@@ -55,7 +55,13 @@ public class EventGUI implements EventHandler {
                 gui.close();
                 gui.monde(new Monde(2,new Random().nextInt(2,5),10,10));
             }
-            else if (((Button) event.getSource()).getText().equals("Extraire")){
+            else if (((Button) event.getSource()).getText().equals("Se déplacer")) {
+
+            }
+            else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
+
+            }
+            else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
 
             }
 //            else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
@@ -63,4 +69,5 @@ public class EventGUI implements EventHandler {
 //            }
         }
     }
+
 }
