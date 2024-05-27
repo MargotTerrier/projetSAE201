@@ -46,7 +46,15 @@ public class GUI extends GUIControl{
         tour.layoutXProperty().bind(scene.widthProperty().subtract(tour.prefWidth(-1)).divide(2.1));
         tour.setFont(new Font(30));
 
-        HBox top = new HBox(quit, redemarrer);
+        Button test1 = new Button("test 1");
+        Button test2 = new Button("test 2");
+        Button test3 = new Button("test 3");
+        Button test4 = new Button("test 4");
+        Button test5 = new Button("test 5");
+        Button test6 = new Button("test 6");
+        Button test7 = new Button("test 7");
+
+        HBox top = new HBox(quit, redemarrer, test1, test2, test3, test4, test5, test6, test7);
         top.setLayoutY(10);
         top.setLayoutX(10);
         top.setSpacing(15);
@@ -115,7 +123,6 @@ public class GUI extends GUIControl{
 
         StackPane root = new StackPane(actions);
         root.setStyle("-fx-padding: 10; -fx-alignment: center;");
-
 
 
 
