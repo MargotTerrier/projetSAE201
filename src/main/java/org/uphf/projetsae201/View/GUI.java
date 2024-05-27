@@ -13,62 +13,20 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.*;
 
 public class GUI extends GUIControl{
     private EventGUI eg;
-
+    private Monde m;
     /* Création de la fenêtre d'acceuil */
-    public GUI(EventGUI eg){
-        this.eg = eg;
-        Group root = new Group();
 
-        // bouton pour commencer une partie
-        Button commencer = new Button("Commencer une partie");
-        commencer.setFont(new Font(15));
-
-        // bouton pour fermer la fenêtre
-        Button quitter = new Button("Quitter");
-        quitter.setFont(new Font(15));
-
-        // Titre du jeu
-        Text text = new Text("Jeu de la mine");
-        text.setStrokeWidth(2);
-        text.setStroke(Color.WHITE);
-        text.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
-
-        VBox box = new VBox(text, commencer, quitter);
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(10);
-
-        // Image de fond
-        Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
-        BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
-        Background bg = new Background(backgroundImage);
-
-        Scene scene = new Scene(box, 570,   320);
-        box.setBackground(bg);
-        box.getChildren().addAll(root);
-
-        // changer l'icone du jeu
-        this.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
-
-        this.setTitle("Accueil");
-        this.setScene(scene);
-        this.setResizable(false);
-        this.show();
-
-        // Event des boutons
-        commencer.setOnMouseClicked(eg);
-        quitter.setOnMouseClicked(eg);
-
+    public GUI(Monde m){
+        this.m = m;
     }
-
     /* Création de la fenêtre de jeu en mode graphique */
-    public void monde(Monde m){
+    public void Affiche(EventGUI eg){
+        this.eg = eg;
         Group g = new Group();
         VBox r = new VBox();
         Scene scene = new Scene(r, 1440, 811);
@@ -80,6 +38,7 @@ public class GUI extends GUIControl{
         //bouton pour redémarrer une nouvelle partie
         Button redemarrer = new Button("Redémarrer une partie");
         redemarrer.setFont(new Font(15));
+
 
         Label tour = new Label("Tour ");
         tour.setLayoutY(10);

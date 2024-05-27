@@ -14,11 +14,9 @@ public class VGraphique {
     private EventGUI eg;
 
     public VGraphique() {
-        this.m =new Monde(2   ,new Random().nextInt(2,5),10,10);
-        this.gui = new GUI(eg);
+        this.m = new Monde(2, new Random().nextInt(2, 5), 10, 10);
+        gui = new GUI(m);
         this.eg = new EventGUI(this);
-
-        gui.monde(this.m);
 
     }
 
