@@ -1,8 +1,14 @@
 package org.uphf.projetsae201.Controller;
 
-import javafx.scene.Group;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.shape.Circle;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.GUI;
 
@@ -41,11 +47,32 @@ public class VGraphique {
 
 
         if(getMonde().verifFin()){
-            Circle c =new Circle(100);
-            gui.setScene(new Scene(new Group(c)));
+
+            this.eg = new EventGUI(this);
+
+            Text fin = new Text("Fin de la partie");
+            fin.setStrokeWidth(2);
+            fin.setStroke(Color.WHITE);
+            fin.setFont(Font.font("Verdana", FontWeight.BOLD, 40));
+
+            Button ok = new Button("Ok");
+
+            Image fond = new Image(getClass().getResourceAsStream("/Images/FondAccueil.png"));
+            BackgroundImage backgroundImage = new BackgroundImage(fond, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(100,  100,true,true,true,false));
+            Background bg = new Background(backgroundImage);
+            VBox g = new VBox();
+            g.getChildren().addAll(fin, ok);
+            g.setAlignment(Pos.CENTER);
+            g.setSpacing(10);
+            g.setBackground(bg);
+
+            gui.getIcons().add(new Image(getClass().getResourceAsStream("/Images/Icone.png")));
+            gui.setTitle("Fin");
+            gui.setScene(new Scene(g, 570,   320));
+            gui.centerOnScreen();
             gui.show();
-        }
-        else {
+
+            ok.setOnMouseClicked(eg);
 
         }
 

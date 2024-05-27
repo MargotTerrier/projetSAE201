@@ -12,7 +12,6 @@ import org.uphf.projetsae201.View.GUIAcceuil;
 import org.uphf.projetsae201.View.GUIChoix;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class EventGUI implements EventHandler {
     private VGraphique v;
@@ -139,6 +138,13 @@ public class EventGUI implements EventHandler {
             }
 
 
+        }
+
+        // Boutons pour la fenêtre de fin de jeu
+        else if (s.getTitle().equals("Fin")) {
+            if (((Button) event.getSource()).getText().equals("Ok")) {
+                gui.close();
+            }
         }
 
     }
