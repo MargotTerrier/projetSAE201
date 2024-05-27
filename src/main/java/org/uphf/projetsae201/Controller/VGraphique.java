@@ -41,11 +41,10 @@ public class VGraphique {
             int index=0;
             for (Robot d : this.m.getRobots()){
 
-                m.deplacerRobot(this.mouvement[index],((Terrain) m.getLstSecteur()[d.getCoordonneesX()][d.getCoordonneesY()]));
+
                 index += 1;
             }
-            gui.setMonde(m);
-            gui.Affiche(eg);
+
         }
         else {
 

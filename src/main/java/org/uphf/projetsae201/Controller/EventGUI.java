@@ -39,6 +39,8 @@ public class EventGUI implements EventHandler {
     }
 
 
+
+
     @Override
     public void handle(Event event) {
         Stage s = ((Stage) ((Node) event.getSource()).getScene().getWindow());
@@ -80,13 +82,11 @@ public class EventGUI implements EventHandler {
                 new VGraphique();
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
-                v.actualise(i, "Extraire");
-
-
+                this.v.getMonde().deplacerRobot("Extraire",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                gui.setMonde(v.getMonde());
+                gui.Affiche(this);
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
-                v.actualise(i, "Vider");
-
-
+                this.v.getMonde().deplacerRobot("Vider",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
                 if (i <= v.getMonde().getNbRobot() - 2) {
                     i += 1;
@@ -96,21 +96,29 @@ public class EventGUI implements EventHandler {
                 if (i >= 1) {
                     i -= 1;
                 }
-            } else if (((Button) event.getSource()).getText().equals("Haut")) {
-                v.actualise(i, "Haut");
+            }
+            else if (((Button) event.getSource()).getText().equals("Haut")) {
+                this.v.getMonde().deplacerRobot("Haut",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
 
-            } else if (((Button) event.getSource()).getText().equals("Bas")) {
-                v.actualise(i, "Bas");
+                gui.setMonde(v.getMonde());
+                gui.Affiche(this);
+            }
+            else if (((Button) event.getSource()).getText().equals("Bas")) {
+                this.v.getMonde().deplacerRobot("Bas",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
 
+                gui.setMonde(v.getMonde());
+                gui.Affiche(this);
+            }
+            else if (((Button) event.getSource()).getText().equals("Gauche")) {
+                this.v.getMonde().deplacerRobot("Gauche",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
 
-            } else if (((Button) event.getSource()).getText().equals("Gauche")) {
-                v.actualise(i, "Gauche");
-
-
-            } else if (((Button) event.getSource()).getText().equals("Droit")) {
-                v.actualise(i, "Droit");
-            } else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
-                v.actualise(i, "Valider");
+                gui.setMonde(v.getMonde());
+                gui.Affiche(this);
+            }
+            else if (((Button) event.getSource()).getText().equals("Droit")) {
+                this.v.getMonde().deplacerRobot("Droit",((Terrain)v.getMonde().getLstSecteur()[this.robots.get(i).getCoordonneesX()][this.robots.get(i).getCoordonneesY()]));
+                gui.setMonde(v.getMonde());
+                gui.Affiche(this);
             }
         }
 
