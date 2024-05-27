@@ -30,22 +30,26 @@ public class VGraphique {
     public void actualise(int i , String mouve){
         boolean depl = true;
         this.mouvement[i] = mouve;
-
+        System.out.println(this.mouvement[i]);
         for (String verif : this.mouvement){
             if (verif==null){
                 depl=false;
             }
         }
 
-        if (depl){
+        if (depl && mouve == "Valider"){
             int index=0;
             for (Robot d : this.m.getRobots()){
 
                 m.deplacerRobot(this.mouvement[index],((Terrain) m.getLstSecteur()[d.getCoordonneesX()][d.getCoordonneesY()]));
                 index += 1;
             }
+            gui.setMonde(m);
+            gui.Affiche(eg);
         }
         else {
+
+            gui.setMonde(m);
             gui.Affiche(eg);
         }
 

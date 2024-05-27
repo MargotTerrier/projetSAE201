@@ -80,16 +80,14 @@ public class EventGUI implements EventHandler {
                 new VGraphique();
                 gui.close();
             } else if (((Button) event.getSource()).getText().equals("Extraire des minerais")) {
-                v.actualise(i,"Extraire");
+                v.actualise(i, "Extraire");
 
 
             } else if (((Button) event.getSource()).getText().equals("Décharger des minerais")) {
-
-                v.actualise(i,"Vider");
+                v.actualise(i, "Vider");
 
 
             } else if (((Button) event.getSource()).getText().equals("Suivant")) {
-                System.out.println("OSKUR");
                 if (i <= v.getMonde().getNbRobot() - 2) {
                     i += 1;
                 }
@@ -98,26 +96,21 @@ public class EventGUI implements EventHandler {
                 if (i >= 1) {
                     i -= 1;
                 }
-            }
-            else if (((Button) event.getSource()).getText().equals("Haut")) {
-                System.out.println("OSKUR");
-                v.actualise(i,"Haut");
+            } else if (((Button) event.getSource()).getText().equals("Haut")) {
+                v.actualise(i, "Haut");
 
-            }
-            else if (((Button) event.getSource()).getText().equals("Bas")) {
-                v.actualise(i,"Bas");
+            } else if (((Button) event.getSource()).getText().equals("Bas")) {
+                v.actualise(i, "Bas");
 
 
-            }
-            else if (((Button) event.getSource()).getText().equals("Gauche")) {
-                v.actualise(i,"Gauche");
+            } else if (((Button) event.getSource()).getText().equals("Gauche")) {
+                v.actualise(i, "Gauche");
 
 
-            }
-            else if (((Button) event.getSource()).getText().equals("Droit")) {
-                v.actualise(i,"Droit");
-
-
+            } else if (((Button) event.getSource()).getText().equals("Droit")) {
+                v.actualise(i, "Droit");
+            } else if (((Button) event.getSource()).getText().equals("Valider le tour")) {
+                v.actualise(i, "Valider");
             }
         }
 
