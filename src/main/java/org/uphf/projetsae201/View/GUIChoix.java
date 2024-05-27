@@ -14,12 +14,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 
-public class GUIChoix extends Stage{
+public class GUIChoix extends GUIControl{
     private EventGUI eg;
 
     /* Création de la fenêtre du choix de mode d'affichage */
-    public GUIChoix(EventGUI eg){
-        this.eg = eg;
+    public GUIChoix(){
+        this.eg = new EventGUI(this);
 
         Group gui = new Group();
 

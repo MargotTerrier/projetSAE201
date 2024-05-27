@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 import org.uphf.projetsae201.Model.*;
 
-public class GUI extends Stage{
+public class GUI extends GUIControl{
     private EventGUI eg;
 
     /* Création de la fenêtre d'acceuil */

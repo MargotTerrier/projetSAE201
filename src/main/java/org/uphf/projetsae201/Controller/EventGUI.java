@@ -40,7 +40,7 @@ public class EventGUI implements EventHandler {
         if (s.getTitle().equals("Accueil")) {
             if (((Button) event.getSource()).getText().equals("Commencer une partie")) {
                 agui.close();
-                new GUIChoix(this);
+                new GUIChoix();
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
                 agui.close();
@@ -50,13 +50,13 @@ public class EventGUI implements EventHandler {
         // Boutons pour la fenêtre du mode de jeu
         else if (s.getTitle().equals("Choix du mode")) {
             if (((Button) event.getSource()).getText().equals("Graphique")) {
-                gui.close();
+                cgui.close();
                 gui.monde(new Monde(2,new Random().nextInt(5) + 1,10,10));
             }
             else if (((Button) event.getSource()).getText().equals("Quitter")) {
-                gui.close();
+                cgui.close();
             } else if (((Button) event.getSource()).getText().equals("Console")) {
-                gui.close();
+                cgui.close();
                 new VConsole();
             }
         }

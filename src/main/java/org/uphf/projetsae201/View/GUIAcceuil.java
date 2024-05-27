@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 
-public class GUIAcceuil extends Stage {
+public class GUIAcceuil extends GUIControl {
     private EventGUI eg;
     public GUIAcceuil(){
 
