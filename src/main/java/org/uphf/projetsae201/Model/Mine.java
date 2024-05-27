@@ -55,4 +55,9 @@ public class Mine extends District{
     public void setNbMinerais(int nbMinerais){
         this.nbMinerais = nbMinerais;
     }
+
+    public void resetMine(){
+        id=1;
+    }
 }
+

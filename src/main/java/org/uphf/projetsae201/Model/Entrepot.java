@@ -60,5 +60,7 @@ public class Entrepot extends District{
     public void setnbMineraisStockes(int nbMineraisStockes) {
         this.nbMineraisStockes = nbMineraisStockes;
     }
-
+    public void resetId(){
+        id = 1;
+    }
 }
