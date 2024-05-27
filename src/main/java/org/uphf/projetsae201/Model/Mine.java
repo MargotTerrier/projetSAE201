@@ -8,7 +8,8 @@ public class Mine extends District{
     private int nbMinerais; // Nombre de minerais restants
     private Minerai typeMinerai;
     private int capacite; // Nombre total de minerais à la création
-
+    private int x;
+    private int y;
     public Mine(Minerai minerai){
         this.idMine = id;
         id++;
@@ -22,6 +23,22 @@ public class Mine extends District{
         this.nbMinerais = 50 + new Random().nextInt(50);
         this.capacite = nbMinerais;
         this.typeMinerai=Minerai.RandomMinerai();
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getId(){
