@@ -1,6 +1,5 @@
 package org.uphf.projetsae201.View;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.uphf.projetsae201.Controller.EventGUI;
 
 public class GUIChoix extends GUIControl{

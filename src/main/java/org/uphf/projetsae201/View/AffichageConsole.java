@@ -2,7 +2,6 @@ package org.uphf.projetsae201.View;
 
 import org.uphf.projetsae201.Model.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class AffichageConsole {
     private Monde m ;

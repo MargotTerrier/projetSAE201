@@ -3,10 +3,7 @@ package org.uphf.projetsae201.Controller;
 import org.uphf.projetsae201.Model.*;
 import org.uphf.projetsae201.View.GUI;
 
-import java.util.ArrayList;
 import java.util.Random;
-
-import static javafx.application.Application.launch;
 
 public class VGraphique {
     private GUI gui;

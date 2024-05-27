@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.uphf.projetsae201.Model.Monde;
 import org.uphf.projetsae201.View.GUI;
 import org.uphf.projetsae201.View.GUIAcceuil;
 import org.uphf.projetsae201.View.GUIChoix;
@@ -99,6 +98,11 @@ public class EventGUI implements EventHandler {
             else if (((Button) event.getSource()).getText().equals("Précédent")) {
 
             }
+            else if (((Button) event.getSource()).getText().equals("Précédent")) {
+
+            }
+
+            else if (((Button) event.getSource()).getText().equals("Suivant")) {}
 
         }
 
