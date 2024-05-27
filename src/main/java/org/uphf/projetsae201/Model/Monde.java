@@ -198,10 +198,16 @@ public class Monde {
                 pas[l][L] = "E";
                 if (x == 0) {
                     ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Or));
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 } else if (x == 1) {
                     ((Terrain) map[l][L]).setDistrict(new Entrepot(Minerai.Nickel));
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 } else {
                     ((Terrain) map[l][L]).setDistrict(new Entrepot());
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Entrepot) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 }
                 x += 1;
             }
@@ -215,10 +221,16 @@ public class Monde {
                 pas[l][L] = "M";
                 if (x == 0) {
                     ((Terrain) map[l][L]).setDistrict(new Mine(Minerai.Or));
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 } else if (x == 1) {
                     ((Terrain) map[l][L]).setDistrict(new Mine(Minerai.Nickel));
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 } else {
                     ((Terrain) map[l][L]).setDistrict(new Mine());
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setX(l);
+                    ((Mine) ((Terrain) map[l][L]).getDistrict()).setY(L);
                 }
                 x += 1;
             }
