@@ -9,11 +9,11 @@ import org.uphf.projetsae201.View.GUI;
 import java.util.Random;
 
 public class VGraphique {
-    private int nbTour;
+
     private GUI gui;
     private Monde m;
     private EventGUI eg;
-    private int cpt;
+
 
 
     public VGraphique() {
