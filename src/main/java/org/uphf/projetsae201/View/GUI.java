@@ -213,11 +213,27 @@ public class GUI extends GUIControl{
                         Informations.addInfo(dataInfo, secteurs[i][j], i, j);
                     }
                 } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Mine) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==1) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine1.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==2) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine2.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==3) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine3.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==4) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Mine4.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    }
                 } else if (((Terrain) secteurs[i][j]).getDistrict() instanceof Entrepot) {
-                    imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot.png")));
-                    Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==1) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot1.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    } else if ((((Terrain) secteurs[i][j]).getDistrict()).getId()==2) {
+                        imageView.setImage(new Image(getClass().getResourceAsStream("/Images/Entrepot2.png")));
+                        Informations.addInfo(dataInfo, secteurs[i][j], i, j);
+                    }
                 }
                 cell.getChildren().add(imageView);
                 grille.add(cell, j, i);
