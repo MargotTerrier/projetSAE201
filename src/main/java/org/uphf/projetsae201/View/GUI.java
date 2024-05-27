@@ -90,6 +90,8 @@ public class GUI extends GUIControl{
         tableInfo.setPrefHeight(400);
         tableInfo.setItems(dataInfo);
 
+        this.remplirTableau();
+
         double tableWidth = 600;
         element.setPrefWidth(tableWidth * 0.2);
         ligne.setPrefWidth(tableWidth * 0.15);
@@ -213,6 +215,18 @@ public class GUI extends GUIControl{
 
 
         return grille;
+    }
+    public void remplirTableau(){
+        ObservableList<Informations> dataInfo = FXCollections.observableArrayList();
+        for (Robot robotInfo: this.m.getRobots()){
+            dataInfo.add(new Informations("Robot " + robotInfo.getIdRobot(), robotInfo.getCoordonneesX(), robotInfo.getCoordonneesY(), "" + robotInfo.getTypeMinerai(), robotInfo.getNbMineraisExtraits() + "/" + robotInfo.getCapaciteStockage()));
+        }
+        for (Mine mineInfo: this.m.getMines()){
+            dataInfo.add(new Informations("Mine" + mineInfo.getId(), mineInfo.getX, mineInfo.getY, mineInfo.getTypeMinerai(), mineInfo.getNbMinerais() + "/" + mineInfo.getCapacite()));
+        }
+        for (Entrepot entrepotInfo: this.m.getEntrepots()){
+            dataInfo.add(new Informations("Entrepôt" + entrepotInfo.getId(), entrepotInfo.getX, entrepotInfo.getY, entrepotInfo.getTypeMinerai(), entrepotInfo.getNbMinerais()));
+        }
     }
 
 }
