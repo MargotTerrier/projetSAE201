@@ -7,3 +7,6 @@ Boulet Rémy
 Terrier Margot
 Héthuin Marion
 Machabéïs-Berthomé Arthur
+
+
+Pour corriger l'erreur au lancement dans intellij : clique droit sur le dossier ressources -> Mark Directory as -> Sources Root
