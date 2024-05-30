@@ -59,7 +59,17 @@ public class Robot {
         if ((EstPasDansLeMonde(tmpX, tmpY, m))) {
 
             return false;
-        } else return !(estPlanEau(tmpX, tmpY, m));
+        }
+        else if((estPlanEau(tmpX, tmpY, m))){
+                return false;
+            }
+
+        else { return (estpasRobot(tmpX, tmpY, m));
+    }
+    }
+
+    public boolean estpasRobot(int x,int y, Monde m){
+        return ((Terrain)m.getLstSecteur()[x][y]).getRobot()==null;
     }
 
     public boolean estPlanEau(int x, int y, Monde m) {
